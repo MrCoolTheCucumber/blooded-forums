@@ -4,6 +4,10 @@ import * as actions from '../../actions';
 
 class Signup extends Component {
 
+    componentWillUnmount() {
+        this.props.clearAuthError();
+    }
+
     handleFormSubmit = (formProps) => {
         this.props.signupUser(formProps);
     };

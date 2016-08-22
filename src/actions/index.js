@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import {
     AUTH_USER,
     UNAUTH_USER,
-    AUTH_ERROR
+    AUTH_ERROR,
+    CLEAR_AUTH_ERROR
 } from './types';
 
 const ROOT_URL = 'http://api.bloodedguild.me';
@@ -48,4 +49,8 @@ export function authError(error) {
 export function signoutUser() {
     localStorage.removeItem('token');
     return { type: UNAUTH_USER };
+}
+
+export function clearAuthError() {
+    return { type: CLEAR_AUTH_ERROR };
 }
