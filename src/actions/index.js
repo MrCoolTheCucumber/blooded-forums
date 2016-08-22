@@ -12,16 +12,28 @@ export function signinUser({ username, password }) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/auth`, { username, password })
             .then( response => {
-
                 dispatch({ type: AUTH_USER });
-
                 localStorage.setItem('token', response.data.access_token);
-
                 browserHistory.push('/');
             })
-            .catch( () => {
+            .catch( response => {
                 //TODO better/correct error messages
                 dispatch(authError('There was an error!'));
+            });
+    }
+}
+
+export function signupUser({ email, password }) {
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/signup`, { email, password })
+            .then( response => {
+                dispatch({ type: AUTH_USER });
+                localStorage.setItem('token', response.data.access_token);
+                browserHistory.push('/');
+            })
+            .catch( response => {
+                //TODO better/correct error messages
+                dispatch(authError('There was an error!'))
             });
     }
 }
