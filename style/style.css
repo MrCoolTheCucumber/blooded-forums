@@ -1,3 +1,106 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
+
+/* Animations */
+
+/* End of Animations */
+
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+/* -------- Nav bar ---------- */
+
+.navbar {
+    margin-top: 70px;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+.navbar .nav {
+    box-shadow: 0 4px 4px 0 rgba(118, 118, 118, 0.2), 0 6px 20px 0 rgba(120, 120, 120, 0.19);
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #747474;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar li:first-child {
+    margin-left: 10px;
+}
+
+.navbar li:nth-child(2) {
+    margin-right: 10px;
+}
+
+.navbar .nav-left {
+    float: left;
+}
+
+.navbar .nav-right {
+    float: right;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    background-color: #747474;
+
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: lightcoral;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+
+.navbar .active {
+    background-color: #4CAF50;
+}
+
+/* ----------------- End of nav bar ------------- */
+
+#wrapper {
+    padding: 0 300px;
+}
+
+@media screen and (max-width: 1400px){
+    #wrapper{
+        padding: 0 100px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #wrapper{
+        padding: 0 10px;
+    }
+}
+
+
+
+
+
+
+
 .error {
     color: red;
 }
