@@ -1,3 +1,163 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
+
+/* Animations */
+
+/* End of Animations */
+
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+/* -------- Nav bar ---------- */
+
+.navbar {
+    margin-top: 70px;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+.navbar .nav {
+    box-shadow: 0 4px 4px 0 rgba(118, 118, 118, 0.2), 0 6px 20px 0 rgba(120, 120, 120, 0.19);
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #747474;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar li:first-child {
+    margin-left: 10px;
+}
+
+.navbar li:nth-child(2) {
+    margin-right: 10px;
+}
+
+.navbar .nav-left {
+    float: left;
+}
+
+.navbar .nav-right {
+    float: right;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    background-color: #747474;
+
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: lightcoral;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+
+.navbar .active {
+    background-color: #4CAF50;
+}
+
+/* ----------------- End of nav bar ------------- */
+
+#wrapper {
+    padding: 0 300px;
+}
+
+@media screen and (max-width: 1400px){
+    #wrapper{
+        padding: 0 100px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #wrapper{
+        padding: 0 10px;
+    }
+}
+
+
+
+/* Form */
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #000;
+
+    -webkit-transition: border 0.5s;
+    -moz-transition: border 0.5s;
+    -ms-transition: border 0.5s;
+    -o-transition: border 0.5s;
+    transition: border 0.5s;
+}
+
+.form-button {
+    width: 30%;
+    max-width: 150px;
+    background-color: lightcoral;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0 8px 14px;
+    border: none;
+    border-radius: 4px;
+}
+
+.form-button:hover {
+    background-color: #ff6060;
+    box-shadow: 3px 3px 3px lightcoral;
+    cursor: pointer;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border: 1px solid lightcoral;
+
+    -webkit-transition: border 0.5s;
+    -moz-transition: border 0.5s;
+    -ms-transition: border 0.5s;
+    -o-transition: border 0.5s;
+    transition: border 0.5s;
+
+    box-shadow: 0 0 3px lightcoral;
+}
+
+fieldset {
+    border: none;
+}
+
+form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+
+
 .error {
     color: red;
 }
