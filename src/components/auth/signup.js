@@ -33,11 +33,14 @@ class Signup extends Component {
     };
 
     render() {
-        const { handleSubmit, fields: { username, password, passwordConfirm }} = this.props;
+        const { handleSubmit, fields: { username, password, passwordConfirm, email, firstName, lastName }} = this.props;
 
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit)}>
                 {this.renderAlert()}
+                {this.renderFieldSet('First Name:', firstName, 'text')}
+                {this.renderFieldSet('Last Name:', lastName, 'text')}
+                {this.renderFieldSet('Email:', email, 'text')}
                 {this.renderFieldSet('Username:', username, 'text')}
                 {this.renderFieldSet('Password:', password, 'password')}
                 {this.renderFieldSet('Confirm Password:', passwordConfirm, 'password')}
@@ -73,6 +76,6 @@ function mapStateToProps(state) {
 
 export default reduxForm({
     form: 'signup',
-    fields: ['username', 'password', 'passwordConfirm'],
+    fields: ['username', 'password', 'passwordConfirm', 'firstName', 'lastName', 'email'],
     validate
 }, mapStateToProps, actions)(Signup);

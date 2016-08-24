@@ -24,9 +24,9 @@ export function signinUser({ username, password }) {
     }
 }
 
-export function signupUser({ email, password }) {
+export function signupUser({ username, password, firstName, lastName, email }) {
     return function(dispatch) {
-        axios.post(`${ROOT_URL}/signup`, { email, password })
+        axios.post(`${ROOT_URL}/signup`, { username, password, firstName, lastName, email })
             .then( response => {
                 dispatch({ type: AUTH_USER });
                 localStorage.setItem('token', response.data.access_token);
