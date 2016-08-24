@@ -109,10 +109,10 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
     background-color: white;
     color: #000;
+    outline: none;
 
     -webkit-transition: border 0.5s;
     -moz-transition: border 0.5s;
-    -ms-transition: border 0.5s;
     -o-transition: border 0.5s;
     transition: border 0.5s;
 }
@@ -126,6 +126,7 @@ input[type=text], input[type=password] {
     margin: 8px 0 8px 14px;
     border: none;
     border-radius: 4px;
+    outline: none;
 }
 
 .form-button:hover {
@@ -134,12 +135,20 @@ input[type=text], input[type=password] {
     cursor: pointer;
 }
 
+.form-button:active {
+    -webkit-transform: translateY(1px);
+    -moz-transform: translateY(1px);
+    -o-transform: translateY(1px);
+    transform: translateY(1px);
+
+    box-shadow: 2px 2px 2px lightcoral;
+}
+
 input[type=text]:focus, input[type=password]:focus {
     border: 1px solid lightcoral;
 
     -webkit-transition: border 0.5s;
     -moz-transition: border 0.5s;
-    -ms-transition: border 0.5s;
     -o-transition: border 0.5s;
     transition: border 0.5s;
 
@@ -151,10 +160,14 @@ fieldset {
 }
 
 form {
+    border-style: solid;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+    border-color: lightcoral;
 }
+
+/* End of form */
 
 
 
