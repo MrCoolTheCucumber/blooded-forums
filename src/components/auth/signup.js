@@ -41,7 +41,7 @@ class Signup extends Component {
                 {this.renderFieldSet('Username:', username, 'text')}
                 {this.renderFieldSet('Password:', password, 'password')}
                 {this.renderFieldSet('Confirm Password:', passwordConfirm, 'password')}
-                <button action="submit" className="btn btn-primary">Sign up</button>
+                <button action="submit" className="form-button">Sign up</button>
             </form>
         );
     }
