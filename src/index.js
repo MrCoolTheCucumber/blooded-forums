@@ -16,8 +16,9 @@ import { AUTH_USER } from './actions/types';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-if(localStorage.getItem('token')) {
-    store.dispatch({ type: AUTH_USER })
+const username = localStorage.getItem('username');
+if(localStorage.getItem('token') && username) {
+    store.dispatch({ type: AUTH_USER, payload: username });
 }
 
 ReactDOM.render(
@@ -25,7 +26,7 @@ ReactDOM.render(
         <Router history={browserHistory} >
             <Route path="/" component={App} >
                 <Route path="signin" component={Signin}/>
-                <Route path="signout" component={requireAuth(Signout)}/>
+                <Route path="signout" component={Signout}/>
                 <Route path="signup" component={Signup}/>
             </Route>
         </Router>

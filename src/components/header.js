@@ -6,11 +6,15 @@ class Header extends Component {
 
     renderLinks = () => {
         if (this.props.authenticated) {
-            return (
-                <li className="nav-iten nav-right">
+
+            return [
+                <li key={0} className="nav-iten nav-right">
                     <Link to="/signout" className="nav-link">Sign out</Link>
+                </li>,
+                <li key={1} className="nav-iten nav-right">
+                    <Link to="/profile" className="nav-link">{this.props.username}</Link>
                 </li>
-            );
+            ];
         } else {
             return [
                 <li key={0} className="nav-item nav-right">
@@ -39,7 +43,8 @@ class Header extends Component {
 
 function mapStateToProps(state) {
     return {
-        authenticated: state.auth.authenticated
+        authenticated: state.auth.authenticated,
+        username: state.auth.username
     };
 }
 
