@@ -5,6 +5,10 @@ import ForumCategory from './forum_category';
 
 class Forum extends Component {
 
+    componentWillMount() {
+        this.props.getForumSections();
+    }
+
     renderSubCategories = (subcategories, parentId) => {
         return subcategories.map( subcategory => {
             return (

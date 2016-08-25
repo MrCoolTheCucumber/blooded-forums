@@ -6,10 +6,6 @@ import Breadcrumbs from './breadcrumbs';
 
 class App extends Component {
 
-    componentWillMount() {
-        this.props.getForumSections();
-    }
-
     render() {
         return (
             <div>

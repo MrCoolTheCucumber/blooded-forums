@@ -16,7 +16,7 @@ export function signinUser({ username, password }) {
             .then( response => {
                 dispatch({
                     type: AUTH_USER,
-                    payload: username
+                    payload: response.data.username
                 });
 
                 localStorage.setItem('token', response.data.access_token);
@@ -70,5 +70,11 @@ export function getForumSections() {
             .catch( error => {
 
             });
+    }
+}
+
+export function getSubCategoryThreads({ category, subCategory }) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/subcategories/`)
     }
 }

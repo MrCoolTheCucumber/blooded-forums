@@ -180,6 +180,7 @@ form {
     background-color: #f2f2f2;
     padding: 20px;
     border: solid lightcoral;
+    margin-bottom: 20px;
 }
 
 .category-name {
@@ -189,6 +190,12 @@ form {
     color: lightcoral;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
+    text-decoration: none;
+}
+
+.category-name:hover, .category-subcategory-title:hover {
+    color: #ff6060;
+    text-shadow: 1px 1px lightcoral;
 }
 
 .category-description {
@@ -231,6 +238,7 @@ th, td {
 .category-subcategory-title {
     font-size: 110% ;
     color: lightcoral;
+    text-decoration: none;
 }
 
 .category-subcategory-description {

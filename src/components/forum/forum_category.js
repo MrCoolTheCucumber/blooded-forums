@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class ForumCategory extends Component {
 
@@ -13,7 +14,7 @@ class ForumCategory extends Component {
                             <div className="category-subcategory-description">{subcategory.description}</div>
                         </div>
                     </th>
-                    <th className="category-subcategory-metadata">TODO</th>
+                    <th className="category-subcategory-metadata">Posts: {subcategory.post_count}</th>
                     <th className="category-subcategory-metadata">TODO</th>
                 </tr>
             );
@@ -24,7 +25,7 @@ class ForumCategory extends Component {
     render() {
         return (
             <div className="category-wrapper">
-                <h1 className="category-name">{this.props.category.title}</h1>
+                <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
                 <p className="category-description">{this.props.category.description}</p>
                 <table>
                     <tbody>
