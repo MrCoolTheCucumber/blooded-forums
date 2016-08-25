@@ -81,6 +81,7 @@ body {
 
 #wrapper {
     padding: 0 300px;
+    min-width: 750px;
 }
 
 @media screen and (max-width: 1600px){

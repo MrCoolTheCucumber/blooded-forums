@@ -13,7 +13,7 @@ class Forum extends Component {
             return (
                 <tr key={parentId + '.' + subcategory.id}>
                     <th className="category-subcategory-metadata">
-                        <i class="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"></i>
+                        <i class="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
                         <div className="category-subcategory-td-block">
                             <div className="category-subcategory-title">{subcategory.title}</div>
                             <div className="category-subcategory-description">{subcategory.description}</div>
@@ -33,12 +33,14 @@ class Forum extends Component {
                     <h1 className="category-name">{category.title}</h1>
                     <p className="category-description">{category.description}</p>
                     <table>
-                        <tr>
-                            <th>Forum</th>
-                            <th>t/p</th>
-                            <th>Last Post</th>
-                        </tr>
-                        {this.renderSubCategories(category.subcategories, category.id)}
+                        <tbody>
+                            <tr>
+                                <th>Forum</th>
+                                <th>t/p</th>
+                                <th>Last Post</th>
+                            </tr>
+                            {this.renderSubCategories(category.subcategories, category.id)}
+                        </tbody>
                     </table>
                 </div>
             );
