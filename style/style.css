@@ -83,7 +83,7 @@ body {
     padding: 0 300px;
 }
 
-@media screen and (max-width: 1400px){
+@media screen and (max-width: 1600px){
     #wrapper{
         padding: 0 100px;
     }
@@ -129,6 +129,10 @@ input[type=text], input[type=password] {
     outline: none;
 }
 
+.g-recaptcha {
+    padding-left: 14px;
+}
+
 .form-button:hover {
     background-color: #ff6060;
     box-shadow: 3px 3px 3px lightcoral;
@@ -160,15 +164,80 @@ fieldset {
 }
 
 form {
-    border-style: solid;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    border-color: lightcoral;
+    border: solid lightcoral;
 }
 
 /* End of form */
 
+/* Forum categories */
+
+.category-wrapper {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: solid lightcoral;
+}
+
+.category-name {
+    display: inline;
+    font-size: 150%;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+}
+
+.category-description {
+    display: inline;
+    color: #696969;
+    overflow: auto;
+    overflow-wrap: normal;
+    font-size: 90%;
+}
+
+.category-name + .category-description {
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.category-subcategory-icon {
+    display: inline;
+    vertical-align: 30%;
+    padding-right: 15px;
+}
+
+.category-subcategory-td-block {
+    display: inline-block;
+}
+
+.category-subcategory-metadata {
+    font-weight: 500;
+}
+
+.category-subcategory-title {
+    font-size: 110% ;
+}
+
+.category-subcategory-description {
+    color: #696969;
+    overflow: auto;
+    overflow-wrap: normal;
+    font-size: 90%;
+}
+
+/* End of forum categories */
 
 
 .error {

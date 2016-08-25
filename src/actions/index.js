@@ -4,7 +4,8 @@ import {
     AUTH_USER,
     UNAUTH_USER,
     AUTH_ERROR,
-    CLEAR_AUTH_ERROR
+    CLEAR_AUTH_ERROR,
+    GET_FORUM_SECTIONS
 } from './types';
 
 const ROOT_URL = 'http://api.bloodedguild.me';
@@ -58,4 +59,16 @@ export function signoutUser() {
 
 export function clearAuthError() {
     return { type: CLEAR_AUTH_ERROR };
+}
+
+export function getForumSections() {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/categories`)
+            .then( response => {
+                dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
+            })
+            .catch( error => {
+
+            });
+    }
 }
