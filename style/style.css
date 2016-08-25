@@ -186,6 +186,7 @@ form {
     display: inline;
     font-size: 150%;
     font-weight: 600;
+    color: lightcoral;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
 }
@@ -229,6 +230,7 @@ th, td {
 
 .category-subcategory-title {
     font-size: 110% ;
+    color: lightcoral;
 }
 
 .category-subcategory-description {

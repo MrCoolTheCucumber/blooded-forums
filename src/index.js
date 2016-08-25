@@ -10,7 +10,8 @@ import requireAuth from './components/auth/require_authentication';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
-import Forum from './components/forum'
+import Forum from './components/forum/forum'
+import _404 from './components/404';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
@@ -30,6 +31,7 @@ ReactDOM.render(
                 <Route path="signin" component={Signin}/>
                 <Route path="signout" component={Signout}/>
                 <Route path="signup" component={Signup}/>
+                <Route path="*" components={_404}/>
             </Route>
         </Router>
     </Provider>

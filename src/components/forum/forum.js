@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
+import ForumCategory from './forum_category';
 
 class Forum extends Component {
-
-    componentWillMount() {
-        this.props.getForumSections();
-    }
 
     renderSubCategories = (subcategories, parentId) => {
         return subcategories.map( subcategory => {
             return (
                 <tr key={parentId + '.' + subcategory.id}>
                     <th className="category-subcategory-metadata">
-                        <i class="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
+                        <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
                         <div className="category-subcategory-td-block">
                             <div className="category-subcategory-title">{subcategory.title}</div>
                             <div className="category-subcategory-description">{subcategory.description}</div>
@@ -29,20 +26,7 @@ class Forum extends Component {
     renderCategories = () => {
         return this.props.categories.map( category => {
             return (
-                <div key={category.id} className="category-wrapper">
-                    <h1 className="category-name">{category.title}</h1>
-                    <p className="category-description">{category.description}</p>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Forum</th>
-                                <th>t/p</th>
-                                <th>Last Post</th>
-                            </tr>
-                            {this.renderSubCategories(category.subcategories, category.id)}
-                        </tbody>
-                    </table>
-                </div>
+                <ForumCategory key={category.id} category={category}/>
             );
         });
     };
@@ -51,7 +35,6 @@ class Forum extends Component {
         const categories = this.props.categories;
 
         if (categories) {
-            console.log(this.renderCategories());
             return (
                 <div id="categories-wrapper">
                     {this.renderCategories()}
