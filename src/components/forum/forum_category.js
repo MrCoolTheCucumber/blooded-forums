@@ -10,7 +10,7 @@ class ForumCategory extends Component {
                     <th className="category-subcategory-metadata">
                         <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
                         <div className="category-subcategory-td-block">
-                            <div className="category-subcategory-title">{subcategory.title}</div>
+                            <Link  to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
                             <div className="category-subcategory-description">{subcategory.description}</div>
                         </div>
                     </th>

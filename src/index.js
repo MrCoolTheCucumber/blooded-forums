@@ -38,7 +38,7 @@ ReactDOM.render(
 
                 <Route path="category/:id" component={Category}/>
 
-                <Route path="forum/:subCategoryId/"/>
+                <Route path="forum/:id" component={Threads}/>
 
                 <Route path="*" components={_404}/>
             </Route>

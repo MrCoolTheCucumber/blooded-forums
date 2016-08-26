@@ -5,7 +5,8 @@ import {
     UNAUTH_USER,
     AUTH_ERROR,
     CLEAR_AUTH_ERROR,
-    GET_FORUM_SECTIONS
+    GET_FORUM_SECTIONS,
+    GET_THREADS
 } from './types';
 
 const ROOT_URL = 'http://api.bloodedguild.me';
@@ -73,8 +74,15 @@ export function getForumSections() {
     }
 }
 
-export function getSubCategoryThreads({ category, subCategory }) {
+export function getSubCategoryThreads(subCategoryId, page) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/subcategories/`)
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`)
+            .then( response => {
+                console.log(response.data);
+                dispatch({ type: GET_THREADS, payload: response.data });
+            })
+            .catch( error => {
+
+            });
     }
 }

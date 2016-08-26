@@ -9,24 +9,6 @@ class Forum extends Component {
         this.props.getForumSections();
     }
 
-    renderSubCategories = (subcategories, parentId) => {
-        return subcategories.map( subcategory => {
-            return (
-                <tr key={parentId + '.' + subcategory.id}>
-                    <th className="category-subcategory-metadata">
-                        <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
-                        <div className="category-subcategory-td-block">
-                            <div className="category-subcategory-title">{subcategory.title}</div>
-                            <div className="category-subcategory-description">{subcategory.description}</div>
-                        </div>
-                    </th>
-                    <th className="category-subcategory-metadata">TODO</th>
-                    <th className="category-subcategory-metadata">TODO</th>
-                </tr>
-            );
-        });
-    };
-
     renderCategories = () => {
         return this.props.categories.map( category => {
             return (

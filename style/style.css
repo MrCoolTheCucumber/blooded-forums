@@ -79,6 +79,37 @@ body {
 
 /* ----------------- End of nav bar ------------- */
 
+/* -----           Breadcrumbs         ------ */
+
+
+#crumbs {
+    padding: 2px 2px;
+    list-style: none;
+    margin-bottom: 20px;
+    background-color: lightcoral;
+    border-radius: 5px;
+}
+
+
+#crumbs li {
+    display: inline;
+}
+
+#crumbs .crumbs-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+#crumbs li + li:before {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: #fff;
+    content: "/\00a0";
+}
+
+
+/* -----    end of Breadcrumbs         ------ */
+
 #wrapper {
     padding: 0 300px;
     min-width: 750px;
@@ -253,4 +284,8 @@ th, td {
 
 .error {
     color: red;
+}
+
+#footer {
+    bottom: 0;
 }

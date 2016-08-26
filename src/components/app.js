@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions'
 import Header from './header';
+import Footer from './footer'
 import Breadcrumbs from './breadcrumbs';
 
 class App extends Component {
@@ -14,9 +13,10 @@ class App extends Component {
                     <Breadcrumbs/>
                     {this.props.children}
                 </div>
+                <Footer/>
             </div>
         );
     }
 }
 
-export default connect(null, actions)(App);
+export default App;

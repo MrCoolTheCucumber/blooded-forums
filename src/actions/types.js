@@ -4,3 +4,4 @@ export const AUTH_ERROR = 'auth_error';
 export const CLEAR_AUTH_ERROR = 'clear_auth_error';
 
 export const GET_FORUM_SECTIONS = 'get_forum_sections';
+export const GET_THREADS = 'get_threads';
