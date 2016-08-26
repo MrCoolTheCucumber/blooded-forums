@@ -4,7 +4,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer id="footer">Insert some content here mate</footer>
+            <footer id="footer">Forums made by Brbwipe and ícyy</footer>
         );
     }
 }

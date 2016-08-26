@@ -6,3 +6,6 @@ export const CLEAR_AUTH_ERROR = 'clear_auth_error';
 export const GET_FORUM_SECTIONS = 'get_forum_sections';
 export const GET_THREADS = 'get_threads';
 export const GET_SUBCATEGORY_DATA = 'get_subcategory';
+
+export const MOVE_NANOBAR = 'move_nanobar';
+export const CHANGE_NANOBAR = 'change_nanobar';

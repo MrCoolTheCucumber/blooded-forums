@@ -4,8 +4,9 @@ import {
     AUTH_ERROR,
     CLEAR_AUTH_ERROR
 } from '../actions/types';
+import { INITIAL_STATE } from './initial_state';
 
-export default function (state = {}, action) {
+export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case AUTH_USER:
             return { ...state, error: '', authenticated: true, username: action.payload};

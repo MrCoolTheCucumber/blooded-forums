@@ -72,7 +72,6 @@ body {
     transition: background-color 0.5s;
 }
 
-
 .navbar .active {
     background-color: #4CAF50;
 }
@@ -81,7 +80,6 @@ body {
 
 /* -----           Breadcrumbs         ------ */
 
-
 #crumbs {
     padding: 2px 2px;
     list-style: none;
@@ -89,7 +87,6 @@ body {
     background-color: lightcoral;
     border-radius: 5px;
 }
-
 
 #crumbs li {
     display: inline;
@@ -107,27 +104,35 @@ body {
     content: "/\00a0";
 }
 
-
 /* -----    end of Breadcrumbs         ------ */
 
 #wrapper {
     padding: 0 300px;
     min-width: 750px;
+    min-height: calc(100vh - 98px);
 }
 
-@media screen and (max-width: 1600px){
-    #wrapper{
+footer {
+    background-color: #747474;
+    text-align: center;
+    padding-left: 40%;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 90%;
+}
+
+@media screen and (max-width: 1600px) {
+    #wrapper {
         padding: 0 100px;
     }
 }
 
-@media screen and (max-width: 800px){
-    #wrapper{
+@media screen and (max-width: 800px) {
+    #wrapper {
         padding: 0 10px;
     }
 }
-
-
 
 /* Form */
 
@@ -267,7 +272,7 @@ th, td {
 }
 
 .category-subcategory-title {
-    font-size: 110% ;
+    font-size: 110%;
     color: lightcoral;
     text-decoration: none;
 }
@@ -280,7 +285,6 @@ th, td {
 }
 
 /* End of forum categories */
-
 
 .error {
     color: red;

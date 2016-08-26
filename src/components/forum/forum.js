@@ -7,7 +7,13 @@ class Forum extends Component {
 
     componentWillMount() {
         if(!this.props.categories) {
-            this.props.getForumSections();
+            this.props.moveNanobar(30);
+            this.props.getForumSections(
+                () => {
+                    console.log('callback!');
+                    this.props.moveNanobar(100);
+                }
+            )
         }
     }
 

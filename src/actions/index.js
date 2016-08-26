@@ -7,10 +7,31 @@ import {
     CLEAR_AUTH_ERROR,
     GET_FORUM_SECTIONS,
     GET_THREADS,
-    GET_SUBCATEGORY_DATA
+    GET_SUBCATEGORY_DATA,
+    MOVE_NANOBAR,
+    CHANGE_NANOBAR
 } from './types';
-
 const ROOT_URL = 'http://api.bloodedguild.me';
+
+export function moveNanobar(number) {
+    return function(dispatch) {
+        dispatch({
+            type: MOVE_NANOBAR,
+            payload: number
+        });
+    }
+}
+
+export function changeNanobar(hexColor) {
+    return function(dispatch) {
+        dispatch({
+            type: CHANGE_NANOBAR,
+            payload: {
+                hexColor
+            }
+        });
+    }
+}
 
 export function signinUser({ username, password }) {
     return function(dispatch) {
@@ -63,13 +84,15 @@ export function clearAuthError() {
     return { type: CLEAR_AUTH_ERROR };
 }
 
-export function getForumSections() {
+export function getForumSections(callback) {
     return function(dispatch) {
         axios.get(`${ROOT_URL}/forums/categories`)
             .then( response => {
                 dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
+                callback();
             })
             .catch( error => {
+                onError();
                 //TODO
             });
     }

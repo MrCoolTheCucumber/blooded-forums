@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Header from './header';
 import Footer from './footer'
 import Breadcrumbs from './breadcrumbs';
+import Nanobar from './nanobar';
 
 class App extends Component {
 
     render() {
         return (
             <div>
+                <Nanobar/>
                 <Header />
                 <div id="wrapper">
                     <Breadcrumbs/>

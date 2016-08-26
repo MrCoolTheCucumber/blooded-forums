@@ -3,8 +3,9 @@ import {
     GET_SUBCATEGORY_DATA,
     GET_THREADS
 } from '../actions/types';
+import { INITIAL_STATE } from './initial_state';
 
-export default function (state = {}, action) {
+export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case GET_FORUM_SECTIONS:
             return {...state, categories: action.payload};
