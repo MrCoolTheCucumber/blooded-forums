@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as actions from '../../../actions';
-import ThreadListItem from './thread_list_item';
+import ThreadList from './thread_list';
 
 class Threads extends Component {
 
@@ -20,68 +20,35 @@ class Threads extends Component {
         }
     }
 
-    renderThreads = () => {
-        const threads = this.props.threads;
-
-        var page;
-        if(this.props.location.query.page) {
-            page = this.props.location.query.page;
-        } else {
-            page = 1
-        }
-
-        const key = `p_${this.props.params.id}_${page}`;
-
-        if (threads != null) {
-            if (threads[key] != null) {
-                return threads[key].map(thread => {
-                    return (
-                        <ThreadListItem key={thread.id} thread={thread}/>
-                    );
-                });
-            }
-        }
-
-        //TODO
-        return <tr><th>loading</th></tr>
-    };
-
-    render() {
-        var subcategory;
+    getSubCategory = () => {
         if(this.props.categories) {
-            var found = false;
             for(var i = 0; i < this.props.categories.length; ++i) {
                 for(var j = 0; j < this.props.categories[i].subcategories.length; ++j) {
                     if(this.props.categories[i].subcategories[j].id == this.props.params.id) {
-                        subcategory = this.props.categories[i].subcategories[j];
-                        found = true;
-                        break;
+                        return this.props.categories[i].subcategories[j];
                     }
-                }
-                if(found) {
-                    break;
                 }
             }
         } else {
-            subcategory = this.props.subcategory;
+            return this.props.subcategory;
         }
+    };
 
-        if ((this.props.categories != null || this.props.subcategory != null)) {
+    getPage = () => {
+        if(this.props.location.query.page) {
+            return this.props.location.query.page;
+        } else {
+            return 1;
+        }
+    };
+
+    render() {
+        const subcategory = this.getSubCategory();
+        const page = this.getPage();
+
+        if (this.props.categories != null || this.props.subcategory != null) {
             return (
-                <div className="category-wrapper">
-                    <Link to={`/forum/${subcategory.id}`} className="category-name">{subcategory.title}</Link>
-                    <p className="category-description">{subcategory.description}</p>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <th>Topic</th>
-                            <th>v/p</th>
-                            <th>Last Post</th>
-                        </tr>
-                        {this.renderThreads()}
-                        </tbody>
-                    </table>
-                </div>
+                <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.props.params.id} page={page}/>
             );
         }
 
