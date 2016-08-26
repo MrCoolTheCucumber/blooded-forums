@@ -10,11 +10,11 @@ class ForumCategory extends Component {
                     <th className="category-subcategory-metadata">
                         <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
                         <div className="category-subcategory-td-block">
-                            <Link  to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
+                            <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
                             <div className="category-subcategory-description">{subcategory.description}</div>
                         </div>
                     </th>
-                    <th className="category-subcategory-metadata">Posts: {subcategory.post_count}</th>
+                    <th className="category-subcategory-metadata">Threads: {subcategory.thread_count}</th>
                     <th className="category-subcategory-metadata">TODO</th>
                 </tr>
             );

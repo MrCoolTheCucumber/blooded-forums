@@ -6,7 +6,9 @@ import ForumCategory from './forum_category';
 class Forum extends Component {
 
     componentWillMount() {
-        this.props.getForumSections();
+        if(!this.props.categories) {
+            this.props.getForumSections();
+        }
     }
 
     renderCategories = () => {

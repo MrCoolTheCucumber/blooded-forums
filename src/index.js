@@ -12,7 +12,7 @@ import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import Forum from './components/forum/forum'
 import Category from './components/forum/category/category';
-import Threads from './components/forum/threads';
+import Threads from './components/forum/threads/threads';
 import _404 from './components/404';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';

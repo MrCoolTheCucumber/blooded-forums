@@ -11,7 +11,9 @@ class Category extends Component {
     }
 
     componentWillMount() {
-        this.props.getForumSections();
+        if(!this.props.categories) {
+            this.props.getForumSections();
+        }
     }
 
     renderCategory = (id) => {
