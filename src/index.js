@@ -10,6 +10,10 @@ import requireAuth from './components/auth/require_authentication';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
+import Forum from './components/forum/forum'
+import Category from './components/forum/category/category';
+import Threads from './components/forum/threads/threads';
+import _404 from './components/404';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
@@ -25,9 +29,18 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory} >
             <Route path="/" component={App} >
+
+                <IndexRoute component={Forum}/>
+
                 <Route path="signin" component={Signin}/>
                 <Route path="signout" component={Signout}/>
                 <Route path="signup" component={Signup}/>
+
+                <Route path="category/:id" component={Category}/>
+
+                <Route path="forum/:id" component={Threads}/>
+
+                <Route path="*" components={_404}/>
             </Route>
         </Router>
     </Provider>

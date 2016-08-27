@@ -4,10 +4,34 @@ import {
     AUTH_USER,
     UNAUTH_USER,
     AUTH_ERROR,
-    CLEAR_AUTH_ERROR
+    CLEAR_AUTH_ERROR,
+    GET_FORUM_SECTIONS,
+    GET_THREADS,
+    GET_SUBCATEGORY_DATA,
+    MOVE_NANOBAR,
+    CHANGE_NANOBAR
 } from './types';
-
 const ROOT_URL = 'http://api.bloodedguild.me';
+
+export function moveNanobar(number) {
+    return function(dispatch) {
+        dispatch({
+            type: MOVE_NANOBAR,
+            payload: number
+        });
+    }
+}
+
+export function changeNanobar(hexColor) {
+    return function(dispatch) {
+        dispatch({
+            type: CHANGE_NANOBAR,
+            payload: {
+                hexColor
+            }
+        });
+    }
+}
 
 export function signinUser({ username, password }) {
     return function(dispatch) {
@@ -15,7 +39,7 @@ export function signinUser({ username, password }) {
             .then( response => {
                 dispatch({
                     type: AUTH_USER,
-                    payload: username
+                    payload: response.data.username
                 });
 
                 localStorage.setItem('token', response.data.access_token);
@@ -58,4 +82,49 @@ export function signoutUser() {
 
 export function clearAuthError() {
     return { type: CLEAR_AUTH_ERROR };
+}
+
+export function getForumSections(callback) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/categories`)
+            .then( response => {
+                dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
+                callback();
+            })
+            .catch( error => {
+                onError();
+                //TODO
+            });
+    }
+}
+
+export function getSubCategoryThreads(subCategoryId, page) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`)
+            .then( response => {
+                dispatch({
+                    type: GET_THREADS,
+                    payload: {
+                        page: page,
+                        subcategoryId: subCategoryId,
+                        data: response.data
+                    }
+                });
+            })
+            .catch( error => {
+                //TODO
+            });
+    }
+}
+
+export function getSubCategoryData(subCategoryId) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`)
+            .then( response => {
+                dispatch({ type: GET_SUBCATEGORY_DATA, payload: response.data });
+            })
+            .catch( error => {
+                //TODO
+            });
+    }
 }
