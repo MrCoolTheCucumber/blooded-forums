@@ -17,8 +17,7 @@ class ThreadList extends Component {
             }
         }
 
-        //TODO
-        return <tr><th>loading</th></tr>
+        return <tr><th> </th></tr>
     };
 
     render() {

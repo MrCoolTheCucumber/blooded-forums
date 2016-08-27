@@ -106,10 +106,17 @@ body {
 
 /* -----    end of Breadcrumbs         ------ */
 
+#app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 #wrapper {
     padding: 0 300px;
     min-width: 750px;
-    min-height: calc(100vh - 98px);
+
+    flex: 1;
 }
 
 footer {
@@ -285,6 +292,62 @@ th, td {
 }
 
 /* End of forum categories */
+
+
+/* --------------- Page list buttons -------------- */
+
+.page-list-wrapper {
+    border-radius: 3px;
+}
+
+.page-button + .page-button {
+    margin-left: 3px;
+}
+
+.page-button {
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+    color: white;
+    background: lightcoral;
+    border: 1px solid transparent;
+    text-decoration: none;
+    outline: none;
+
+    padding: 10px 12px;
+}
+
+
+.page-button-page {
+    cursor: default;
+}
+
+.page-button-active {
+    cursor: default;
+    background-color: #ff6060;
+    box-shadow: 3px 3px 3px lightcoral;
+}
+
+.page-button:hover:not(.page-button-page) {
+    background-color: #ff6060;
+    box-shadow: 3px 3px 3px lightcoral;
+    cursor: pointer;
+}
+
+.page-button:active:not(.page-button-active) {
+    -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    -o-transform: translateY(2px);
+    transform: translateY(2px);
+
+    box-shadow: 2px 2px 2px lightcoral;
+}
+
+.page-button-active:hover {
+    cursor: default;
+}
+
+/* ---------------end of page list buttons -------------*/
 
 .error {
     color: red;
