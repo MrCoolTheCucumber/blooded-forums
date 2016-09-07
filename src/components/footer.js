@@ -4,7 +4,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer id="footer">Forums made by Brbwipe and ícyy, powered by react and flask</footer>
+            <footer id="footer">Forums made by Jake (Nowipe) and Ruben (Stabyy) - powered by react js and flask.</footer>
         );
     }
 }
