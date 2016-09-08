@@ -5,8 +5,6 @@ import { Link } from 'react-router';
 
 class Breadcrumbs extends Component {
 
-    
-
     render() {
         return (
             <div id="crumbs">

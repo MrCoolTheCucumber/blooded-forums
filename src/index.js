@@ -13,6 +13,7 @@ import Signup from './components/auth/signup';
 import Forum from './components/forum/forum'
 import Category from './components/forum/category/category';
 import Threads from './components/forum/threads/threads';
+import Topic from './components/forum/topic/topic';
 import _404 from './components/404';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
@@ -39,6 +40,8 @@ ReactDOM.render(
                 <Route path="category/:id" component={Category}/>
 
                 <Route path="forum/:id" component={Threads}/>
+
+                <Route path="topic/:id" component={Topic}/>
 
                 <Route path="*" components={_404}/>
             </Route>

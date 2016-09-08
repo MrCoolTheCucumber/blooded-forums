@@ -119,7 +119,7 @@ body {
     flex: 1;
 }
 
-footer {
+#footer {
     background-color: #747474;
     text-align: center;
     padding-left: 40%;
@@ -349,10 +349,35 @@ th, td {
 
 /* ---------------end of page list buttons -------------*/
 
+/* ------------------ topics ------------------------------*/
+
+#topic-title {
+    padding: 2px 2px;
+    list-style: none;
+    margin-bottom: 20px;
+    background-color: lightcoral;
+    border-radius: 5px;
+    color: white;
+    font-size: 150%;
+
+    padding-left: 35px;
+}
+
+/* ------------------ end of topics ------------------------*/
+
 .error {
     color: red;
 }
 
 #footer {
     bottom: 0;
+}
+
+#footer a {
+    color: lightskyblue;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: deepskyblue;
 }
