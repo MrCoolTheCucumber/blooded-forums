@@ -18,8 +18,14 @@ class Topic extends Component {
         this.props.getThreadData(this.props.params.id);
     }
 
-    renderPosts = () => {
+    componentWillUpdate(nextProps) {
+        if(nextProps.location.query.page != this.getPage(this.props)) {
+            this.props.getPosts(nextProps.params.id, this.getPage(nextProps));
+        }
+    }
 
+    renderPosts = () => {
+        
     };
 
     getPage = (props) => {
@@ -38,11 +44,6 @@ class Topic extends Component {
                     <p className="category-description">TODO, put date here? creation user?</p>
                     <table>
                         <tbody>
-                        <tr>
-                            <th>Topic</th>
-                            <th>v/p</th>
-                            <th>Last Post</th>
-                        </tr>
                         {this.renderPosts()}
                         </tbody>
                     </table>
@@ -52,4 +53,11 @@ class Topic extends Component {
     }
 }
 
-export default connect(null, actions)(Topic);
+function mapStateToProps(state) {
+    return {
+        posts: state.forum.posts,
+        topics: state.forum.topics
+    };
+}
+
+export default connect(mapStateToProps, actions)(Topic);
