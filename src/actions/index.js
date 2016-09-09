@@ -7,6 +7,7 @@ import {
     CLEAR_AUTH_ERROR,
     GET_FORUM_SECTIONS,
     GET_THREADS,
+    GET_THREAD_DATA,
     GET_SUBCATEGORY_DATA,
     GET_POSTS,
     MOVE_NANOBAR,
@@ -145,6 +146,24 @@ export function getPosts(threadId, page) {
             })
             .catch( error => {
                 //TODO
+            });
+    }
+}
+
+export function getThreadData(threadId) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/threads/${threadId}`)
+            .then( response => {
+                dispatch({
+                    type: GET_THREAD_DATA,
+                    payload: {
+                        threadId: threadId,
+                        data: response.data
+                    }
+                })
             })
+            .catch( error => {
+                //TODO
+            });
     }
 }

@@ -10,11 +10,24 @@ class Topic extends Component {
     }
 
     componentWillMount() {
+        //always? get post data first, check query first
+        const page = this.getPage(this.props);
+        this.props.getPosts(this.props.params.id, page);
 
+        //always? get the thread data?
+        this.props.getThreadData(this.props.params.id);
     }
 
     renderPosts = () => {
 
+    };
+
+    getPage = (props) => {
+        if(props.location.query.page) {
+            return props.location.query.page;
+        } else {
+            return 1;
+        }
     };
 
     render() {
