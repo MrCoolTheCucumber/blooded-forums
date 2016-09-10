@@ -298,6 +298,7 @@ th, td {
 
 .page-list-wrapper {
     border-radius: 3px;
+    padding-bottom: 50px;
 }
 
 .page-button + .page-button {
@@ -361,6 +362,21 @@ th, td {
     font-size: 150%;
 
     padding-left: 35px;
+}
+
+.post-container {
+    display: table;
+    min-height: 250px;
+}
+
+.post-user-side, .post-content-side {
+    display: table-cell;
+}
+
+.post-user-side {
+    width: 30%;
+    border-right: 1px solid #ccc;
+
 }
 
 /* ------------------ end of topics ------------------------*/

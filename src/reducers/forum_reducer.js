@@ -32,7 +32,7 @@ export default function (state = INITIAL_STATE, action) {
 
             newThreadDataState.topics = {
                 ...state.topics,
-                [threadDataKey]: action.payload.data
+                [threadDataKey]: action.payload.data[0]
             };
 
             return newThreadDataState;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as actions from '../../../actions';
+import PageButtons from '../page_buttons';
 
 class Topic extends Component {
 
@@ -25,7 +26,41 @@ class Topic extends Component {
     }
 
     renderPosts = () => {
-        
+        const key = `p_${this.props.params.id}_${this.getPage(this.props)}`;
+
+        if(this.props.posts != null && this.props.posts[key] != null) {
+
+            return this.props.posts[key].map(post => {
+                return (
+                    <tr key={post.id}>
+                        <td>
+                            <div className="post-container">
+                                <div className="post-user-side">
+                                    {post.user_id}
+                                </div>
+
+                                <div className="post-content-side">
+                                    <div className="post-content-header">
+                                        <div className="post-content-header-item post-content-date">
+                                            {post.timestamp}
+                                        </div>
+                                        <div className="post-content-header-item post-content-id">
+                                            {post.id}
+                                        </div>
+                                    </div>
+
+                                    <div className="post-content">
+                                        {post.content}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                );
+            });
+        }
+
+        return <tr> </tr>
     };
 
     getPage = (props) => {
@@ -37,19 +72,43 @@ class Topic extends Component {
     };
 
     render() {
+        const key = `t_${this.props.params.id}`;
+        const page = this.getPage(this.props);
+
+        if(this.props.topics != null && this.props.topics[key] != null) {
+
+            const topic = this.props.topics[key];
+
+            return (
+                <div>
+                    <div className="category-wrapper">
+                        <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
+                        <p className="category-description">by USER_ID={topic.user_id}, {topic.timestamp}</p>
+
+                        <div className="posts-table-wrapper">
+                            <table>
+                                <tbody>
+                                <tr><th> </th></tr>
+                                {this.renderPosts()}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div className="page-list-wrapper">
+                        <button className="page-button page-button-page" disabled>Pages:</button>
+                        <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div>
-                <div className="category-wrapper">
-                    <Link to={`/topic/${this.props.params.id}`} className="category-name">{"test123"}</Link>
-                    <p className="category-description">TODO, put date here? creation user?</p>
-                    <table>
-                        <tbody>
-                        {this.renderPosts()}
-                        </tbody>
-                    </table>
-                </div>
+                Loading...
             </div>
         );
+
     }
 }
 
