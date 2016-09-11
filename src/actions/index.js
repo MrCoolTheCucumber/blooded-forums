@@ -47,7 +47,11 @@ export function signinUser({ username, password, redirectUri }) {
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
 
-                browserHistory.push(redirectUri);
+                if(redirectUri == '/signout') {
+                    browserHistory.push('/');
+                } else {
+                    browserHistory.push(redirectUri);
+                }
             })
             .catch( error => {
                 dispatch(authError(error.response.data.description));
@@ -173,8 +177,10 @@ export function createThread() {
         console.log('creating thread!');
         axios.put(`${ROOT_URL}/forums/subcategories/1`,
             {
-                headers: { authorization: localStorage.getItem('token')},
                 title: 'yoloswag'
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`},
             })
             .then( response => {
                 console.log(response);
