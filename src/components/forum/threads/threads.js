@@ -49,6 +49,18 @@ class Threads extends Component {
         }
     };
 
+    renderCreateThreadButton = () => {
+        if(this.props.authenticated) {
+            return (
+                <button className="page-button button-create-thread">Create thread</button>
+            );
+        } else {
+            return (
+                <div></div>
+            )
+        }
+    };
+
     render() {
         const subcategory = this.getSubCategory();
         const page = this.getPage(this.props);
@@ -60,6 +72,7 @@ class Threads extends Component {
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={subcategory.thread_count} currentPage={page} pathName={this.props.location.pathname}/>
+                        {this.renderCreateThreadButton()}
                     </div>
                 </div>
             );
@@ -74,6 +87,7 @@ class Threads extends Component {
 
 function mapStateToProps(state) {
     return {
+        authenticated: state.auth.authenticated,
         categories: state.forum.categories,
         subcategory: state.forum.subcategory,
         threads: state.forum.threads

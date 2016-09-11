@@ -35,7 +35,7 @@ export function changeNanobar(hexColor) {
     }
 }
 
-export function signinUser({ username, password }) {
+export function signinUser({ username, password, redirectUri }) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/auth`, { username, password })
             .then( response => {
@@ -47,7 +47,7 @@ export function signinUser({ username, password }) {
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
 
-                browserHistory.push('/');
+                browserHistory.push(redirectUri);
             })
             .catch( error => {
                 dispatch(authError(error.response.data.description));

@@ -56,6 +56,8 @@ body {
     padding: 14px 16px;
     text-decoration: none;
 
+    cursor: pointer;
+
     background-color: #747474;
 
     -webkit-transition: background-color 0.5s;
@@ -402,6 +404,10 @@ th, td {
 }
 
 /* ------------------ end of topics ------------------------*/
+
+.button-create-thread {
+    float: right;
+}
 
 .error {
     color: red;
