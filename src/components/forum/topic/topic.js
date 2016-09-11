@@ -36,7 +36,12 @@ class Topic extends Component {
                         <td>
                             <div className="post-container">
                                 <div className="post-user-side">
-                                    {post.user_id}
+                                    USER_ID={post.user_id}
+                                    <div className="post-avater-container">
+                                        <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="avatar" width={150} height={150}/>
+                                    </div>
+                                    example metadata: yolo <br/>
+                                    Posts: {420}
                                 </div>
 
                                 <div className="post-content-side">
@@ -45,7 +50,7 @@ class Topic extends Component {
                                             {post.timestamp}
                                         </div>
                                         <div className="post-content-header-item post-content-id">
-                                            {post.id}
+                                            #{post.id}
                                         </div>
                                     </div>
 

@@ -367,6 +367,7 @@ th, td {
 .post-container {
     display: table;
     min-height: 250px;
+    width: 100%;
 }
 
 .post-user-side, .post-content-side {
@@ -374,9 +375,30 @@ th, td {
 }
 
 .post-user-side {
-    width: 30%;
+    width: 17%;
     border-right: 1px solid #ccc;
 
+    text-align: center;
+}
+
+.post-content-header {
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-left: 4px;
+}
+
+.post-content-header-item {
+    display: table-cell;
+}
+
+.post-content-id {
+    float: right;
+    font-weight: bold;
+}
+
+.post-content {
+    margin-left: 4px;
 }
 
 /* ------------------ end of topics ------------------------*/
