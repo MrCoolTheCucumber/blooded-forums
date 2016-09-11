@@ -88,7 +88,7 @@ class Topic extends Component {
                 <div>
                     <div className="category-wrapper">
                         <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                        <p className="category-description">by USER_ID={topic.user_id}, {topic.timestamp}</p>
+                        <p className="category-description">by {topic.username}, {topic.timestamp}</p>
 
                         <div className="posts-table-wrapper">
                             <table>
