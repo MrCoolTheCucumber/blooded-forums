@@ -167,3 +167,20 @@ export function getThreadData(threadId) {
             });
     }
 }
+
+export function createThread() {
+    return function(dispatch) {
+        console.log('creating thread!');
+        axios.put(`${ROOT_URL}/forums/subcategories/1`,
+            {
+                headers: { authorization: localStorage.getItem('token')},
+                title: 'yoloswag'
+            })
+            .then( response => {
+                console.log(response);
+            })
+            .catch( error => {
+               //TODO
+            });
+    }
+}

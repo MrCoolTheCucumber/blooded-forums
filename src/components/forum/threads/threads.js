@@ -22,7 +22,7 @@ class Threads extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        if(nextProps.location.query.page != this.getPage(this.props)) {
+        if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getSubCategoryThreads(nextProps.params.id, this.getPage(nextProps));
         }
     }
@@ -49,10 +49,14 @@ class Threads extends Component {
         }
     };
 
+    handleCreateThreadOnClick = () => {
+        this.props.createThread();
+    };
+
     renderCreateThreadButton = () => {
         if(this.props.authenticated) {
             return (
-                <button className="page-button button-create-thread">Create thread</button>
+                <button className="page-button button-create-thread" onClick={this.handleCreateThreadOnClick}>Create thread</button>
             );
         } else {
             return (

@@ -20,7 +20,7 @@ class Topic extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        if(nextProps.location.query.page != this.getPage(this.props)) {
+        if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getPosts(nextProps.params.id, this.getPage(nextProps));
         }
     }
