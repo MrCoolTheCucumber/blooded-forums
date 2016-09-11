@@ -119,7 +119,7 @@ body {
     flex: 1;
 }
 
-footer {
+#footer {
     background-color: #747474;
     text-align: center;
     padding-left: 40%;
@@ -298,6 +298,7 @@ th, td {
 
 .page-list-wrapper {
     border-radius: 3px;
+    padding-bottom: 50px;
 }
 
 .page-button + .page-button {
@@ -349,10 +350,72 @@ th, td {
 
 /* ---------------end of page list buttons -------------*/
 
+/* ------------------ topics ------------------------------*/
+
+#topic-title {
+    padding: 2px 2px;
+    list-style: none;
+    margin-bottom: 20px;
+    background-color: lightcoral;
+    border-radius: 5px;
+    color: white;
+    font-size: 150%;
+
+    padding-left: 35px;
+}
+
+.post-container {
+    display: table;
+    min-height: 250px;
+    width: 100%;
+}
+
+.post-user-side, .post-content-side {
+    display: table-cell;
+}
+
+.post-user-side {
+    width: 17%;
+    border-right: 1px solid #ccc;
+
+    text-align: center;
+}
+
+.post-content-header {
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-left: 4px;
+}
+
+.post-content-header-item {
+    display: table-cell;
+}
+
+.post-content-id {
+    float: right;
+    font-weight: bold;
+}
+
+.post-content {
+    margin-left: 4px;
+}
+
+/* ------------------ end of topics ------------------------*/
+
 .error {
     color: red;
 }
 
 #footer {
     bottom: 0;
+}
+
+#footer a {
+    color: lightskyblue;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: deepskyblue;
 }

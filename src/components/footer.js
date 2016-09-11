@@ -4,7 +4,10 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer id="footer">Forums made by Brbwipe and ícyy, powered by react and flask</footer>
+            <footer id="footer">Forums made by Jake (Nowipe) and Ruben (Stabyy) - powered by &nbsp;
+                <a href="https://facebook.github.io/react/">react js</a> and &nbsp;
+                <a href="http://flask.pocoo.org/">flask</a>.
+            </footer>
         );
     }
 }

@@ -7,7 +7,9 @@ import {
     CLEAR_AUTH_ERROR,
     GET_FORUM_SECTIONS,
     GET_THREADS,
+    GET_THREAD_DATA,
     GET_SUBCATEGORY_DATA,
+    GET_POSTS,
     MOVE_NANOBAR,
     CHANGE_NANOBAR
 } from './types';
@@ -122,6 +124,43 @@ export function getSubCategoryData(subCategoryId) {
         axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`)
             .then( response => {
                 dispatch({ type: GET_SUBCATEGORY_DATA, payload: response.data });
+            })
+            .catch( error => {
+                //TODO
+            });
+    }
+}
+
+export function getPosts(threadId, page) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/threads/${threadId}/${(page*20)-19}-${page*20}`)
+            .then( response => {
+                dispatch({
+                    type: GET_POSTS,
+                    payload: {
+                        page: page,
+                        threadId: threadId,
+                        data: response.data
+                    }
+                })
+            })
+            .catch( error => {
+                //TODO
+            });
+    }
+}
+
+export function getThreadData(threadId) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/threads/${threadId}`)
+            .then( response => {
+                dispatch({
+                    type: GET_THREAD_DATA,
+                    payload: {
+                        threadId: threadId,
+                        data: response.data
+                    }
+                })
             })
             .catch( error => {
                 //TODO
