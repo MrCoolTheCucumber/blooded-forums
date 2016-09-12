@@ -9,7 +9,11 @@ class Signin extends Component {
     }
 
     handleFormSubmit = ({ username, password }) => {
-        this.props.signinUser({ username, password });
+        this.props.signinUser({
+            username,
+            password,
+            redirectUri: this.props.location.query.redirectUri
+        });
     };
 
     renderAlert = () => {

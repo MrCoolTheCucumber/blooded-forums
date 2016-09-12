@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Link } from 'react-router';
 
 class Header extends Component {
+
+    onSignInClick = () => {
+        browserHistory.push(`/signin?redirectUri=${this.props.path}`);
+    };
 
     renderLinks = () => {
         if (this.props.authenticated) {
@@ -18,7 +23,7 @@ class Header extends Component {
         } else {
             return [
                 <li key={0} className="nav-item nav-right">
-                    <Link to="/signin" className="nav-link">Sign in</Link>
+                    <a className="nav-link" onClick={this.onSignInClick}>Sign in</a>
                 </li>,
                 <li key={1} className="nav-item nav-right">
                     <Link to="/signup" className="nav-link">Create an account</Link>

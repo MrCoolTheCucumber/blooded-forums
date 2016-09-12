@@ -35,7 +35,7 @@ export function changeNanobar(hexColor) {
     }
 }
 
-export function signinUser({ username, password }) {
+export function signinUser({ username, password, redirectUri }) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/auth`, { username, password })
             .then( response => {
@@ -47,7 +47,11 @@ export function signinUser({ username, password }) {
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
 
-                browserHistory.push('/');
+                if(redirectUri == '/signout') {
+                    browserHistory.push('/');
+                } else {
+                    browserHistory.push(redirectUri);
+                }
             })
             .catch( error => {
                 dispatch(authError(error.response.data.description));
@@ -165,5 +169,59 @@ export function getThreadData(threadId) {
             .catch( error => {
                 //TODO
             });
+    }
+}
+
+function sendPost(threadId, content, then) {
+    console.log('hit function!');
+    axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+        {
+            content: content
+        },
+        {
+            headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+        })
+        .then( response => {
+            console.log('post made!');
+            console.log(response);
+            then();
+        })
+        .catch( error => {
+            //TODO
+        });
+}
+
+export function createThread(title, subCategoryId, content) {
+    return function(dispatch) {
+        axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
+            {
+                title: title
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
+            .then( response => {
+                console.log(response);
+                console.log('thread made!');
+                console.log('Creating post!');
+
+                const threadId = response.data.id;
+
+                sendPost(threadId, content, function() {
+                    browserHistory.push(`/topic/${threadId}`);
+                });
+
+            })
+            .catch( error => {
+               //TODO
+            });
+    }
+}
+
+export function createPost(threadId, content) {
+    return function(dispatch) {
+        sendPost(threadId, content, function() {
+            browserHistory.push(`/topic/${threadId}`);
+        });
     }
 }

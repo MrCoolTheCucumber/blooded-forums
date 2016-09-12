@@ -10,7 +10,7 @@ class App extends Component {
         return (
             <div id="app">
                 <Nanobar/>
-                <Header />
+                <Header path={this.props.location.pathname}/>
                 <div id="wrapper">
                     <Breadcrumbs/>
                     {this.props.children}

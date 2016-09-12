@@ -20,7 +20,7 @@ class Topic extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        if(nextProps.location.query.page != this.getPage(this.props)) {
+        if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getPosts(nextProps.params.id, this.getPage(nextProps));
         }
     }
@@ -36,7 +36,7 @@ class Topic extends Component {
                         <td>
                             <div className="post-container">
                                 <div className="post-user-side">
-                                    USER_ID={post.user_id}
+                                    {post.username}
                                     <div className="post-avater-container">
                                         <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="avatar" width={150} height={150}/>
                                     </div>
@@ -76,6 +76,18 @@ class Topic extends Component {
         }
     };
 
+    renderCreatePostButton = () => {
+        if(this.props.authenticated) {
+            return (
+                <Link to={`/topic/${this.props.params.id}/create`} className="page-button button-create-thread">Create post</Link>
+            );
+        } else {
+            return (
+                <div></div>
+            )
+        }
+    };
+
     render() {
         const key = `t_${this.props.params.id}`;
         const page = this.getPage(this.props);
@@ -88,7 +100,7 @@ class Topic extends Component {
                 <div>
                     <div className="category-wrapper">
                         <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                        <p className="category-description">by USER_ID={topic.user_id}, {topic.timestamp}</p>
+                        <p className="category-description">by {topic.username}, {topic.timestamp}</p>
 
                         <div className="posts-table-wrapper">
                             <table>
@@ -103,6 +115,7 @@ class Topic extends Component {
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
+                        {this.renderCreatePostButton()}
                     </div>
                 </div>
             );
@@ -119,6 +132,7 @@ class Topic extends Component {
 
 function mapStateToProps(state) {
     return {
+        authenticated: state.auth.authenticated,
         posts: state.forum.posts,
         topics: state.forum.topics
     };
