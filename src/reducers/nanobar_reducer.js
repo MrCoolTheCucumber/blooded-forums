@@ -9,7 +9,7 @@ export default function (state = INITIAL_STATE, action) {
         case MOVE_NANOBAR:
             return {...state, go: action.payload};
         case CHANGE_NANOBAR:
-            return {...state, color: action.payload.hexColor};
+            return {...state, hexColor: action.payload.hexColor};
         default:
             return state;
     }

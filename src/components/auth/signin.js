@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
+import { NanoConsts } from '../../nanobar_consts';
 
 class Signin extends Component {
 
@@ -9,10 +10,18 @@ class Signin extends Component {
     }
 
     handleFormSubmit = ({ username, password }) => {
+        this.props.changeNanobar(NanoConsts.defaultColor);
+        this.props.moveNanobar(30);
         this.props.signinUser({
             username,
             password,
             redirectUri: this.props.location.query.redirectUri
+        }, () => {
+            this.props.changeNanobar(NanoConsts.successColor);
+            this.props.moveNanobar(100);
+        }, () => {
+            this.props.changeNanobar(NanoConsts.errorColor);
+            this.props.moveNanobar(100);
         });
     };
 

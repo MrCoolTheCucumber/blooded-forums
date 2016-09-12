@@ -35,7 +35,7 @@ export function changeNanobar(hexColor) {
     }
 }
 
-export function signinUser({ username, password, redirectUri }) {
+export function signinUser({ username, password, redirectUri }, callback, onError) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/auth`, { username, password })
             .then( response => {
@@ -47,13 +47,16 @@ export function signinUser({ username, password, redirectUri }) {
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
 
+                callback();
+
                 if(redirectUri == '/signout') {
-                    browserHistory.push('/');
+                    browserHistory.push('/?n=true');
                 } else {
                     browserHistory.push(redirectUri);
                 }
             })
             .catch( error => {
+                onError();
                 dispatch(authError(error.response.data.description));
             });
     }
@@ -91,9 +94,15 @@ export function authError(error) {
     };
 }
 
-export function signoutUser() {
+export function signoutUser(callback) {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+
+    setTimeout(function() {
+        callback();
+        browserHistory.push('/');
+    }, 1000);
+
     return { type: UNAUTH_USER };
 }
 
