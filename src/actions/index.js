@@ -13,7 +13,7 @@ import {
     MOVE_NANOBAR,
     CHANGE_NANOBAR
 } from './types';
-const ROOT_URL = 'http://api.bloodedguild.me';
+const ROOT_URL = 'https://api.bloodedguild.me';
 
 export function moveNanobar(number) {
     return function(dispatch) {
