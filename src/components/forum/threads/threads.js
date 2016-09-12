@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import * as actions from '../../../actions';
 import ThreadList from './thread_list';
 import PageButtons from '../page_buttons';
@@ -49,14 +50,10 @@ class Threads extends Component {
         }
     };
 
-    handleCreateThreadOnClick = () => {
-        this.props.createThread();
-    };
-
     renderCreateThreadButton = () => {
         if(this.props.authenticated) {
             return (
-                <button className="page-button button-create-thread" onClick={this.handleCreateThreadOnClick}>Create thread</button>
+                <Link to={`/forum/${this.props.params.id}/create`} className="page-button button-create-thread" onClick={this.handleCreateThreadOnClick}>Create thread</Link>
             );
         } else {
             return (

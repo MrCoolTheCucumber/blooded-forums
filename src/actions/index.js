@@ -172,21 +172,63 @@ export function getThreadData(threadId) {
     }
 }
 
-export function createThread() {
+export function createThread(title, subCategoryId, content) {
     return function(dispatch) {
-        console.log('creating thread!');
-        axios.put(`${ROOT_URL}/forums/subcategories/1`,
+        axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
             {
-                title: 'yoloswag'
+                title: title
             },
             {
-                headers: { Authorization: `JWT ${localStorage.getItem('token')}`},
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
             })
             .then( response => {
                 console.log(response);
+                console.log('thread made!');
+                console.log('Creating post!');
+
+                const threadId = response.data.id;
+
+                axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+                    {
+                        content: content
+                    },
+                    {
+                        headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+                    })
+                    .then( response => {
+                        console.log('post made!');
+                        console.log(response);
+                        browserHistory.push(`/topic/${threadId}`);
+                    })
+                    .catch( error => {
+                        //TODO
+                    });
             })
             .catch( error => {
                //TODO
+            });
+    }
+}
+
+function sendPost(threadId, content) {
+
+}
+
+export function createPost(threadId, content) {
+    return function(dispatch) {
+        axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
+            .then( response => {
+                console.log('post made!');
+                console.log(response);
+            })
+            .catch( error => {
+                //TODO
             });
     }
 }

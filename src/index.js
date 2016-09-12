@@ -13,6 +13,7 @@ import Signup from './components/auth/signup';
 import Forum from './components/forum/forum'
 import Category from './components/forum/category/category';
 import Threads from './components/forum/threads/threads';
+import CreateThread from './components/forum/threads/create_thread';
 import Topic from './components/forum/topic/topic';
 import _404 from './components/404';
 import reducers from './reducers';
@@ -40,6 +41,7 @@ ReactDOM.render(
                 <Route path="category/:id" component={Category}/>
 
                 <Route path="forum/:id" component={Threads}/>
+                <Route path="forum/:id/create" component={requireAuth(CreateThread)}/>
 
                 <Route path="topic/:id" component={Topic}/>
 

@@ -209,7 +209,7 @@ fieldset {
     border: none;
 }
 
-form {
+form, .form-div {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
@@ -407,6 +407,10 @@ th, td {
 
 .button-create-thread {
     float: right;
+}
+
+.ql-snow {
+    background: white;
 }
 
 .error {
