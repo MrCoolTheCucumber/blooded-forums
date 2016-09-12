@@ -172,6 +172,25 @@ export function getThreadData(threadId) {
     }
 }
 
+function sendPost(threadId, content, then) {
+    console.log('hit function!');
+    axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+        {
+            content: content
+        },
+        {
+            headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+        })
+        .then( response => {
+            console.log('post made!');
+            console.log(response);
+            then();
+        })
+        .catch( error => {
+            //TODO
+        });
+}
+
 export function createThread(title, subCategoryId, content) {
     return function(dispatch) {
         axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
@@ -188,21 +207,10 @@ export function createThread(title, subCategoryId, content) {
 
                 const threadId = response.data.id;
 
-                axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
-                    {
-                        content: content
-                    },
-                    {
-                        headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
-                    })
-                    .then( response => {
-                        console.log('post made!');
-                        console.log(response);
-                        browserHistory.push(`/topic/${threadId}`);
-                    })
-                    .catch( error => {
-                        //TODO
-                    });
+                sendPost(threadId, content, function() {
+                    browserHistory.push(`/topic/${threadId}`);
+                });
+
             })
             .catch( error => {
                //TODO
@@ -210,25 +218,10 @@ export function createThread(title, subCategoryId, content) {
     }
 }
 
-function sendPost(threadId, content) {
-
-}
-
 export function createPost(threadId, content) {
     return function(dispatch) {
-        axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
-            {
-                content: content
-            },
-            {
-                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
-            })
-            .then( response => {
-                console.log('post made!');
-                console.log(response);
-            })
-            .catch( error => {
-                //TODO
-            });
+        sendPost(threadId, content, function() {
+            browserHistory.push(`/topic/${threadId}`);
+        });
     }
 }

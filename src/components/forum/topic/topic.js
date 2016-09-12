@@ -76,6 +76,18 @@ class Topic extends Component {
         }
     };
 
+    renderCreatePostButton = () => {
+        if(this.props.authenticated) {
+            return (
+                <Link to={`/topic/${this.props.params.id}/create`} className="page-button button-create-thread">Create post</Link>
+            );
+        } else {
+            return (
+                <div></div>
+            )
+        }
+    };
+
     render() {
         const key = `t_${this.props.params.id}`;
         const page = this.getPage(this.props);
@@ -103,6 +115,7 @@ class Topic extends Component {
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
+                        {this.renderCreatePostButton()}
                     </div>
                 </div>
             );
@@ -119,6 +132,7 @@ class Topic extends Component {
 
 function mapStateToProps(state) {
     return {
+        authenticated: state.auth.authenticated,
         posts: state.forum.posts,
         topics: state.forum.topics
     };
