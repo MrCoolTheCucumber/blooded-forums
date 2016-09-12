@@ -206,7 +206,8 @@ export function createThread(title, subCategoryId, content) {
     return function(dispatch) {
         axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
             {
-                title: title
+                title,
+                content
             },
             {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
@@ -214,14 +215,8 @@ export function createThread(title, subCategoryId, content) {
             .then( response => {
                 console.log(response);
                 console.log('thread made!');
-                console.log('Creating post!');
 
-                const threadId = response.data.id;
-
-                sendPost(threadId, content, function() {
-                    browserHistory.push(`/topic/${threadId}`);
-                });
-
+                browserHistory.push(`/topic/${response.data.id}`);
             })
             .catch( error => {
                //TODO
