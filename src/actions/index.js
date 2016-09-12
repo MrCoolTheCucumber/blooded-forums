@@ -61,10 +61,21 @@ export function signinUser({ username, password, redirectUri }) {
 
 export function signupUser({ username, password, firstName, lastName, email }) {
     return function(dispatch) {
-        axios.post(`${ROOT_URL}/signup`, { username, password, firstName, lastName, email })
+        axios.put(`${ROOT_URL}/forums/users`,
+            {
+                username,
+                password_hash: password,
+                f_name: firstName,
+                l_name: lastName,
+                email
+            })
             .then( response => {
-                dispatch({ type: AUTH_USER });
+                dispatch({
+                    type: AUTH_USER,
+                    payload: response.data.username
+                });
                 localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('username', response.data.username);
                 browserHistory.push('/');
             })
             .catch( error => {
