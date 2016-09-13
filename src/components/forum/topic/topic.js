@@ -59,9 +59,9 @@ class Topic extends Component {
                                 <div className="post-user-side">
                                     <div className="post-username">{post.username}</div>
                                     <div className="post-avater-container">
-                                        <img src="http://i2.kym-cdn.com/entries/icons/square/000/017/830/b49.gif" alt="avatar" width={150} height={150}/>
+                                        <img crossOrigin="Anonymous" src={`//${post.avatar}`} alt="avatar" width={150} height={150}/>
                                     </div>
-                                    Posts: {420}
+                                    Posts: {post.post_count}
                                 </div>
 
                                 <div className="post-content-side">
@@ -102,9 +102,7 @@ class Topic extends Component {
                 <Link to={`/topic/${this.props.params.id}/create`} className="page-button button-create-thread">Create post</Link>
             );
         } else {
-            return (
-                <div></div>
-            )
+            return null;
         }
     };
 
