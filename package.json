@@ -33,6 +33,7 @@
     "axios": "^0.13.1",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
+    "moment": "^2.15.0",
     "nanobar": "^0.4.2",
     "quill": "^1.0.3",
     "react": "^0.14.3",

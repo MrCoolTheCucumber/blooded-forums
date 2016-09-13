@@ -382,6 +382,9 @@ th, td {
     border-right: 1px solid #ccc;
 
     text-align: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .post-content-header {
@@ -401,7 +404,12 @@ th, td {
 }
 
 .post-content {
-    margin-left: 4px;
+    margin: 10px;
+}
+
+.post-username {
+    font-size: 125%;
+    margin-bottom: 5px;
 }
 
 /* ------------------ end of topics ------------------------*/
