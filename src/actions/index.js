@@ -50,7 +50,7 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
                 callback();
 
                 if(redirectUri == '/signout') {
-                    browserHistory.push('/?n=true');
+                    browserHistory.push('/');
                 } else {
                     browserHistory.push(redirectUri);
                 }
@@ -73,13 +73,26 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                 email
             })
             .then( response => {
-                dispatch({
-                    type: AUTH_USER,
-                    payload: response.data.username
-                });
-                localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
-                browserHistory.push('/');
+
+                axios.post(`${ROOT_URL}/auth`, { username, password })
+                    .then( response2 => {
+                        dispatch({
+                            type: AUTH_USER,
+                            payload: response2.data.username
+                        });
+
+                        localStorage.setItem('token', response2.data.access_token);
+                        localStorage.setItem('username', response2.data.username);
+
+                        browserHistory.push('/');
+                    })
+                    .catch( error => {
+                        onError();
+                        dispatch(authError(error.response.data.description));
+                    });
+
+
             })
             .catch( error => {
                 dispatch(authError(error.response.data.description));
