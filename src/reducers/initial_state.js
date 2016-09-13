@@ -1,4 +1,6 @@
+import { NanoConsts } from '../nanobar_consts';
+
 export const INITIAL_STATE = {
     go: 0,
-    hexColor: '99bbff'
+    hexColor: NanoConsts.defaultColor
 };

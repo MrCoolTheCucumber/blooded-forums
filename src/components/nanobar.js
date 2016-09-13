@@ -22,8 +22,12 @@ class Nanobar extends Component {
         }
     }
 
+    renderStyle = () => {
+        return `.bar{background:#${this.props.hexColor};}`;
+    };
+
     render() {
-        return <style type="text/css">{`.bar{background:#${this.props.hexColor};}`}</style>;
+        return <style type="text/css">{this.renderStyle()}</style>;
     }
 }
 

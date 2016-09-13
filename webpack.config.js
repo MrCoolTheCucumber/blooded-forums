@@ -17,6 +17,8 @@ module.exports = {
                 presets: ['react', 'es2015', 'stage-1'],
                 plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
             }
+        }, {
+            test: /\.json$/, loader: 'json'
         }]
     },
     resolve: {

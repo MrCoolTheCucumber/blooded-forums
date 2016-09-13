@@ -32,9 +32,9 @@ class CreateThread extends Component {
     handleCreateThread = () => {
         console.log('button clicked!');
 
-        const content = this.state.quill.getText();
+        const html = document.getElementsByClassName('ql-editor')[0].innerHTML;
 
-        this.props.createPost(this.props.params.id, content);
+        this.props.createPost(this.props.params.id, html);
     };
 
     render() {

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
+import moment from 'moment'
+import sanitizeHtml from 'sanitize-html';
 
 class Topic extends Component {
 
@@ -25,37 +27,55 @@ class Topic extends Component {
         }
     }
 
+    renderMoment = (timestamp) => {
+        var date = '';
+        date = date
+            .concat(timestamp.substring(0, 10))
+            .concat(timestamp.substring(11,19));
+
+        return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
+    };
+
+    createMarkup = (dirtyContent) => {
+
+        const cleanContent = sanitizeHtml(dirtyContent);
+
+        return {
+            __html: cleanContent
+        };
+    };
+
     renderPosts = () => {
-        const key = `p_${this.props.params.id}_${this.getPage(this.props)}`;
+        const page = this.getPage(this.props);
+        const key = `p_${this.props.params.id}_${page}`;
 
         if(this.props.posts != null && this.props.posts[key] != null) {
-
+            var postCount = ((page - 1) * 20);
             return this.props.posts[key].map(post => {
                 return (
                     <tr key={post.id}>
                         <td>
                             <div className="post-container">
                                 <div className="post-user-side">
-                                    {post.username}
+                                    <div className="post-username">{post.username}</div>
                                     <div className="post-avater-container">
-                                        <img src="https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg" alt="avatar" width={150} height={150}/>
+                                        <img crossOrigin="Anonymous" src={`//${post.avatar}`} alt="avatar" width={150} height={150}/>
                                     </div>
-                                    example metadata: yolo <br/>
-                                    Posts: {420}
+                                    Posts: {post.post_count}
                                 </div>
 
                                 <div className="post-content-side">
                                     <div className="post-content-header">
                                         <div className="post-content-header-item post-content-date">
-                                            {post.timestamp}
+                                            {this.renderMoment(post.timestamp)}
                                         </div>
                                         <div className="post-content-header-item post-content-id">
-                                            #{post.id}
+                                            #{++postCount}
                                         </div>
                                     </div>
 
                                     <div className="post-content">
-                                        {post.content}
+                                        <div dangerouslySetInnerHTML={this.createMarkup(post.content)}/>
                                     </div>
                                 </div>
                             </div>
@@ -82,9 +102,7 @@ class Topic extends Component {
                 <Link to={`/topic/${this.props.params.id}/create`} className="page-button button-create-thread">Create post</Link>
             );
         } else {
-            return (
-                <div></div>
-            )
+            return null;
         }
     };
 
@@ -100,7 +118,7 @@ class Topic extends Component {
                 <div>
                     <div className="category-wrapper">
                         <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                        <p className="category-description">by {topic.username}, {topic.timestamp}</p>
+                        <p className="category-description">by {topic.username}, {this.renderMoment(topic.timestamp)}</p>
 
                         <div className="posts-table-wrapper">
                             <table>
