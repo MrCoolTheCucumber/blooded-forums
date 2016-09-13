@@ -293,6 +293,16 @@ th, td {
     font-size: 90%;
 }
 
+.category-subcategory-tp {
+    text-align: right;
+    font-size: 90%;
+    color: #696969;
+}
+
+.category-subcategory-lastpost {
+    width: 10%;
+}
+
 /* End of forum categories */
 
 
