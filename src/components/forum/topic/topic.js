@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
-import moment from 'moment'
+import moment from 'moment';
 import sanitizeHtml from 'sanitize-html';
 
 class Topic extends Component {

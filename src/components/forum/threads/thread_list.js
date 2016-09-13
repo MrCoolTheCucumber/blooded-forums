@@ -31,8 +31,8 @@ class ThreadList extends Component {
                     <tbody>
                     <tr>
                         <th>Topic</th>
-                        <th>v/p</th>
-                        <th>Last Post</th>
+                        <th> </th>
+                        <th> </th>
                     </tr>
                     {this.renderThreads()}
                     </tbody>
