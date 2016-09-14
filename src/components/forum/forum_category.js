@@ -13,9 +13,25 @@ class ForumCategory extends Component {
         return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
     };
 
+    renderTitleLink = (title) => {
+        var out = title;
+
+        if(title.length >= 35) {
+            title = title.substring(0, 32).concat('...');
+        }
+
+        return out;
+    };
+
     renderLastPost = (post) => {
         if(post.username === undefined) {
-            return <th className="category-subcategory-metadata category-subcategory-lastpost"> No post! </th>
+            return (
+                <th className="category-subcategory-metadata category-subcategory-lastpost">
+                    <div className="lastpost-nopost">
+                        -  -  -  -
+                    </div>
+                </th>
+            );
         }
 
         return (
@@ -27,7 +43,7 @@ class ForumCategory extends Component {
 
                 <div className="lastpost-meta-data-container">
                     <div className="lastpost-thread-link">
-                        <Link to={`/topic/${post.thread_id}`}>{post.title}</Link>
+                        <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
                     <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.username}`}</div>
                 </div>

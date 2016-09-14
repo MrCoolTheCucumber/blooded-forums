@@ -311,11 +311,14 @@ th, td {
     display: block;
     font-size: 90%;
     width: 100%;
+}
+
+.lastpost-thread-link a {
     color: lightcoral;
     text-decoration: none;
 }
 
-.lastpost-thread-link:hover {
+.lastpost-thread-link a:hover {
     color: #ff6060;
     text-shadow: 1px 1px lightcoral;
 }
@@ -331,6 +334,10 @@ th, td {
     display: inline-block;
     vertical-align: 45%;
     padding-left: 5px;
+}
+
+.lastpost-nopost {
+    text-align: center;
 }
 
 /* End of forum categories */

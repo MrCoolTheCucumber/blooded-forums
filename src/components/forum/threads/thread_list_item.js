@@ -13,12 +13,6 @@ class ThreadListItem extends Component {
         return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
     };
 
-    renderTitleLink = (title) => {
-        if(title.length >= 35) {
-            title = title.substring(0, 32).concat('...');
-        }
-    };
-
     render() {
         const thread = this.props.thread;
         if(!thread) {
