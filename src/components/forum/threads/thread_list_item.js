@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 class ThreadListItem extends Component {
+
+    renderMoment = (timestamp) => {
+        var date = '';
+        date = date
+            .concat(timestamp.substring(0, 10))
+            .concat(timestamp.substring(11,19));
+
+        return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
+    };
+
+    renderTitleLink = (title) => {
+        if(title.length >= 35) {
+            title = title.substring(0, 32).concat('...');
+        }
+    };
 
     render() {
         const thread = this.props.thread;
@@ -18,8 +34,19 @@ class ThreadListItem extends Component {
                         <div className="category-subcategory-description"><span style={{ color: 'black'}}>by</span> {thread.username}</div>
                     </div>
                 </th>
-                <th className="category-subcategory-metadata">Posts: {thread.post_count}</th>
-                <th className="category-subcategory-metadata">TODO</th>
+                <th className="category-subcategory-metadata category-subcategory-tp">Posts: {thread.post_count}</th>
+
+                <th className="category-subcategory-metadata category-subcategory-lastpost">
+
+                    <div className="lastpost-img-container">
+                        <img crossOrigin="Anonymous" src={`//${thread.posts_avatar}`} alt="avatar" width={45} height={45}/>
+                    </div>
+
+                    <div className="lastpost-meta-data-container">
+                        <div className="lastpost-thread-link">{thread.posts_username}</div>
+                        <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
+                    </div>
+                </th>
             </tr>
         );
     }

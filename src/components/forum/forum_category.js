@@ -14,8 +14,8 @@ class ForumCategory extends Component {
                             <div className="category-subcategory-description">{subcategory.description}</div>
                         </div>
                     </th>
-                    <th className="category-subcategory-metadata">Threads: {subcategory.thread_count}</th>
-                    <th className="category-subcategory-metadata">TODO</th>
+                    <th className="category-subcategory-metadata category-subcategory-tp">Threads: {subcategory.thread_count}</th>
+                    <th className="category-subcategory-metadata category-subcategory-lastpost">TODO</th>
                 </tr>
             );
         });
@@ -30,9 +30,9 @@ class ForumCategory extends Component {
                 <table>
                     <tbody>
                     <tr>
-                        <th>Forum</th>
-                        <th>t/p</th>
-                        <th>Last Post</th>
+                        <th>Forums</th>
+                        <th> </th>
+                        <th> </th>
                     </tr>
                     {this.renderSubCategories(this.props.category.subcategories, this.props.category.id)}
                     </tbody>
