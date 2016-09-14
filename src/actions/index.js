@@ -88,7 +88,6 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                         browserHistory.push('/');
                     })
                     .catch( error => {
-                        onError();
                         dispatch(authError(error.response.data.description));
                     });
 
@@ -131,8 +130,7 @@ export function getForumSections(callback) {
                 callback();
             })
             .catch( error => {
-                onError();
-                //TODO
+                console.log(error)
             });
     }
 }

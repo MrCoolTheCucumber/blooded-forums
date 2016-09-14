@@ -41,7 +41,7 @@ class Topic extends Component {
         const cleanContent = sanitizeHtml(dirtyContent);
 
         return {
-            __html: cleanContent
+            __html: dirtyContent
         };
     };
 

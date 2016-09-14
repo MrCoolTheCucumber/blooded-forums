@@ -1,7 +1,39 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 class ForumCategory extends Component {
+
+    renderMoment = (timestamp) => {
+        var date = '';
+        date = date
+            .concat(timestamp.substring(0, 10))
+            .concat(timestamp.substring(11,19));
+
+        return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
+    };
+
+    renderLastPost = (post) => {
+        if(post.username === undefined) {
+            return <th className="category-subcategory-metadata category-subcategory-lastpost"> No post! </th>
+        }
+
+        return (
+            <th className="category-subcategory-metadata category-subcategory-lastpost">
+
+                <div className="lastpost-img-container">
+                    <img crossOrigin="Anonymous" src={`//${post.avatar}`} alt="avatar" width={45} height={45}/>
+                </div>
+
+                <div className="lastpost-meta-data-container">
+                    <div className="lastpost-thread-link">
+                        <Link to={`/topic/${post.thread_id}`}>{post.title}</Link>
+                    </div>
+                    <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.username}`}</div>
+                </div>
+            </th>
+        )
+    };
 
     renderSubCategories = (subcategories, parentId) => {
         return subcategories.map( subcategory => {
@@ -15,7 +47,7 @@ class ForumCategory extends Component {
                         </div>
                     </th>
                     <th className="category-subcategory-metadata category-subcategory-tp">Threads: {subcategory.thread_count}</th>
-                    <th className="category-subcategory-metadata category-subcategory-lastpost">TODO</th>
+                    {this.renderLastPost(subcategory.post)}
                 </tr>
             );
         });

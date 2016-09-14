@@ -311,6 +311,13 @@ th, td {
     display: block;
     font-size: 90%;
     width: 100%;
+    color: lightcoral;
+    text-decoration: none;
+}
+
+.lastpost-thread-link:hover {
+    color: #ff6060;
+    text-shadow: 1px 1px lightcoral;
 }
 
 .lastpost-by {
