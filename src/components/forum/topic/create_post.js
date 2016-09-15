@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Quill from 'quill';
+import TinyMCE from 'react-tinymce'
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
@@ -14,23 +14,6 @@ class CreateThread extends Component {
     }
 
     componentDidMount() {
-        this.state.quill = new Quill('#editor', {
-            bounds: '#editor',
-            modules: {
-                'toolbar': [
-                    [{ 'font': [] }, { 'size': [] }],
-                    [ 'bold', 'italic', 'underline', 'strike' ],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'script': 'super' }, { 'script': 'sub' }],
-                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block' ],
-                    [{ 'list': 'ordered' }, { 'list': 'bullet'}, { 'indent': '-1' }, { 'indent': '+1' }],
-                    [ 'direction', { 'align': [] }],
-                    [ 'link', 'image', 'video', 'formula' ],
-                    [ 'clean' ]
-                ],
-            },
-            theme: 'snow'
-        });
     }
 
     renderQuill = () => {
@@ -44,9 +27,7 @@ class CreateThread extends Component {
     };
 
     handleCreateThread = () => {
-        console.log('button clicked!');
-
-        const html = document.getElementsByClassName('ql-editor')[0].innerHTML;
+        const html = tinymce.get('test').getContent();
 
         this.props.createPost(this.props.params.id, html);
     };
@@ -54,10 +35,23 @@ class CreateThread extends Component {
     render() {
         return (
             <div>
-                <link href="https://cdn.quilljs.com/1.0.3/quill.snow.css" rel="stylesheet"/>
                 <div className="form-div">
                     <fieldset className="form-group">
-                        {this.renderQuill()}
+                        <TinyMCE id="test"
+                            content=""
+                            config={{
+                                height: 350,
+                                plugins: [
+                                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                                    'emoticons template paste textcolor colorpicker textpattern imagetools'
+                                ],
+                                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                                toolbar2: 'print preview media | forecolor backcolor emoticons'
+                            }}
+                            onChange={console.log('change!')}
+                        />
                     </fieldset>
                     <button onClick={this.handleCreateThread} className="form-button">Create</button>
                 </div>
