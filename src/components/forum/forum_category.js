@@ -16,15 +16,15 @@ class ForumCategory extends Component {
     renderTitleLink = (title) => {
         var out = title;
 
-        if(title.length >= 35) {
-            title = title.substring(0, 32).concat('...');
+        if(out.length >= 35) {
+            out = out.substring(0, 32).concat('...');
         }
 
         return out;
     };
 
     renderLastPost = (post) => {
-        if(post.username === undefined) {
+        if(post.id === undefined) {
             return (
                 <th className="category-subcategory-metadata category-subcategory-lastpost">
                     <div className="lastpost-nopost">
@@ -38,14 +38,14 @@ class ForumCategory extends Component {
             <th className="category-subcategory-metadata category-subcategory-lastpost">
 
                 <div className="lastpost-img-container">
-                    <img crossOrigin="Anonymous" src={`//${post.avatar}`} alt="avatar" width={45} height={45}/>
+                    <img crossOrigin="Anonymous" src={`//${post.user.avatar}`} alt="avatar" width={45} height={45}/>
                 </div>
 
                 <div className="lastpost-meta-data-container">
                     <div className="lastpost-thread-link">
                         <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
-                    <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.username}`}</div>
+                    <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.user.username}`}</div>
                 </div>
             </th>
         )

@@ -25,7 +25,9 @@ class ThreadListItem extends Component {
                     <i className="fa fa-comment-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
                     <div className="category-subcategory-td-block">
                         <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
-                        <div className="category-subcategory-description"><span style={{ color: 'black'}}>by</span> {thread.username}</div>
+                        <div className="category-subcategory-description">
+                            <span style={{ color: 'black'}}>by</span> {thread.user_thread.username}, {this.renderMoment(thread.timestamp)}
+                        </div>
                     </div>
                 </th>
                 <th className="category-subcategory-metadata category-subcategory-tp">Posts: {thread.post_count}</th>
@@ -33,11 +35,11 @@ class ThreadListItem extends Component {
                 <th className="category-subcategory-metadata category-subcategory-lastpost">
 
                     <div className="lastpost-img-container">
-                        <img crossOrigin="Anonymous" src={`//${thread.posts_avatar}`} alt="avatar" width={45} height={45}/>
+                        <img crossOrigin="Anonymous" src={`//${thread.user_post.avatar}`} alt="avatar" width={45} height={45}/>
                     </div>
 
                     <div className="lastpost-meta-data-container">
-                        <div className="lastpost-thread-link">{thread.posts_username}</div>
+                        <div className="lastpost-thread-link">{thread.user_post.username}</div>
                         <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
                     </div>
                 </th>
