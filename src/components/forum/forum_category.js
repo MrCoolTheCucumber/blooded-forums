@@ -16,8 +16,8 @@ class ForumCategory extends Component {
     renderTitleLink = (title) => {
         var out = title;
 
-        if(title.length >= 35) {
-            title = title.substring(0, 32).concat('...');
+        if(out.length >= 35) {
+            out = out.substring(0, 32).concat('...');
         }
 
         return out;
