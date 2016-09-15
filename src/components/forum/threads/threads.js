@@ -55,7 +55,7 @@ class Threads extends Component {
         const subcategory = this.getSubCategory();
         const page = this.getPage(this.props);
 
-        if (this.props.categories != null || this.props.subcategory != null) {
+        if (this.props.subcategory != null) {
             return (
                 <div>
                     <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.props.params.id} page={page}/>
