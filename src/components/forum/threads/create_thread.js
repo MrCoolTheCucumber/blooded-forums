@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Quill from 'quill';
+import TinyMCE from 'react-tinymce';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
@@ -13,26 +13,8 @@ class CreateThread extends Component {
         }
     }
 
-    componentDidMount() {
-        this.state.quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-    }
-
-    renderQuill = () => {
-        return (
-            <div id="editor">
-                <p>Hello World!</p>
-                <p>Some initial <strong>bold</strong> text</p>
-                <p><br/></p>
-            </div>
-        )
-    };
-
     handleCreateThread = () => {
-        console.log('button clicked!');
-
-        const html = document.getElementsByClassName('ql-editor')[0].innerHTML;
+        const html = tinymce.get('test').getContent();
         const title = document.getElementById("title-input").value;
 
         this.props.createThread(title, this.props.params.id, html);
@@ -48,7 +30,21 @@ class CreateThread extends Component {
                         <input id="title-input" type="text" className="form-control"/>
                     </fieldset>
                     <fieldset className="form-group">
-                        {this.renderQuill()}
+                        <TinyMCE id="test"
+                                 content=""
+                                 config={{
+                                     height: 350,
+                                     plugins: [
+                                         'advlist autolink lists link image charmap preview hr anchor pagebreak',
+                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
+                                         'insertdatetime media nonbreaking save table contextmenu directionality',
+                                         'emoticons template paste textcolor colorpicker textpattern imagetools'
+                                     ],
+                                     toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                                     toolbar2: 'preview media | forecolor backcolor emoticons'
+                                 }}
+                                 onChange={console.log('change!')}
+                        />
                     </fieldset>
                     <button onClick={this.handleCreateThread} className="form-button">Create</button>
                 </div>
