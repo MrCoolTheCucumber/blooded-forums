@@ -8,9 +8,7 @@ class Breadcrumbs extends Component {
     render() {
         return (
             <div id="crumbs">
-                <ul>
-                    <li><Link to="/" className="crumbs-link">Home</Link></li>
-                </ul>
+                <Link to="/" className="crumbs-link">Home</Link>
             </div>
         );
     }

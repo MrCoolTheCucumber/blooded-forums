@@ -83,11 +83,19 @@ body {
 /* -----           Breadcrumbs         ------ */
 
 #crumbs {
-    padding: 2px 2px;
     list-style: none;
     margin-bottom: 20px;
     background-color: lightcoral;
-    border-radius: 5px;
+    border-radius: 1px;
+
+    font-size: 80%;
+
+    padding: 5px 25px;
+}
+
+#crumbs * {
+    height: 100%;
+    width: 100%;
 }
 
 #crumbs li {
