@@ -16,10 +16,9 @@ class Threads extends Component {
         const page = this.getPage(this.props);
         this.props.getSubCategoryThreads(this.props.params.id, page);
 
-        //if there is no overall category data, make a call to get a specific subcategory data
-        if(!this.props.categories) {
-            this.props.getSubCategoryData(this.props.params.id);
-        }
+        //make a call to get a specific subcategory data
+        this.props.getSubCategoryData(this.props.params.id);
+
     }
 
     componentWillUpdate(nextProps) {
@@ -29,17 +28,7 @@ class Threads extends Component {
     }
 
     getSubCategory = () => {
-        if(this.props.categories) {
-            for(var i = 0; i < this.props.categories.length; ++i) {
-                for(var j = 0; j < this.props.categories[i].subcategories.length; ++j) {
-                    if(this.props.categories[i].subcategories[j].id == this.props.params.id) {
-                        return this.props.categories[i].subcategories[j];
-                    }
-                }
-            }
-        } else {
-            return this.props.subcategory;
-        }
+        return this.props.subcategory;
     };
 
     getPage = (props) => {
@@ -66,7 +55,7 @@ class Threads extends Component {
         const subcategory = this.getSubCategory();
         const page = this.getPage(this.props);
 
-        if (this.props.categories != null || this.props.subcategory != null) {
+        if (this.props.subcategory != null) {
             return (
                 <div>
                     <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.props.params.id} page={page}/>

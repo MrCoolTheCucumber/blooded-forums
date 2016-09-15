@@ -340,6 +340,10 @@ th, td {
     text-align: center;
 }
 
+.posts-table-wrapper td {
+    padding: 0;
+}
+
 /* End of forum categories */
 
 
@@ -422,6 +426,7 @@ th, td {
 
 .post-user-side, .post-content-side {
     display: table-cell;
+    padding: 3px;
 }
 
 .post-user-side {
@@ -453,6 +458,7 @@ th, td {
 .post-content-id {
     float: right;
     font-weight: bold;
+    vertical-align: middle;
 }
 
 .post-content {

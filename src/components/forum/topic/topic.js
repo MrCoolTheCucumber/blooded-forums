@@ -57,11 +57,11 @@ class Topic extends Component {
                         <td>
                             <div className="post-container">
                                 <div className="post-user-side">
-                                    <div className="post-username">{post.username}</div>
+                                    <div className="post-username">{post.user.username}</div>
                                     <div className="post-avater-container">
-                                        <img crossOrigin="Anonymous" src={`//${post.avatar}`} alt="avatar" width={150} height={150}/>
+                                        <img crossOrigin="Anonymous" src={`//${post.user.avatar}`} alt="avatar" width={150} height={150}/>
                                     </div>
-                                    Posts: {post.post_count}
+                                    Posts: {post.user.post_count}
                                 </div>
 
                                 <div className="post-content-side">
@@ -118,7 +118,7 @@ class Topic extends Component {
                 <div>
                     <div className="category-wrapper">
                         <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                        <p className="category-description">by {topic.username}, {this.renderMoment(topic.timestamp)}</p>
+                        <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
 
                         <div className="posts-table-wrapper">
                             <table>
