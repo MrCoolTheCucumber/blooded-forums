@@ -42,11 +42,17 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
             .then( response => {
                 dispatch({
                     type: AUTH_USER,
-                    payload: response.data.username
+                    payload: {
+                        username: response.data.username,
+                        id: response.data.id,
+                        group: response.data.group
+                    }
                 });
 
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
+                localStorage.setItem('id', response.data.id);
+                localStorage.setItem('group', response.data.group);
 
                 callback();
 
@@ -80,11 +86,17 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                     .then( response2 => {
                         dispatch({
                             type: AUTH_USER,
-                            payload: response2.data.username
+                            payload: {
+                                username: response2.data.username,
+                                id: response2.data.id,
+                                group: response2.data.group
+                            }
                         });
 
                         localStorage.setItem('token', response2.data.access_token);
                         localStorage.setItem('username', response2.data.username);
+                        localStorage.setItem('id', response2.data.id);
+                        localStorage.setItem('group', response2.data.group);
 
                         browserHistory.push('/');
                     })

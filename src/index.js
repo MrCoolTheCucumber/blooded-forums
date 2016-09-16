@@ -16,6 +16,7 @@ import Threads from './components/forum/threads/threads';
 import CreateThread from './components/forum/threads/create_thread';
 import Topic from './components/forum/topic/topic';
 import CreatePost from './components/forum/topic/create_post';
+import Profile from './components/forum/profile/profile';
 import _404 from './components/404';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
@@ -24,8 +25,17 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 const username = localStorage.getItem('username');
+const group = localStorage.getItem('group');
+const id = localStorage.getItem('id');
 if(localStorage.getItem('token') && username) {
-    store.dispatch({ type: AUTH_USER, payload: username });
+    store.dispatch({
+        type: AUTH_USER,
+        payload: {
+            username,
+            group,
+            id
+        }
+    });
 }
 
 ReactDOM.render(
@@ -46,6 +56,8 @@ ReactDOM.render(
 
                 <Route path="topic/:id" component={Topic}/>
                 <Route path="topic/:id/create" component={requireAuth(CreatePost)}/>
+
+                <Route path="profile" component={Profile}/>
 
                 <Route path="*" components={_404}/>
             </Route>
