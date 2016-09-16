@@ -30,6 +30,18 @@ class Breadcrumbs extends Component {
         }
     };
 
+    renderThread = () => {
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.thread != null) {
+            const thread = this.props.breadcrumbs.thread;
+
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/topic/${thread.id}`}>{thread.title}</Link>
+                </li>
+            );
+        }
+    };
+
     render() {
         return (
             <div id="crumbs">
@@ -39,6 +51,7 @@ class Breadcrumbs extends Component {
                     </li>
                     {this.renderCategory()}
                     {this.renderSubCategory()}
+                    {this.renderThread()}
                 </ul>
             </div>
         );
