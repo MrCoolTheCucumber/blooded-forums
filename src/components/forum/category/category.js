@@ -12,7 +12,7 @@ class Category extends Component {
 
     componentWillMount() {
         this.props.getForumSections(() => {});
-        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, subcategory: null, thread: null});
+        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, subcategory: null, thread: null });
     }
 
     componentWillUpdate(nextProps) {
@@ -30,8 +30,6 @@ class Category extends Component {
                             }
                         });
                     }
-
-
                 }
             }
         }

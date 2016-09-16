@@ -18,6 +18,8 @@ class Threads extends Component {
 
         //make a call to get a specific subcategory data
         this.props.getSubCategoryData(this.props.params.id);
+
+        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, thread: null });
     }
 
     componentWillUpdate(nextProps) {
@@ -26,16 +28,21 @@ class Threads extends Component {
         }
 
         if(nextProps.subcategory != null) {
-            this.props.setBreadcrumbs({
-                category: {
-                    title: nextProps.subcategory.category.title,
-                    id: nextProps.subcategory.category.id
-                },
-                subcategory: {
-                    title: nextProps.subcategory.title,
-                    id: nextProps.subcategory.id
-                }
-            })
+            if((this.props.breadcrumbs == null)
+                || (this.props.breadcrumbs != null && this.props.breadcrumbs.subcategory == null)
+                || (this.props.breadcrumbs != null && this.props.breadcrumbs.subcategory.id != this.props.params.id))
+            {
+                this.props.setBreadcrumbs({
+                    category: {
+                        title: nextProps.subcategory.category.title,
+                        id: nextProps.subcategory.category.id
+                    },
+                    subcategory: {
+                        title: nextProps.subcategory.title,
+                        id: nextProps.subcategory.id
+                    }
+                });
+            }
         }
     }
 
@@ -92,7 +99,8 @@ function mapStateToProps(state) {
         authenticated: state.auth.authenticated,
         categories: state.forum.categories,
         subcategory: state.forum.subcategory,
-        threads: state.forum.threads
+        threads: state.forum.threads,
+        breadcrumbs: state.breadcrumbs.breadcrumbs
     };
 }
 
