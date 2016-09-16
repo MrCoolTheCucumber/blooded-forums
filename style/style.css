@@ -86,11 +86,11 @@ body {
     list-style: none;
     margin-bottom: 20px;
     background-color: lightcoral;
-    border-radius: 1px;
+    border-radius: 5px;
 
     font-size: 80%;
 
-    padding: 5px 25px;
+    padding: 7px 25px;
 }
 
 #crumbs ul {
@@ -303,6 +303,10 @@ th, td {
     overflow: auto;
     overflow-wrap: normal;
     font-size: 90%;
+}
+
+.category-subcategory-description * {
+    display: inline-flex;
 }
 
 .category-subcategory-tp {
