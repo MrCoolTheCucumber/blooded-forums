@@ -15,6 +15,8 @@ class Forum extends Component {
                 }
             )
         }
+
+        this.props.setBreadcrumbs({});
     }
 
     renderCategories = () => {

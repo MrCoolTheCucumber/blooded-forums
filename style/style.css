@@ -93,18 +93,22 @@ body {
     padding: 5px 25px;
 }
 
-#crumbs * {
-    height: 100%;
-    width: 100%;
+#crumbs ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 #crumbs li {
-    display: inline;
+    float: left;
 }
 
 #crumbs .crumbs-link {
     color: #fff;
     text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 #crumbs li + li:before {

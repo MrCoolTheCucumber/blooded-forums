@@ -11,8 +11,22 @@ class Category extends Component {
     }
 
     componentWillMount() {
-        if(!this.props.categories) {
-            this.props.getForumSections();
+        this.props.getForumSections(() => {});
+    }
+
+    componentWillUpdate(nextProps) {
+        if(nextProps.categories != null) {
+            console.log(nextProps.categories);
+            for(var i = 0; i < nextProps.categories.length; ++i) {
+                if(nextProps.categories[i].id == this.props.params.id) {
+                    nextProps.setBreadcrumbs({
+                        category: {
+                            title: nextProps.categories[i].title,
+                            id: nextProps.categories[i].id
+                        }
+                    })
+                }
+            }
         }
     }
 
