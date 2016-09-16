@@ -57,7 +57,7 @@ ReactDOM.render(
                 <Route path="topic/:id" component={Topic}/>
                 <Route path="topic/:id/create" component={requireAuth(CreatePost)}/>
 
-                <Route path="profile" component={Profile}/>
+                <Route path="profile/:id" component={Profile}/>
 
                 <Route path="*" components={_404}/>
             </Route>
