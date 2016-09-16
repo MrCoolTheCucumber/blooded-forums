@@ -12,37 +12,19 @@ class Threads extends Component {
     }
 
     componentWillMount() {
+        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, thread: null });
+
         //always? get subcategory threads, check query first
         const page = this.getPage(this.props);
         this.props.getSubCategoryThreads(this.props.params.id, page);
 
         //make a call to get a specific subcategory data
         this.props.getSubCategoryData(this.props.params.id);
-
-        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, thread: null });
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getSubCategoryThreads(nextProps.params.id, this.getPage(nextProps));
-        }
-
-        if(nextProps.subcategory != null) {
-            if((this.props.breadcrumbs == null)
-                || (this.props.breadcrumbs != null && this.props.breadcrumbs.subcategory == null)
-                || (this.props.breadcrumbs != null && this.props.breadcrumbs.subcategory.id != this.props.params.id))
-            {
-                this.props.setBreadcrumbs({
-                    category: {
-                        title: nextProps.subcategory.category.title,
-                        id: nextProps.subcategory.category.id
-                    },
-                    subcategory: {
-                        title: nextProps.subcategory.title,
-                        id: nextProps.subcategory.id
-                    }
-                });
-            }
         }
     }
 
@@ -64,9 +46,7 @@ class Threads extends Component {
                 <Link to={`/forum/${this.props.params.id}/create`} className="page-button button-create-thread">Create thread</Link>
             );
         } else {
-            return (
-                <div></div>
-            )
+            return null;
         }
     };
 
