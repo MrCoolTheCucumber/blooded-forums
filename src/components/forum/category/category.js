@@ -12,19 +12,26 @@ class Category extends Component {
 
     componentWillMount() {
         this.props.getForumSections(() => {});
+        this.props.setBreadcrumbs({ ...this.props.breadcrumbs, subcategory: null, thread: null});
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.categories != null) {
-            console.log(nextProps.categories);
             for(var i = 0; i < nextProps.categories.length; ++i) {
                 if(nextProps.categories[i].id == this.props.params.id) {
-                    nextProps.setBreadcrumbs({
-                        category: {
-                            title: nextProps.categories[i].title,
-                            id: nextProps.categories[i].id
-                        }
-                    })
+                    if((this.props.breadcrumbs == null)
+                        || (this.props.breadcrumbs != null && this.props.breadcrumbs.category == null)
+                        || (this.props.breadcrumbs != null && this.props.breadcrumbs.category.id != this.props.params.id))
+                    {
+                        nextProps.setBreadcrumbs({
+                            category: {
+                                title: nextProps.categories[i].title,
+                                id: nextProps.categories[i].id
+                            }
+                        });
+                    }
+
+
                 }
             }
         }
@@ -55,7 +62,10 @@ class Category extends Component {
 }
 
 function mapStateToProps(state) {
-    return { categories: state.forum.categories };
+    return {
+        categories: state.forum.categories,
+        breadcrumbs: state.breadcrumbs.breadcrumbs
+    };
 }
 
 export default connect(mapStateToProps, actions)(Category);

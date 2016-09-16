@@ -18,12 +18,24 @@ class Threads extends Component {
 
         //make a call to get a specific subcategory data
         this.props.getSubCategoryData(this.props.params.id);
-
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getSubCategoryThreads(nextProps.params.id, this.getPage(nextProps));
+        }
+
+        if(nextProps.subcategory != null) {
+            this.props.setBreadcrumbs({
+                category: {
+                    title: nextProps.subcategory.category.title,
+                    id: nextProps.subcategory.category.id
+                },
+                subcategory: {
+                    title: nextProps.subcategory.title,
+                    id: nextProps.subcategory.id
+                }
+            })
         }
     }
 
