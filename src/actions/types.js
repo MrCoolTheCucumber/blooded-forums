@@ -9,5 +9,7 @@ export const GET_SUBCATEGORY_DATA = 'get_subcategory';
 export const GET_POSTS = 'get_posts';
 export const GET_THREAD_DATA = 'get_thread_data';
 
+export const SET_BREADCRUMBS = 'set_breadcrumbs';
+
 export const MOVE_NANOBAR = 'move_nanobar';
 export const CHANGE_NANOBAR = 'change_nanobar';

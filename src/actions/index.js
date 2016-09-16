@@ -10,6 +10,7 @@ import {
     GET_THREAD_DATA,
     GET_SUBCATEGORY_DATA,
     GET_POSTS,
+    SET_BREADCRUMBS,
     MOVE_NANOBAR,
     CHANGE_NANOBAR
 } from './types';
@@ -248,6 +249,15 @@ export function createPost(threadId, content) {
     return function(dispatch) {
         sendPost(threadId, content, function() {
             browserHistory.push(`/topic/${threadId}`);
+        });
+    }
+}
+
+export function setBreadcrumbs(breadcrumbsObject) {
+    return function(dispatch) {
+        dispatch({
+            type: SET_BREADCRUMBS,
+            payload: breadcrumbsObject
         });
     }
 }

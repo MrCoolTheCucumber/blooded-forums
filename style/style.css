@@ -83,20 +83,32 @@ body {
 /* -----           Breadcrumbs         ------ */
 
 #crumbs {
-    padding: 2px 2px;
     list-style: none;
     margin-bottom: 20px;
     background-color: lightcoral;
     border-radius: 5px;
+
+    font-size: 80%;
+
+    padding: 7px 25px;
+}
+
+#crumbs ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 #crumbs li {
-    display: inline;
+    float: left;
 }
 
 #crumbs .crumbs-link {
     color: #fff;
     text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 #crumbs li + li:before {
@@ -291,6 +303,10 @@ th, td {
     overflow: auto;
     overflow-wrap: normal;
     font-size: 90%;
+}
+
+.category-subcategory-description * {
+    display: inline-flex;
 }
 
 .category-subcategory-tp {

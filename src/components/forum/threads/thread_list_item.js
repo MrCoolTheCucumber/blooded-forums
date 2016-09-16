@@ -26,7 +26,7 @@ class ThreadListItem extends Component {
                     <div className="category-subcategory-td-block">
                         <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
                         <div className="category-subcategory-description">
-                            <span style={{ color: 'black'}}>by</span> {thread.user_thread.username}, {this.renderMoment(thread.timestamp)}
+                            <span style={{ color: 'black'}}>by&nbsp;</span> {thread.user_thread.username},&nbsp;{this.renderMoment(thread.timestamp)}
                         </div>
                     </div>
                 </th>

@@ -25,6 +25,25 @@ class Topic extends Component {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getPosts(nextProps.params.id, this.getPage(nextProps));
         }
+
+        const key = `t_${this.props.params.id}`;
+        if(nextProps.topics != null && nextProps.topics[key] != null) {
+            const topic = nextProps.topics[key];
+            this.props.setBreadcrumbs({
+                category: {
+                    title: topic.category.title,
+                    id: topic.category.id
+                },
+                subcategory: {
+                    title: topic.subcategory.title,
+                    id: topic.subcategory.id
+                },
+                thread: {
+                    title: topic.title,
+                    id: topic.id
+                }
+            });
+        }
     }
 
     renderMoment = (timestamp) => {
