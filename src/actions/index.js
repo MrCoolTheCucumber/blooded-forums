@@ -123,12 +123,29 @@ export function clearAuthError() {
     return { type: CLEAR_AUTH_ERROR };
 }
 
-export function getForumSections(callback) {
+export function getForumSections(callback, updateBreadcrumbs, id) {
     return function(dispatch) {
         axios.get(`${ROOT_URL}/forums/categories`)
             .then( response => {
                 dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
                 callback();
+
+                if(updateBreadcrumbs) {
+                    const categories = response.data;
+                    for(var i = 0; i < categories.length; ++i) {
+                        if(categories[i].id == id) {
+                            dispatch({
+                                type: SET_BREADCRUMBS,
+                                payload: {
+                                    category: {
+                                        title: categories[i].title,
+                                        id: categories[i].id
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
             })
             .catch( error => {
                 console.log(error)
@@ -160,6 +177,23 @@ export function getSubCategoryData(subCategoryId) {
         axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`)
             .then( response => {
                 dispatch({ type: GET_SUBCATEGORY_DATA, payload: response.data });
+
+                const subcategory = response.data;
+                const breadcrumbsObject = {
+                    category: {
+                        title: subcategory.category.title,
+                        id: subcategory.category.id
+                    },
+                    subcategory: {
+                        title: subcategory.title,
+                        id: subcategory.id
+                    }
+                };
+
+                dispatch({
+                    type: SET_BREADCRUMBS,
+                    payload: breadcrumbsObject
+                });
             })
             .catch( error => {
                 //TODO
@@ -196,7 +230,28 @@ export function getThreadData(threadId) {
                         threadId: threadId,
                         data: response.data
                     }
-                })
+                });
+
+                const topic = response.data[0];
+                const breadcrumbsObject = {
+                    category: {
+                        title: topic.category.title,
+                        id: topic.category.id
+                    },
+                    subcategory: {
+                        title: topic.subcategory.title,
+                        id: topic.subcategory.id
+                    },
+                    thread: {
+                        title: topic.title,
+                        id: topic.id
+                    }
+                };
+
+                dispatch({
+                    type: SET_BREADCRUMBS,
+                    payload: breadcrumbsObject
+                });
             })
             .catch( error => {
                 //TODO

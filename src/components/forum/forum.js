@@ -6,17 +6,12 @@ import ForumCategory from './forum_category';
 class Forum extends Component {
 
     componentWillMount() {
+        this.props.setBreadcrumbs({});
+
         if(!this.props.categories) {
             this.props.moveNanobar(30);
-            this.props.getForumSections(
-                () => {
-                    console.log('callback!');
-                    this.props.moveNanobar(100);
-                }
-            )
+            this.props.getForumSections(() => {this.props.moveNanobar(100);}, false);
         }
-
-        this.props.setBreadcrumbs({});
     }
 
     renderCategories = () => {
