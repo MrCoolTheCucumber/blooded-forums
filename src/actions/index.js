@@ -12,7 +12,8 @@ import {
     GET_POSTS,
     SET_BREADCRUMBS,
     MOVE_NANOBAR,
-    CHANGE_NANOBAR
+    CHANGE_NANOBAR,
+    GET_USER_DATA
 } from './types';
 const ROOT_URL = 'https://api.bloodedguild.me';
 
@@ -326,5 +327,20 @@ export function setBreadcrumbs(breadcrumbsObject) {
             type: SET_BREADCRUMBS,
             payload: breadcrumbsObject
         });
+    }
+}
+
+export function getUserData(userId) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/users/${userId}`)
+            .then( response => {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: response.data[0]
+                })
+            })
+            .catch( error => {
+                //todo
+            })
     }
 }

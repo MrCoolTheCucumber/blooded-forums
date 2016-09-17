@@ -261,6 +261,11 @@ form, .form-div {
     border: solid lightcoral;
 }
 
+.form-wrapper {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 /* End of form */
 
 /* Forum categories */
@@ -520,6 +525,49 @@ th, td {
 }
 
 /* ------------------ end of topics ------------------------*/
+
+.border {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: solid lightcoral;
+}
+
+.profile-wrapper {
+    min-height: 300px
+}
+
+.profile-side {
+    float: left;
+    width: 250px;
+    text-align: center;
+}
+
+.profile-info-side {
+    margin-left: 250px;
+    padding: 0;
+}
+
+.profile-bio-wrapper {
+    border-radius: 1px;
+    background-color: #fefefe;
+    border: 1px solid lightcoral;
+
+    width: 100%;
+
+    margin-top: 25px;
+}
+
+.profile-bio-title {
+    border-bottom: 1px solid lightcoral;
+    background: lightcoral;
+    color: white;
+    padding-left: 3px;
+}
+
+.profile-bio-content {
+    padding: 3px;
+}
 
 .button-create-thread {
     float: right;

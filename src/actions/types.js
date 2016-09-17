@@ -8,6 +8,7 @@ export const GET_THREADS = 'get_threads';
 export const GET_SUBCATEGORY_DATA = 'get_subcategory';
 export const GET_POSTS = 'get_posts';
 export const GET_THREAD_DATA = 'get_thread_data';
+export const GET_USER_DATA  = 'get_user_data';
 
 export const SET_BREADCRUMBS = 'set_breadcrumbs';
 
