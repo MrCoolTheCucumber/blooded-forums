@@ -10,14 +10,17 @@ class Header extends Component {
     };
 
     renderLinks = () => {
-        if (this.props.authenticated) {
-
+        if (this.props.user.authenticated) {
             return [
                 <li key={0} className="nav-iten nav-right">
                     <Link to="/signout" className="nav-link">Sign out</Link>
                 </li>,
-                <li key={1} className="nav-iten nav-right">
-                    <Link to="/profile" className="nav-link">{this.props.username}</Link>
+                <li key={1} className="dropdown nav-iten nav-right">
+                    <span id="nav-profile-dropdown" href="/" className="nav-dropbtn">{this.props.user.username}</span>
+                    <div className="dropdown-content">
+                        <Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link>
+                        <Link className="drop-item" to="/settings" >Settings</Link>
+                    </div>
                 </li>
             ];
         } else {
@@ -48,8 +51,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
     return {
-        authenticated: state.auth.authenticated,
-        username: state.auth.username
+        user: state.auth,
     };
 }
 

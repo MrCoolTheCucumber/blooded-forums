@@ -40,16 +40,18 @@ class Signin extends Component {
 
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-                <fieldset className="form-group">
-                    <label>Username:</label>
-                    <input type="text" {...username} className="form-control"/>
-                </fieldset>
-                <fieldset className="form-group">
-                    <label>Password:</label>
-                    <input {...password} type="password" className="form-control"/>
-                </fieldset>
-                {this.renderAlert()}
-                <button action="submit" className="form-button">Sign in</button>
+                <div className="form-wrapper">
+                    <fieldset className="form-group">
+                        <label>Username:</label>
+                        <input type="text" {...username} className="form-control"/>
+                    </fieldset>
+                    <fieldset className="form-group">
+                        <label>Password:</label>
+                        <input {...password} type="password" className="form-control"/>
+                    </fieldset>
+                    {this.renderAlert()}
+                    <button action="submit" className="form-button">Sign in</button>
+                </div>
             </form>
         );
     }

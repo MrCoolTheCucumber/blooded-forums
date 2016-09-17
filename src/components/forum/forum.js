@@ -8,10 +8,10 @@ class Forum extends Component {
     componentWillMount() {
         this.props.setBreadcrumbs({});
 
-        if(!this.props.categories) {
-            this.props.moveNanobar(30);
-            this.props.getForumSections(() => {this.props.moveNanobar(100);}, false);
-        }
+
+        this.props.moveNanobar(30);
+        this.props.getForumSections(() => {this.props.moveNanobar(100);}, false);
+
     }
 
     renderCategories = () => {

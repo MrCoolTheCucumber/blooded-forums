@@ -12,7 +12,8 @@ import {
     GET_POSTS,
     SET_BREADCRUMBS,
     MOVE_NANOBAR,
-    CHANGE_NANOBAR
+    CHANGE_NANOBAR,
+    GET_USER_DATA
 } from './types';
 const ROOT_URL = 'https://api.bloodedguild.me';
 
@@ -42,11 +43,17 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
             .then( response => {
                 dispatch({
                     type: AUTH_USER,
-                    payload: response.data.username
+                    payload: {
+                        username: response.data.username,
+                        id: response.data.id,
+                        group: response.data.group
+                    }
                 });
 
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('username', response.data.username);
+                localStorage.setItem('id', response.data.id);
+                localStorage.setItem('group', response.data.group);
 
                 callback();
 
@@ -80,11 +87,17 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                     .then( response2 => {
                         dispatch({
                             type: AUTH_USER,
-                            payload: response2.data.username
+                            payload: {
+                                username: response2.data.username,
+                                id: response2.data.id,
+                                group: response2.data.group
+                            }
                         });
 
                         localStorage.setItem('token', response2.data.access_token);
                         localStorage.setItem('username', response2.data.username);
+                        localStorage.setItem('id', response2.data.id);
+                        localStorage.setItem('group', response2.data.group);
 
                         browserHistory.push('/');
                     })
@@ -313,6 +326,73 @@ export function setBreadcrumbs(breadcrumbsObject) {
         dispatch({
             type: SET_BREADCRUMBS,
             payload: breadcrumbsObject
+        });
+    }
+}
+
+export function getUserData(userId, updateBreadcrumbs) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/forums/users/${userId}`)
+            .then( response => {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: response.data[0]
+                });
+
+                if(updateBreadcrumbs !== undefined && updateBreadcrumbs && response.data.length != 0) {
+                    const breadcrumbsObject = {
+                        profile: response.data[0]
+                    };
+
+                    dispatch({
+                        type: SET_BREADCRUMBS,
+                        payload: breadcrumbsObject
+                    });
+                }
+            })
+            .catch( error => {
+                //todo
+            })
+    }
+}
+
+export function changeUserPassword(password, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                password_hash: password
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback();
+            }
+        }).catch( error => {
+            //TODO
+        });
+
+    }
+}
+
+export function changeUserAvatar(avatarUri, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                avatar: avatarUri
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback(0);
+            }
+        }).catch( error => {
+            if(callback) {
+                callback(1);
+            }
         });
     }
 }

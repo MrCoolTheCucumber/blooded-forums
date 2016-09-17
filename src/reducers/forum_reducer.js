@@ -3,7 +3,8 @@ import {
     GET_SUBCATEGORY_DATA,
     GET_THREADS,
     GET_THREAD_DATA,
-    GET_POSTS
+    GET_POSTS,
+    GET_USER_DATA
 } from '../actions/types';
 import { INITIAL_STATE } from './initial_state';
 
@@ -47,6 +48,9 @@ export default function (state = INITIAL_STATE, action) {
             };
 
             return newPostState;
+
+        case GET_USER_DATA:
+            return { ...state, user: action.payload };
 
         default:
             return state;

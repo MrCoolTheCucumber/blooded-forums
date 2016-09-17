@@ -42,6 +42,27 @@ class Breadcrumbs extends Component {
         }
     };
 
+    renderSpecial = () => {
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.profile != null) {
+            const profile = this.props.breadcrumbs.profile;
+
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/profile/${profile.id}`}>{profile.username}</Link>
+                </li>
+            )
+        }
+
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.settings != null) {
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/settings`}>Settings</Link>
+                </li>
+            )
+        }
+
+    };
+
     render() {
         return (
             <div id="crumbs">
@@ -49,6 +70,7 @@ class Breadcrumbs extends Component {
                     <li>
                         <Link to="/" className="crumbs-link">Home</Link>
                     </li>
+                    {this.renderSpecial()}
                     {this.renderCategory()}
                     {this.renderSubCategory()}
                     {this.renderThread()}
