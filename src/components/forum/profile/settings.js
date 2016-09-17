@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
+import ChangePassword from './settings/change_password';
 
 const MENU_ITEM_CHANGE_PASSWORD = 0;
 const MENU_ITEM_CHANGE_AVATAR = 1;
@@ -51,7 +52,7 @@ class Settings extends Component {
     renderSelectedSetting = () => {
         switch (this.state.selectedMenuItem) {
             case MENU_ITEM_CHANGE_PASSWORD:
-                return <div>Change your password!</div>;
+                return <ChangePassword/>;
             case MENU_ITEM_CHANGE_AVATAR:
                 return <div>Change your avatar!</div>;
             default:
@@ -64,6 +65,7 @@ class Settings extends Component {
             <div className="border">
                 <div id="settings-wrapper">
                     <div id="settings-menu-wrapper">
+                        <div id="settings-title" style={{textAlign: 'center'}}><i className="fa fa-wrench" aria-hidden="true"> </i> Settings</div>
                         <div id="settings-menu-list-wrapper">
                             <ul id="settings-menu-list">
                                 {this.renderSettingsMenu()}

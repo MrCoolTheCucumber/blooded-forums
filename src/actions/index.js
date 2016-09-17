@@ -344,3 +344,21 @@ export function getUserData(userId) {
             })
     }
 }
+
+export function changeUserPassword(password, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                password_hash: password
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback();
+            }
+        })
+    }
+
+}

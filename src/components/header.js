@@ -16,7 +16,7 @@ class Header extends Component {
                     <Link to="/signout" className="nav-link">Sign out</Link>
                 </li>,
                 <li key={1} className="dropdown nav-iten nav-right">
-                    <span href="/" className="nav-dropbtn">{this.props.user.username}</span>
+                    <span id="nav-profile-dropdown" href="/" className="nav-dropbtn">{this.props.user.username}</span>
                     <div className="dropdown-content">
                         <Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link>
                         <Link className="drop-item" to="/settings" >Settings</Link>

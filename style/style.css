@@ -66,7 +66,7 @@ body {
     transition: background-color 0.5s;
 }
 
-.navbar li a:hover:not(.active), span:hover {
+.navbar li a:hover:not(.active), #nav-profile-dropdown:hover {
     background-color: lightcoral;
     -webkit-transition: background-color 0.5s;
     -moz-transition: background-color 0.5s;
@@ -192,7 +192,7 @@ li.dropdown {
 
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 7px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -533,6 +533,14 @@ th, td {
     border: solid lightcoral;
 }
 
+.thin-border {
+    border-radius: 1px;
+    background-color: #fefefe;
+    border: 1px solid lightcoral;
+
+    min-height: 300px;
+}
+
 /* --------------- profile ---------------------------- */
 
 .profile-wrapper {
@@ -584,12 +592,11 @@ th, td {
 
 #settings-wrapper {
     display: flex;
+    min-height: 400px;
 }
 
 #settings-menu-wrapper {
     flex: 0 0 200px;
-
-    background-color: #cccccc;
     color: black;
     font-size: 90%;
 }
@@ -602,6 +609,8 @@ th, td {
 #settings-menu-list {
     list-style: none;
     padding-left: 0;
+
+    background-color: #cccccc;
 }
 
 #settings-menu-list .settings-menu-list-item {
@@ -625,6 +634,14 @@ th, td {
 
 #settings-menu-list .settings-menu-list-selected:hover {
     cursor: default;
+}
+
+#settings-title {
+    text-align: center;
+}
+
+#settings-title span:hover {
+    animation: none;
 }
 
 /* ----------------- end of settings -------------------*/
@@ -652,4 +669,70 @@ th, td {
 
 #footer a:hover {
     color: deepskyblue;
+}
+
+/* Animations */
+
+.loader {
+    font-size: 10px;
+    margin: 50px auto;
+    text-indent: -9999em;
+    width: 11em;
+    height: 11em;
+    border-radius: 50%;
+    background: #ffb3b5;
+    background: -moz-linear-gradient(left, #ffb3b5 10%, rgba(255,179,181, 0) 42%);
+    background: -webkit-linear-gradient(left, #ffb3b5 10%, rgba(255,179,181, 0) 42%);
+    background: -o-linear-gradient(left, #ffb3b5 10%, rgba(255,179,181, 0) 42%);
+    background: -ms-linear-gradient(left, #ffb3b5 10%, rgba(255,179,181, 0) 42%);
+    background: linear-gradient(to right, #ffb3b5 10%, rgba(255,179,181, 0) 42%);
+    position: relative;
+    -webkit-animation: load3 1.4s infinite linear;
+    animation: load3 1.4s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+.loader:before {
+    width: 50%;
+    height: 50%;
+    background: #ffb3b5;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+}
+.loader:after {
+    background: transparent;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+@-webkit-keyframes load3 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes load3 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
