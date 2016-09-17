@@ -19,7 +19,7 @@ class Header extends Component {
                     <span href="/" className="nav-dropbtn">{this.props.user.username}</span>
                     <div className="dropdown-content">
                         <Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link>
-                        <a className="drop-item" href="#">Settings</a>
+                        <Link className="drop-item" to="/settings" >Settings</Link>
                     </div>
                 </li>
             ];

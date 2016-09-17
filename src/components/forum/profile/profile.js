@@ -29,6 +29,7 @@ class Profile extends Component {
                         </div>
 
                         <div className="profile-info-side">
+                            <div style={{ height: '20px'}}></div>
                             <div className="profile-bio-wrapper">
                                 <div className="profile-bio-title">Bio</div>
                                 <div className="profile-bio-content">

@@ -533,6 +533,8 @@ th, td {
     border: solid lightcoral;
 }
 
+/* --------------- profile ---------------------------- */
+
 .profile-wrapper {
     min-height: 300px
 }
@@ -568,6 +570,64 @@ th, td {
 .profile-bio-content {
     padding: 3px;
 }
+
+.profile-username {
+    font-size: 145%;
+    padding-bottom: 5px;
+}
+
+/* ---------------- end of profile ------------------*/
+
+
+
+/* ------------------settings -------------------------*/
+
+#settings-wrapper {
+    display: flex;
+}
+
+#settings-menu-wrapper {
+    flex: 0 0 200px;
+
+    background-color: #cccccc;
+    color: black;
+    font-size: 90%;
+}
+
+#settings-selected-wrapper {
+    flex: 1;
+    padding-left: 10px;
+}
+
+#settings-menu-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#settings-menu-list .settings-menu-list-item {
+    padding-left: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#settings-menu-list .settings-menu-list-item + .settings-menu-list-item {
+
+}
+
+#settings-menu-list .settings-menu-list-selected {
+    background-color: #ff7070;
+}
+
+#settings-menu-list .settings-menu-list-item:hover {
+    background-color: #ff7070;
+    cursor: pointer;
+}
+
+#settings-menu-list .settings-menu-list-selected:hover {
+    cursor: default;
+}
+
+/* ----------------- end of settings -------------------*/
 
 .button-create-thread {
     float: right;
