@@ -57,7 +57,7 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
 
                 callback();
 
-                if(redirectUri == '/signout') {
+                if(redirectUri === '/signout' || redirectUri === '/signup') {
                     browserHistory.push('/');
                 } else {
                     browserHistory.push(redirectUri);
