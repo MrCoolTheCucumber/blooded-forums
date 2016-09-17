@@ -61,6 +61,30 @@ class Breadcrumbs extends Component {
             )
         }
 
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.signin != null) {
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/signin`}>Sign in</Link>
+                </li>
+            )
+        }
+
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.signout != null) {
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/signout`}>Sign out</Link>
+                </li>
+            )
+        }
+
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.signup != null) {
+            return (
+                <li>
+                    <Link className="crumbs-link" to={`/signup`}>Sign up</Link>
+                </li>
+            )
+        }
+
     };
 
     render() {

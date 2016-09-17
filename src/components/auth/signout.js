@@ -6,6 +6,10 @@ import { NanoConsts } from '../../nanobar_consts';
 class Signout extends Component {
 
     componentWillMount() {
+        this.props.setBreadcrumbs({
+            signout: true
+        });
+
         this.props.changeNanobar(NanoConsts.defaultColor);
         this.props.moveNanobar(30);
         this.props.signoutUser(() => {

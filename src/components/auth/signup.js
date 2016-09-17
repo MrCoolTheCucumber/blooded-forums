@@ -4,6 +4,12 @@ import * as actions from '../../actions';
 
 class Signup extends Component {
 
+    componentWillMount() {
+        this.props.setBreadcrumbs({
+            signup: true
+        });
+    }
+
     componentWillUnmount() {
         this.props.clearAuthError();
     }

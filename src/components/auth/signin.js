@@ -5,6 +5,12 @@ import { NanoConsts } from '../../nanobar_consts';
 
 class Signin extends Component {
 
+    componentWillMount() {
+        this.props.setBreadcrumbs({
+            signin: true
+        });
+    }
+
     componentWillUnmount() {
         this.props.clearAuthError();
     }
