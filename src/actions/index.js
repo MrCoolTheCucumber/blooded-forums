@@ -358,7 +358,30 @@ export function changeUserPassword(password, callback) {
             if(callback) {
                 callback();
             }
-        })
-    }
+        }).catch( error => {
+            //TODO
+        });
 
+    }
+}
+
+export function changeUserAvatar(avatarUri, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                avatar: avatarUri
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback(0);
+            }
+        }).catch( error => {
+            if(callback) {
+                callback(1);
+            }
+        });
+    }
 }

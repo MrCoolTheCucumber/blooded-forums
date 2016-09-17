@@ -535,10 +535,15 @@ th, td {
 
 .thin-border {
     border-radius: 1px;
-    background-color: #fefefe;
+    background-color: #fbfbfb;
     border: 1px solid lightcoral;
 
     min-height: 300px;
+}
+
+.no-border {
+    border: 0;
+    background: transparent;
 }
 
 /* --------------- profile ---------------------------- */
@@ -644,6 +649,31 @@ th, td {
     animation: none;
 }
 
+#settings-avatar-wrapper {
+    display: flex;
+    padding: 5px;
+}
+
+#settings-avatar-preview-wrapper {
+    flex: 0 0 150px;
+}
+
+#settings-avatar-form-wrapper {
+    flex: 1;
+    padding-left: 10px;
+}
+
+#settings-avatar-form-wrapper input {
+    margin-left: 20px;
+    width: 70%
+}
+
+#settings-avatar-info {
+    font-size: 85%;
+    color: dimgrey;
+    padding-left: 20px;
+}
+
 /* ----------------- end of settings -------------------*/
 
 .button-create-thread {
@@ -675,7 +705,7 @@ th, td {
 
 .loader {
     font-size: 10px;
-    margin: 50px auto;
+    margin: 0 auto;
     text-indent: -9999em;
     width: 11em;
     height: 11em;

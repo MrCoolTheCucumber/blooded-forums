@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import ChangePassword from './settings/change_password';
+import ChangeAvatar from './settings/change_avatar';
 
 const MENU_ITEM_CHANGE_PASSWORD = 0;
 const MENU_ITEM_CHANGE_AVATAR = 1;
@@ -54,7 +55,7 @@ class Settings extends Component {
             case MENU_ITEM_CHANGE_PASSWORD:
                 return <ChangePassword/>;
             case MENU_ITEM_CHANGE_AVATAR:
-                return <div>Change your avatar!</div>;
+                return <ChangeAvatar/>;
             default:
                 return <div>Something has gone horribly wrong?</div>;
         }
