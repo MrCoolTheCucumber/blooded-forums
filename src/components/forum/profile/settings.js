@@ -27,6 +27,12 @@ class Settings extends Component {
         }
     }
 
+    componentWillMount = () => {
+        this.props.setBreadcrumbs({
+            settings: true
+        })
+    };
+
     renderSettingsMenu = () => {
         return this.state.menuListItems.map( listItem => {
             var selected = (this.state.selectedMenuItem == listItem.id);

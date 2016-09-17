@@ -5,8 +5,9 @@ import * as actions from '../../../actions';
 class Profile extends Component {
 
     componentWillMount() {
+        this.props.setBreadcrumbs({});
         //always get user data
-        this.props.getUserData(this.props.params.id);
+        this.props.getUserData(this.props.params.id, true);
     }
 
     render() {

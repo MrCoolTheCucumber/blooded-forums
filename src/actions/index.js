@@ -330,14 +330,25 @@ export function setBreadcrumbs(breadcrumbsObject) {
     }
 }
 
-export function getUserData(userId) {
+export function getUserData(userId, updateBreadcrumbs) {
     return function(dispatch) {
         axios.get(`${ROOT_URL}/forums/users/${userId}`)
             .then( response => {
                 dispatch({
                     type: GET_USER_DATA,
                     payload: response.data[0]
-                })
+                });
+
+                if(updateBreadcrumbs !== undefined && updateBreadcrumbs && response.data.length != 0) {
+                    const breadcrumbsObject = {
+                        profile: response.data[0]
+                    };
+
+                    dispatch({
+                        type: SET_BREADCRUMBS,
+                        payload: breadcrumbsObject
+                    });
+                }
             })
             .catch( error => {
                 //todo
