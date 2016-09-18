@@ -38,7 +38,7 @@ class Topic extends Component {
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (
-                <video preload="auto" autoPlay="autoplay" loop="loop" width={150} height={150}>
+                <video preload="auto" autoPlay="autoplay" muted loop="loop" width={150} height={150}>
                     <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
                 </video>
             );
