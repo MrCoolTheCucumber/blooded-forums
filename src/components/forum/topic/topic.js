@@ -35,6 +35,18 @@ class Topic extends Component {
         return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
     };
 
+    renderAvatar = (avatar) => {
+        if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
+            return (
+                <video preload="auto" autoPlay="autoplay" loop="loop" width={150} height={150}>
+                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                </video>
+            );
+        }
+
+        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={150} height={150}/>
+    };
+
     createMarkup = (dirtyContent) => {
         return {
             __html: dirtyContent
@@ -55,7 +67,7 @@ class Topic extends Component {
                                 <div className="post-user-side">
                                     <div className="post-username">{post.user.username}</div>
                                     <div className="post-avater-container">
-                                        <img crossOrigin="Anonymous" src={`//${post.user.avatar}`} alt="avatar" width={150} height={150}/>
+                                        {this.renderAvatar(post.user.avatar)}
                                     </div>
                                     Posts: {post.user.post_count}
                                 </div>

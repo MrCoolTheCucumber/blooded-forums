@@ -13,6 +13,18 @@ class ThreadListItem extends Component {
         return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
     };
 
+    renderAvatar = (avatar) => {
+        if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
+            return (
+                <video preload="auto" autoPlay="autoplay" loop="loop" width={45} height={45}>
+                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                </video>
+            );
+        }
+
+        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={45} height={45}/>
+    };
+
     render() {
         const thread = this.props.thread;
         if(!thread) {
@@ -35,7 +47,7 @@ class ThreadListItem extends Component {
                 <th className="category-subcategory-metadata category-subcategory-lastpost">
 
                     <div className="lastpost-img-container">
-                        <img crossOrigin="Anonymous" src={`//${thread.user_post.avatar}`} alt="avatar" width={45} height={45}/>
+                        {this.renderAvatar(thread.user_post.avatar)}
                     </div>
 
                     <div className="lastpost-meta-data-container">

@@ -17,6 +17,18 @@ class ChangeAvatar extends Component {
         this.props.getUserData(this.props.user.id);
     }
 
+    renderAvatar = (avatar) => {
+        if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
+            return (
+                <video preload="auto" autoPlay="autoplay" loop="loop" width={150} height={150}>
+                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                </video>
+            );
+        }
+
+        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={150} height={150}/>
+    };
+
     handleFormSubmit = ({ url }) => {
         this.setState({ ...this.state, currentState: 'sending' });
         this.props.changeUserAvatar(url, (status) => {
@@ -44,11 +56,11 @@ class ChangeAvatar extends Component {
     renderCurrentAvatar = () => {
 
         if(this.state.preview != null) {
-            return <img src={`//${this.state.preview}`} width={150} height={150}/>
+            return this.renderAvatar(this.state.preview);
         }
 
         if(this.props.userData != null && this.props.userData.id == this.props.user.id) {
-            return <img src={`//${this.props.userData.avatar}`} width={150} height={150}/>;
+            return this.renderAvatar(this.props.userData.avatar);
         }
 
         return <div className="loader" style={{ width: '150', height: '150' }}/>;
