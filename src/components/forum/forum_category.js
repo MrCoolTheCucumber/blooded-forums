@@ -38,16 +38,16 @@ class ForumCategory extends Component {
     renderLastPost = (post) => {
         if(post.id === undefined) {
             return (
-                <th className="category-subcategory-metadata category-subcategory-lastpost">
+                <td className="category-subcategory-metadata category-subcategory-lastpost">
                     <div className="lastpost-nopost">
                         -  -  -  -
                     </div>
-                </th>
+                </td>
             );
         }
 
         return (
-            <th className="category-subcategory-metadata category-subcategory-lastpost">
+            <td className="category-subcategory-metadata category-subcategory-lastpost">
 
                 <div className="lastpost-img-container">
                     {this.renderAvatar(post.user.avatar)}
@@ -59,7 +59,7 @@ class ForumCategory extends Component {
                     </div>
                     <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.user.username}`}</div>
                 </div>
-            </th>
+            </td>
         )
     };
 
@@ -81,22 +81,52 @@ class ForumCategory extends Component {
         });
     };
 
+    renderSubCategories2 = (subcategories, parentId) => {
+        return subcategories.map( subcategory => {
+            return (
+                <li key={`${parentId}.${subcategory.id}`}>
+                    <div className="forum-list-item-wrapper">
+
+                        <div className="forum-list-chip forum-list-item-icon-wrapper">
+                            <div className="forum-list-item-icon">&nbsp;</div>
+                        </div>
+
+                        <div className="forum-list-chip forum-list-item-metadata-block">
+                            <div className="forum-list-item-metadata-title">
+                                <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
+                            </div>
+                            <div className="forum-list-item-metadata-description">
+                                {subcategory.description}
+                            </div>
+                        </div>
+
+                        <div className="forum-list-chip forum-list-item-tp">
+                            Threads: {subcategory.thread_count}
+                        </div>
+
+                        <div className="forum-list-chip forum-list-item-last-post-container">
+                             - - - -
+                        </div>
+
+                    </div>
+                </li>
+            );
+        });
+    };
+
+
+
 
     render() {
         return (
             <div className="category-wrapper">
                 <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
                 <p className="category-description">{this.props.category.description}</p>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Forums</th>
-                        <th> </th>
-                        <th> </th>
-                    </tr>
-                    {this.renderSubCategories(this.props.category.subcategories, this.props.category.id)}
-                    </tbody>
-                </table>
+                <div className="forum-list-wrapper">
+                    <ul>
+                        {this.renderSubCategories2(this.props.category.subcategories, this.props.category.id)}
+                    </ul>
+                </div>
             </div>
         );
     }
