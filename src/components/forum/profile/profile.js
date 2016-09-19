@@ -10,6 +10,18 @@ class Profile extends Component {
         this.props.getUserData(this.props.params.id, true);
     }
 
+    renderAvatar = (avatar) => {
+        if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
+            return (
+                <video preload="auto" autoPlay="autoplay" muted loop="loop" width={200} height={200}>
+                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                </video>
+            );
+        }
+
+        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={150} height={150}/>
+    };
+
     render() {
         if(this.props.userData != null && this.props.userData.id == this.props.params.id) {
             return (
@@ -21,7 +33,7 @@ class Profile extends Component {
                                 {this.props.userData.username}
                             </div>
                             <div className="profile-avatar">
-                                <img src={`//${this.props.userData.avatar}`} width={200} height={200}/>
+                                {this.renderAvatar(this.props.userData.avatar)}
                             </div>
                             <div className="profile-posts">
                                 Posts: {this.props.userData.post_count}
