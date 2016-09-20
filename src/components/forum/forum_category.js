@@ -38,65 +38,72 @@ class ForumCategory extends Component {
     renderLastPost = (post) => {
         if(post.id === undefined) {
             return (
-                <th className="category-subcategory-metadata category-subcategory-lastpost">
-                    <div className="lastpost-nopost">
-                        -  -  -  -
-                    </div>
-                </th>
+                <div className="forum-list-chip forum-list-item-last-post-container">
+                    <div className="lastpost-nopost">-  -  -  -</div>
+                </div>
             );
         }
 
         return (
-            <th className="category-subcategory-metadata category-subcategory-lastpost">
-
-                <div className="lastpost-img-container">
+            <div>
+                <div className="forum-list-chip forum-list-item-avatar-container">
                     {this.renderAvatar(post.user.avatar)}
                 </div>
 
-                <div className="lastpost-meta-data-container">
+                <div className="forum-list-chip forum-list-last-post-metadata-block">
                     <div className="lastpost-thread-link">
                         <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
                     <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.user.username}`}</div>
                 </div>
-            </th>
+            </div>
         )
     };
 
     renderSubCategories = (subcategories, parentId) => {
         return subcategories.map( subcategory => {
             return (
-                <tr key={parentId + '.' + subcategory.id}>
-                    <th className="category-subcategory-metadata">
-                        <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
-                        <div className="category-subcategory-td-block">
-                            <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
-                            <div className="category-subcategory-description">{subcategory.description}</div>
+                <li key={`${parentId}.${subcategory.id}`}>
+                    <div className="forum-list-item-wrapper">
+
+                        <div className="forum-list-chip forum-list-item-icon-wrapper">
+                            <i className="fa fa-comments-o fa-2x category-subcategory-icon" aria-hidden="true">&nbsp;</i>
                         </div>
-                    </th>
-                    <th className="category-subcategory-metadata category-subcategory-tp">Threads: {subcategory.thread_count}</th>
-                    {this.renderLastPost(subcategory.post)}
-                </tr>
+
+                        <div className="forum-list-chip forum-list-item-metadata-block">
+                            <div className="forum-list-item-metadata-title">
+                                <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
+                            </div>
+                            <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
+                                {subcategory.description}
+                            </div>
+                        </div>
+
+                        <div className="forum-list-chip forum-list-item-tp forum-list-item-secondary-text">
+                            {`${subcategory.thread_count} ${subcategory.thread_count === 1 ? 'thread' : 'threads'}`}
+                        </div>
+
+                        {this.renderLastPost(subcategory.post)}
+
+                    </div>
+                </li>
             );
         });
     };
 
-
     render() {
         return (
             <div className="category-wrapper">
-                <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
-                <p className="category-description">{this.props.category.description}</p>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Forums</th>
-                        <th> </th>
-                        <th> </th>
-                    </tr>
-                    {this.renderSubCategories(this.props.category.subcategories, this.props.category.id)}
-                    </tbody>
-                </table>
+                <div className="category-header-wrapper">
+                    <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
+                    <p className="category-description">{this.props.category.description}</p>
+                </div>
+
+                <div className="forum-list-wrapper">
+                    <ul>
+                        {this.renderSubCategories(this.props.category.subcategories, this.props.category.id)}
+                    </ul>
+                </div>
             </div>
         );
     }

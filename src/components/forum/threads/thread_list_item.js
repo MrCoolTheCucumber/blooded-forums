@@ -32,30 +32,41 @@ class ThreadListItem extends Component {
         }
 
         return (
-            <tr>
-                <th className="category-subcategory-metadata">
-                    <i className="fa fa-comment-o fa-2x category-subcategory-icon" aria-hidden="true"> </i>
-                    <div className="category-subcategory-td-block">
-                        <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
-                        <div className="category-subcategory-description">
+            <li>
+                <div className="forum-list-item-wrapper">
+
+                    <div className="forum-list-chip forum-list-item-icon-wrapper">
+                        <i className="fa fa-comment-o fa-2x category-subcategory-icon" aria-hidden="true">&nbsp;</i>
+                    </div>
+
+                    <div className="forum-list-chip forum-list-item-metadata-block">
+                        <div className="forum-list-item-metadata-title">
+                            <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
+                        </div>
+                        <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
                             <span style={{ color: 'black'}}>by&nbsp;</span> {thread.user_thread.username},&nbsp;{this.renderMoment(thread.timestamp)}
                         </div>
                     </div>
-                </th>
-                <th className="category-subcategory-metadata category-subcategory-tp">Posts: {thread.post_count}</th>
 
-                <th className="category-subcategory-metadata category-subcategory-lastpost">
-
-                    <div className="lastpost-img-container">
-                        {this.renderAvatar(thread.user_post.avatar)}
+                    <div className="forum-list-chip forum-list-item-tp forum-list-item-secondary-text">
+                        {`${thread.post_count} ${thread.post_count === 1 ? 'post' : 'posts'}`}
                     </div>
 
-                    <div className="lastpost-meta-data-container">
-                        <div className="lastpost-thread-link">{thread.user_post.username}</div>
-                        <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
+                    <div>
+                        <div className="forum-list-chip forum-list-item-avatar-container">
+                            {this.renderAvatar(thread.user_post.avatar)}
+                        </div>
+
+                        <div className="forum-list-chip forum-list-last-post-metadata-block">
+                            <div className="lastpost-thread-link">
+                                <Link to={`/profile/${thread.user_post.id}`}>{thread.user_post.username}</Link>
+                            </div>
+                            <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
+                        </div>
                     </div>
-                </th>
-            </tr>
+
+                </div>
+            </li>
         );
     }
 
