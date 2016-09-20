@@ -15,8 +15,8 @@ export const userStyle = {
 
 export const devStyle = {
     fontWeight: 'bold',
-    color: 'darkgreen',
-    textShadow: '0 0 .7em lightgreen'
+    color: '#22cc66',
+    textShadow: '0 0 .7em #99ffbb'
 };
 
 function renderUsername(user) {
