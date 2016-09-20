@@ -389,7 +389,6 @@ form, .form-div {
 .rank-banner {
     margin-top: 10px;
     display: block;
-    color: white;
     margin-left: 8%;
     margin-right: 8%;
     padding-top: 3px;
@@ -398,17 +397,19 @@ form, .form-div {
     text-align: center;
     font-weight: bold;
     font-family: tahoma, helvetica, arial, sans-serif;
-    font-size: 70%;
+    font-size: 90%;
+}
+
+.rank-banner img {
+    vertical-align: middle;
 }
 
 .gm-rank-banner {
-    background: #E50000;
-    box-shadow: 3px 3px 3px lightcoral;
+    color: #ff3333;
 }
 
 .forum-dev-banner {
-    background: darkgreen;
-    box-shadow: 3px 3px 3px green;
+    color: darkgreen;
 }
 
 

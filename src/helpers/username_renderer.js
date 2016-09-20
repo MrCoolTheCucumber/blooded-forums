@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const gmStyle = {
+export const gmStyle = {
     textDecoration: 'none',
     background: 'url(http://i.imgur.com/uKdG1mv.gif)',
-    color: '#E50000',
+    color: '#ff3333',
     fontWeight: 'bold',
-    textShadow: '0 0 .9em #E50000'
+    textShadow: '0 0 .9em #ff9595'
 };
 
-const userStyle = {
+export const userStyle = {
     color: 'lightcoral'
 };
 
-const devStyle = {
+export const devStyle = {
+    fontWeight: 'bold',
     color: 'darkgreen',
     textShadow: '0 0 .7em lightgreen'
 };
