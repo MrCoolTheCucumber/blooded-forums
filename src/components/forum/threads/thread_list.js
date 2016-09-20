@@ -25,18 +25,16 @@ class ThreadList extends Component {
 
         return (
             <div className="category-wrapper">
-                <Link to={`/forum/${subcategory.id}`} className="category-name">{subcategory.title}</Link>
-                <p className="category-description">{subcategory.description}</p>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Topic</th>
-                        <th> </th>
-                        <th> </th>
-                    </tr>
-                    {this.renderThreads()}
-                    </tbody>
-                </table>
+                <div className="category-header-wrapper">
+                    <Link to={`/forum/${subcategory.id}`} className="category-name">{subcategory.title}</Link>
+                    <p className="category-description">{subcategory.description}</p>
+                </div>
+
+                <div className="forum-list-wrapper">
+                    <ul>
+                        {this.renderThreads()}
+                    </ul>
+                </div>
             </div>
         );
     }

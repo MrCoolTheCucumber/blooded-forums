@@ -46,7 +46,6 @@ class ForumCategory extends Component {
 
         return (
             <div>
-
                 <div className="forum-list-chip forum-list-item-avatar-container">
                     {this.renderAvatar(post.user.avatar)}
                 </div>
