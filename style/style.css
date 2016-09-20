@@ -288,11 +288,11 @@ form, .form-div {
 
 .forum-list-wrapper li {
     width: 100%;
-    border-bottom: 1px solid darkgreen;
+    border-bottom: 1px solid #ddd;
 }
 
 .forum-list-wrapper li:first-child {
-    border-top: 1px solid purple;
+    border-top: 1px solid #ddd;
 }
 
 .forum-list-item-wrapper {
@@ -309,35 +309,66 @@ form, .form-div {
 
 .forum-list-item-icon-wrapper {
     width: 5%;
-    text-align: center;
-    padding: 0;
-    height: 100%;
-}
-
-.forum-list-item-icon {
-    width: 32px;
-    height: 32px;
-    background-image: -webkit-radial-gradient(circle, black, transparent, transparent);
-    background-image: -o-radial-gradient(circle, black, transparent, transparent);
-    background-image: -moz-radial-gradient(circle, black, transparent, transparent);
-    background-image: radial-gradient(circle, black, transparent, transparent);
+    text-align: right;
+    padding: 2px 0 0;
+    vertical-align: middle;
 }
 
 .forum-list-item-metadata-block {
     width: 60%;
+    vertical-align: middle;
 }
 
 .forum-list-item-tp {
     width: 10%;
-    vertical-align: center;
+    vertical-align: middle;
     text-align: right;
 }
 
 .forum-list-item-last-post-container {
     width: 25%;
+    vertical-align: middle;
 }
 
+.forum-list-item-metadata-description {
 
+}
+
+.forum-list-item-secondary-text {
+    color: #696969;
+    font-size: 90%;
+}
+
+.lastpost-nopost {
+    text-align: center;
+}
+
+.forum-list-item-avatar-container {
+    padding-left: 5px;
+    width: 50px;
+    vertical-align: middle;
+}
+
+.forum-list-last-post-metadata-block {
+    vertical-align: middle;
+}
+
+.category-header-wrapper {
+    padding-bottom: 10px;
+}
+
+.lastpost-thread-link {
+    display: block;
+    font-size: 90%;
+    width: 100%;
+}
+
+.lastpost-by {
+    display: block;
+    font-size: 90%;
+    color: #696969;
+    width: 100%;
+}
 
 /* End of forum listing*/
 
@@ -445,12 +476,6 @@ td, tr {
     display: inline-block;
 }
 
-.lastpost-thread-link {
-    display: block;
-    font-size: 90%;
-    width: 100%;
-}
-
 .lastpost-thread-link a {
     color: lightcoral;
     text-decoration: none;
@@ -461,21 +486,10 @@ td, tr {
     text-shadow: 1px 1px lightcoral;
 }
 
-.lastpost-by {
-    display: block;
-    font-size: 90%;
-    color: #696969;
-    width: 100%;
-}
-
 .lastpost-meta-data-container {
     display: inline-block;
     vertical-align: 45%;
     padding-left: 5px;
-}
-
-.lastpost-nopost {
-    text-align: center;
 }
 
 .posts-table-wrapper td {
