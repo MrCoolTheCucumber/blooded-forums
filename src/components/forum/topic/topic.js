@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
 import moment from 'moment';
+import renderUsername from '../../../helpers/username_renderer';
 
 class Topic extends Component {
 
@@ -53,6 +54,30 @@ class Topic extends Component {
         };
     };
 
+    renderForumRanks = (user) => {
+        switch (user.type) {
+            case 'user':
+                return (
+                    <div>
+                        <div className="rank-banner gm-rank-banner">
+                            GUILD MASTER
+                        </div>
+                        <div className="rank-banner forum-dev-banner">
+                            DEVELOPER
+                        </div>
+                    </div>
+                );
+            case 'tech':
+                return (
+                    <div className="rank-banner forum-dev-banner">
+                        DEVELOPER
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
     renderPosts = () => {
         const page = this.getPage(this.props);
         const key = `p_${this.props.params.id}_${page}`;
@@ -65,11 +90,12 @@ class Topic extends Component {
                         <td>
                             <div className="post-container">
                                 <div className="post-user-side">
-                                    <div className="post-username">{post.user.username}</div>
-                                    <div className="post-avater-container">
+                                    <div className="post-username">{renderUsername(post.user)}</div>
+                                    <div className="post-avatar-container">
                                         {this.renderAvatar(post.user.avatar)}
                                     </div>
                                     Posts: {post.user.post_count}
+                                    {this.renderForumRanks(post.user)}
                                 </div>
 
                                 <div className="post-content-side">

@@ -380,8 +380,36 @@ form, .form-div {
 /* End of forum listing*/
 
 
+.username {
+    text-decoration: none;
+    font-family: tahoma, helvetica, arial, sans-serif;
+    font-size: 90%;
+}
 
+.rank-banner {
+    margin-top: 10px;
+    display: block;
+    color: white;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    font-family: tahoma, helvetica, arial, sans-serif;
+    font-size: 70%;
+}
 
+.gm-rank-banner {
+    background: #E50000;
+    box-shadow: 3px 3px 3px lightcoral;
+}
+
+.forum-dev-banner {
+    background: darkgreen;
+    box-shadow: 3px 3px 3px green;
+}
 
 
 /* Forum categories */
@@ -596,6 +624,7 @@ td, tr {
 
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .post-content-header {
