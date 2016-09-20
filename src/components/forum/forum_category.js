@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import renderUsername from '../../helpers/username_renderer';
 
 class ForumCategory extends Component {
 
@@ -54,7 +55,7 @@ class ForumCategory extends Component {
                     <div className="lastpost-thread-link">
                         <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
-                    <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by ${post.user.username}`}</div>
+                    <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by `}{renderUsername(post.user)}</div>
                 </div>
             </div>
         )

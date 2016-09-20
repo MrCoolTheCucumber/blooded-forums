@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import renderUsername from '../../../helpers/username_renderer';
 
 class ThreadListItem extends Component {
 
@@ -44,7 +45,7 @@ class ThreadListItem extends Component {
                             <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
                         </div>
                         <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
-                            <span style={{ color: 'black'}}>by&nbsp;</span> {thread.user_thread.username},&nbsp;{this.renderMoment(thread.timestamp)}
+                            <span style={{ color: 'black'}}>by&nbsp;</span> {renderUsername(thread.user_thread)},&nbsp;{this.renderMoment(thread.timestamp)}
                         </div>
                     </div>
 
@@ -59,7 +60,7 @@ class ThreadListItem extends Component {
 
                         <div className="forum-list-chip forum-list-last-post-metadata-block">
                             <div className="lastpost-thread-link">
-                                <Link to={`/profile/${thread.user_post.id}`}>{thread.user_post.username}</Link>
+                                <Link to={`/profile/${thread.user_post.id}`}>{renderUsername(thread.user_post)}</Link>
                             </div>
                             <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
                         </div>
