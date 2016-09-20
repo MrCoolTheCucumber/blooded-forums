@@ -1,5 +1,5 @@
 /node_modules
-bundle.js
+bundle.min.js
 npm-debug.log
 
 # IntelliJ
