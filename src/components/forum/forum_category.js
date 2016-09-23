@@ -81,7 +81,7 @@ class ForumCategory extends Component {
                         </div>
 
                         <div className="forum-list-chip forum-list-item-tp forum-list-item-secondary-text">
-                            {`${subcategory.thread_count} ${subcategory.thread_count === 1 ? 'thread' : 'threads'}`}
+                            {`Threads: ${subcategory.thread_count}`}
                         </div>
 
                         {this.renderLastPost(subcategory.post)}

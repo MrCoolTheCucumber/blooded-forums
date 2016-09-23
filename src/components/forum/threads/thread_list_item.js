@@ -50,7 +50,7 @@ class ThreadListItem extends Component {
                     </div>
 
                     <div className="forum-list-chip forum-list-item-tp forum-list-item-secondary-text">
-                        {`${thread.post_count} ${thread.post_count === 1 ? 'post' : 'posts'}`}
+                        {`Posts: ${thread.post_count}`}
                     </div>
 
                     <div>
