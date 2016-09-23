@@ -17,7 +17,7 @@ class ThreadList extends Component {
             }
         }
 
-        return <tr><th> </th></tr>
+        return null;
     };
 
     render() {

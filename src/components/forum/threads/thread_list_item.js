@@ -29,7 +29,8 @@ class ThreadListItem extends Component {
     render() {
         const thread = this.props.thread;
         if(!thread) {
-            return <tr><th>No data??</th></tr>
+            console.log('asda');
+            return null;
         }
 
         return (
@@ -60,7 +61,7 @@ class ThreadListItem extends Component {
 
                         <div className="forum-list-chip forum-list-last-post-metadata-block">
                             <div className="lastpost-thread-link">
-                                <Link to={`/profile/${thread.user_post.id}`}>{renderUsername(thread.user_post)}</Link>
+                                {renderUsername(thread.user_post)}
                             </div>
                             <div className="lastpost-by">{`${this.renderMoment(thread.posts_timestamp)}`}</div>
                         </div>
