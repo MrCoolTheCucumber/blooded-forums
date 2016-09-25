@@ -436,3 +436,20 @@ export function clearEditPostHtml() {
         });
     }
 }
+
+export function sendEditedPost(threadId, postId, content) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}/${postId}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/topic/${threadId}`);
+        }).catch( error => {
+           //TODO
+        });
+    }
+}

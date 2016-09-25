@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
 import moment from 'moment';
@@ -81,6 +82,20 @@ class Topic extends Component {
         }
     };
 
+    renderEditPostButton = (post, postNum) => {
+        if(this.props.user.authenticated && this.props.user.id == post.user.id) {
+
+            var onEditPostButtonClicked = () => {
+                this.props.setEditPostHtml(post.content, this.props.params.id, postNum);
+                browserHistory.push(`/topic/${this.props.params.id}/edit`);
+            };
+
+            return <button className="page-button post-edit-button" onClick={onEditPostButtonClicked}>Edit</button>;
+        }
+
+        return null;
+    };
+
     renderPosts = () => {
         const page = this.getPage(this.props);
         const key = `p_${this.props.params.id}_${page}`;
@@ -116,7 +131,7 @@ class Topic extends Component {
                                     </div>
 
                                     <div className="post-content-footer">
-
+                                        {this.renderEditPostButton(post, postCount)}
                                     </div>
                                 </div>
                             </div>

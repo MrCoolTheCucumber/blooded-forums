@@ -14,6 +14,7 @@ import Forum from './components/forum/forum'
 import Category from './components/forum/category/category';
 import Threads from './components/forum/threads/threads';
 import CreateThread from './components/forum/threads/create_thread';
+import EditPost from './components/forum/topic/edit_post';
 import Topic from './components/forum/topic/topic';
 import CreatePost from './components/forum/topic/create_post';
 import Profile from './components/forum/profile/profile';
@@ -57,6 +58,7 @@ ReactDOM.render(
 
                 <Route path="topic/:id" component={Topic}/>
                 <Route path="topic/:id/create" component={requireAuth(CreatePost)}/>
+                <Route path="topic/:id/edit" component={requireAuth(EditPost)}/>
 
                 <Route path="profile/:id" component={Profile}/>
                 <Route path="settings" component={requireAuth(Settings)}/>
