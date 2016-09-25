@@ -20,7 +20,7 @@ export const devStyle = {
 };
 
 function renderUsername(user) {
-    switch (user.type) {
+    switch (user.group) {
         case 'user':
             return (
                 <Link className="username" to={`/profile/${user.id}`}>
