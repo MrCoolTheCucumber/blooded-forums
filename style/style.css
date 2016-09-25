@@ -557,6 +557,10 @@ td, tr {
     margin-right: 5px
 }
 
+.lock-button {
+    margin-right: 7px;
+}
+
 .page-button-active {
     cursor: default;
     background-color: #ff6060;

@@ -396,3 +396,20 @@ export function changeUserAvatar(avatarUri, callback) {
         });
     }
 }
+
+export function setThreadLocked(isLocked, threadId) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                locked: isLocked
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/thread/${threadId}`);
+        }).catch( error => {
+            //TODO
+        });
+    }
+}

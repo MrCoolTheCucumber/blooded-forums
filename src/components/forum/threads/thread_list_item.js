@@ -26,6 +26,15 @@ class ThreadListItem extends Component {
         return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={45} height={45}/>
     };
 
+    renderIcon = (thread) => {
+        switch (thread.locked) {
+            case false:
+                return <i className="fa fa-comment-o fa-2x category-subcategory-icon" aria-hidden="true">&nbsp;</i>;
+            case true:
+                return <i className="fa fa-ban fa-2x category-subcategory-icon" aria-hidden="true">&nbsp;</i>
+        }
+    };
+
     render() {
         const thread = this.props.thread;
         if(!thread) {
@@ -38,7 +47,7 @@ class ThreadListItem extends Component {
                 <div className="forum-list-item-wrapper">
 
                     <div className="forum-list-chip forum-list-item-icon-wrapper">
-                        <i className="fa fa-comment-o fa-2x category-subcategory-icon" aria-hidden="true">&nbsp;</i>
+                        {this.renderIcon(thread)}
                     </div>
 
                     <div className="forum-list-chip forum-list-item-metadata-block">
