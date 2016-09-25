@@ -13,7 +13,8 @@ import {
     SET_BREADCRUMBS,
     MOVE_NANOBAR,
     CHANGE_NANOBAR,
-    GET_USER_DATA
+    GET_USER_DATA,
+    SET_EDIT_POST_DATA
 } from './types';
 const ROOT_URL = 'https://api.bloodedguild.me';
 
@@ -410,6 +411,45 @@ export function setThreadLocked(isLocked, threadId, subcatId) {
             browserHistory.push(`/forum/${subcatId}`);
         }).catch( error => {
             //TODO
+        });
+    }
+}
+
+export function setEditPostHtml(content, threadId, postId) {
+    return function(dispatch) {
+        dispatch({
+            type: SET_EDIT_POST_DATA,
+            payload: {
+                content,
+                threadId,
+                postId
+            }
+        });
+    }
+}
+
+export function clearEditPostHtml() {
+    return function(dispatch) {
+        dispatch({
+            type: SET_EDIT_POST_DATA,
+            payload: null
+        });
+    }
+}
+
+export function sendEditedPost(threadId, postId, content) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}/${postId}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/topic/${threadId}`);
+        }).catch( error => {
+           //TODO
         });
     }
 }
