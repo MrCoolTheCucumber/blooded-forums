@@ -55,7 +55,7 @@ class Topic extends Component {
     };
 
     renderForumRanks = (user) => {
-        switch (user.type) {
+        switch (user.group) {
             case 'gm':
                 return (
                     <div>
