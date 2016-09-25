@@ -397,7 +397,7 @@ export function changeUserAvatar(avatarUri, callback) {
     }
 }
 
-export function setThreadLocked(isLocked, threadId) {
+export function setThreadLocked(isLocked, threadId, subcatId) {
     return function(dispatch) {
         axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
             {
@@ -407,7 +407,7 @@ export function setThreadLocked(isLocked, threadId) {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
             }
         ).then( response => {
-            browserHistory.push(`/thread/${threadId}`);
+            browserHistory.push(`/forum/${subcatId}`);
         }).catch( error => {
             //TODO
         });

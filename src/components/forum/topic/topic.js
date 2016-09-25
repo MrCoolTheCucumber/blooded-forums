@@ -114,6 +114,10 @@ class Topic extends Component {
                                     <div className="post-content">
                                         <div dangerouslySetInnerHTML={this.createMarkup(post.content)}/>
                                     </div>
+
+                                    <div className="post-content-footer">
+
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -147,20 +151,22 @@ class Topic extends Component {
         }
     };
 
-    handleLockUnlockThreadButton = (isLocked, threadId) => {
-        this.props.setThreadLocked(!isLocked, threadId);
-    };
-
-    renderLockUnlockThreadButton = (isLocked, threadId) => {
+    renderLockUnlockThreadButton = (isLocked, threadId, subcatId) => {
         if(this.props.authenticated && (this.props.user.group === 'gm' || this.props.user.group === 'dev')) {
+
+            var handleLockUnlockThreadButton = () => {
+                console.log('test');
+                this.props.setThreadLocked(!isLocked, threadId, subcatId);
+            };
+
             return (
-                <button className="page-button button-create-thread lock-button" onClick={this.handleLockUnlockThreadButton(isLocked, threadId)}>
+                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
                     {isLocked ? 'Unlock thread' : 'Lock thread'}
                 </button>
             );
         }
 
-        return null;
+        return <div></div>;
     };
 
     render() {
@@ -170,7 +176,6 @@ class Topic extends Component {
         if(this.props.topics != null && this.props.topics[key] != null) {
 
             const topic = this.props.topics[key];
-
             return (
                 <div>
                     <div className="category-wrapper">
@@ -191,7 +196,7 @@ class Topic extends Component {
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
-                        {this.renderLockUnlockThreadButton(topic.locked, this.props.params.id)}
+                        {this.renderLockUnlockThreadButton(topic.locked, this.props.params.id, topic.subcategory.id)}
                     </div>
                 </div>
             );
