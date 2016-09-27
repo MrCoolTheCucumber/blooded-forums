@@ -35,10 +35,21 @@ class ThreadListItem extends Component {
         }
     };
 
+    renderStickyBadge = (isSticky) => {
+        if(isSticky) {
+            return (
+                <span>
+                    <span className="pinned-badge">PINNED</span>&nbsp;
+                </span>
+            );
+        }
+
+        return null
+    };
+
     render() {
         const thread = this.props.thread;
         if(!thread) {
-            console.log('asda');
             return null;
         }
 
@@ -53,8 +64,8 @@ class ThreadListItem extends Component {
                     <div className="forum-list-chip forum-list-item-metadata-block">
                         <div className="forum-list-item-metadata-title">
                             <Link to={`/topic/${thread.id}`} className="category-subcategory-title">
-                                <span className="pinned-badge">{thread.sticky ? 'PINNED' : null}</span>
-                                &nbsp;{thread.title}
+                                {this.renderStickyBadge(thread.sticky)}
+                                {thread.title}
                             </Link>
                         </div>
                         <div className="forum-list-item-metadata-description forum-list-item-secondary-text">

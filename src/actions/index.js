@@ -274,7 +274,6 @@ export function getThreadData(threadId) {
 }
 
 function sendPost(threadId, content, then) {
-    console.log('hit function!');
     axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
         {
             content: content
@@ -283,8 +282,6 @@ function sendPost(threadId, content, then) {
             headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
         })
         .then( response => {
-            console.log('post made!');
-            console.log(response);
             then();
         })
         .catch( error => {
@@ -303,9 +300,6 @@ export function createThread(title, subCategoryId, content) {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
             })
             .then( response => {
-                console.log(response);
-                console.log('thread made!');
-
                 browserHistory.push(`/topic/${response.data.id}`);
             })
             .catch( error => {

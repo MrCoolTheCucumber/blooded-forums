@@ -37,7 +37,6 @@ class CreateThread extends Component {
                                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                                 toolbar2: 'preview media | forecolor backcolor emoticons'
                             }}
-                            onChange={console.log('change!')}
                         />
                     </fieldset>
                     <button onClick={this.handleCreateThread} className="form-button">Create</button>
