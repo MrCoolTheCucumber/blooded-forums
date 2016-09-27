@@ -201,7 +201,7 @@ class Topic extends Component {
 
             return (
                 <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
-                    {isSticky ? 'Sticky thread' : 'Remove sticky'}
+                    {isSticky ? 'Remove sticky': 'Sticky thread' }
                 </button>
             );
         }
