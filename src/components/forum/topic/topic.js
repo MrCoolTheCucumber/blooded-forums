@@ -96,6 +96,14 @@ class Topic extends Component {
         return null;
     };
 
+    renderLastEdited = (post) => {
+        if(post.timestamp !== post.edited_timestamp) {
+            return <span className="last-edited-at">Last edited at {this.renderMoment(post.edited_timestamp)}</span>;
+        }
+
+        return null;
+    };
+
     renderPosts = () => {
         const page = this.getPage(this.props);
         const key = `p_${this.props.params.id}_${page}`;
@@ -131,6 +139,7 @@ class Topic extends Component {
                                     </div>
 
                                     <div className="post-content-footer">
+                                        {this.renderLastEdited(post)}
                                         {this.renderEditPostButton(post, postCount)}
                                     </div>
                                 </div>
@@ -152,10 +161,14 @@ class Topic extends Component {
         }
     };
 
+    handleCreateThreadOnClick = () => {
+        browserHistory.push(`/topic/${this.props.params.id}/create`);
+    };
+
     renderCreatePostButton = (isLocked) => {
         if(this.props.authenticated && !isLocked) {
             return (
-                <Link to={`/topic/${this.props.params.id}/create`} className="page-button button-create-thread">Create post</Link>
+                <button onClick={this.handleCreateThreadOnClick} className="page-button button-create-thread">Create post</button>
             );
         } else if(this.props.authenticated && isLocked) {
             return (
@@ -169,14 +182,26 @@ class Topic extends Component {
     renderLockUnlockThreadButton = (isLocked, threadId, subcatId) => {
         if(this.props.authenticated && (this.props.user.group === 'gm' || this.props.user.group === 'dev')) {
 
-            var handleLockUnlockThreadButton = () => {
-                console.log('test');
-                this.props.setThreadLocked(!isLocked, threadId, subcatId);
-            };
+            var handleLockUnlockThreadButton = () => {this.props.setThreadLocked(!isLocked, threadId, subcatId);};
 
             return (
                 <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
                     {isLocked ? 'Unlock thread' : 'Lock thread'}
+                </button>
+            );
+        }
+
+        return <div></div>;
+    };
+
+    renderStickyUnstickyThreadButton = (isSticky, threadId, subcatId) => {
+        if(this.props.authenticated && (this.props.user.group === 'gm' || this.props.user.group === 'dev')) {
+
+            var handleLockUnlockThreadButton = () => {this.props.setThreadSticky(!isSticky, threadId, subcatId);};
+
+            return (
+                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
+                    {isSticky ? 'Sticky thread' : 'Remove sticky'}
                 </button>
             );
         }
@@ -212,6 +237,7 @@ class Topic extends Component {
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
                         {this.renderLockUnlockThreadButton(topic.locked, this.props.params.id, topic.subcategory.id)}
+                        {this.renderStickyUnstickyThreadButton(topic.sticky, this.props.params.id, topic.subcategory.id)}
                     </div>
                 </div>
             );

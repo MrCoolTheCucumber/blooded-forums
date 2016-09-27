@@ -52,7 +52,10 @@ class ThreadListItem extends Component {
 
                     <div className="forum-list-chip forum-list-item-metadata-block">
                         <div className="forum-list-item-metadata-title">
-                            <Link to={`/topic/${thread.id}`} className="category-subcategory-title">{thread.title}</Link>
+                            <Link to={`/topic/${thread.id}`} className="category-subcategory-title">
+                                <span className="pinned-badge">{thread.sticky ? 'PINNED' : null}</span>
+                                &nbsp;{thread.title}
+                            </Link>
                         </div>
                         <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
                             <span style={{ color: 'black'}}>by&nbsp;</span> {renderUsername(thread.user_thread)},&nbsp;{this.renderMoment(thread.timestamp)}

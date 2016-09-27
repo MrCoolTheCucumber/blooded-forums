@@ -415,6 +415,23 @@ export function setThreadLocked(isLocked, threadId, subcatId) {
     }
 }
 
+export function setThreadSticky(isSticky, threadId, subcatId) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                sticky: isSticky
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/forum/${subcatId}`);
+        }).catch( error => {
+            //TODO
+        });
+    }
+}
+
 export function setEditPostHtml(content, threadId, postId) {
     return function(dispatch) {
         dispatch({
