@@ -273,23 +273,7 @@ export function getThreadData(threadId) {
     }
 }
 
-function sendPost(threadId, content, then) {
-    axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
-        {
-            content: content
-        },
-        {
-            headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
-        })
-        .then( response => {
-            then();
-        })
-        .catch( error => {
-            //TODO
-        });
-}
-
-export function createThread(title, subCategoryId, content) {
+export function createThread(title, subCategoryId, content, callback) {
     return function(dispatch) {
         axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
             {
@@ -300,19 +284,31 @@ export function createThread(title, subCategoryId, content) {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
             })
             .then( response => {
+                callback(0);
                 browserHistory.push(`/topic/${response.data.id}`);
             })
             .catch( error => {
-               //TODO
+                callback(1)
             });
     }
 }
 
-export function createPost(threadId, content) {
+export function createPost(threadId, content, callback) {
     return function(dispatch) {
-        sendPost(threadId, content, function() {
-            browserHistory.push(`/topic/${threadId}`);
-        });
+        axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
+            .then( response => {
+                callback(0);
+                browserHistory.push(`/topic/${threadId}`);
+            })
+            .catch( error => {
+                callback(1);
+            });
     }
 }
 
