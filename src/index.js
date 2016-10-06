@@ -37,6 +37,7 @@ if(localStorage.getItem('token') && username) {
             headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
         })
         .then( response => {
+            localStorage.setItem('token', response.data.access_token);
             store.dispatch({
                 type: AUTH_USER,
                 payload: {
