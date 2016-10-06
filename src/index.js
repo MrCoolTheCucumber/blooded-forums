@@ -4,6 +4,7 @@ import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import axios from 'axios';
 
 import App from './components/app';
 import requireAuth from './components/auth/require_authentication';
@@ -21,7 +22,7 @@ import Profile from './components/forum/profile/profile';
 import Settings from './components/forum/profile/settings';
 import _404 from './components/404';
 import reducers from './reducers';
-import { AUTH_USER } from './actions/types';
+import { AUTH_USER, UNAUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -30,14 +31,29 @@ const username = localStorage.getItem('username');
 const group = localStorage.getItem('group');
 const id = localStorage.getItem('id');
 if(localStorage.getItem('token') && username) {
-    store.dispatch({
-        type: AUTH_USER,
-        payload: {
-            username,
-            group,
-            id
-        }
-    });
+
+    axios.get(`https://api.bloodedguild.me/auth/refresh`,
+        {
+            headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+        })
+        .then( response => {
+            store.dispatch({
+                type: AUTH_USER,
+                payload: {
+                    username,
+                    group,
+                    id
+                }
+            });
+        })
+        .catch( error => {
+            store.dispatch({
+                type: UNAUTH_USER,
+                payload: {}
+            });
+        });
+
+
 }
 
 ReactDOM.render(
