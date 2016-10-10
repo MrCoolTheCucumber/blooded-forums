@@ -17,13 +17,13 @@ class ThreadListItem extends Component {
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (
-                <video preload="auto" muted autoPlay="autoplay" loop="loop" width={45} height={45}>
+                <video preload="auto" muted autoPlay="autoplay" loop="loop" style={{ maxHeight: 45, maxWidth: 45, width: 'auto', height: 'auto' }}>
                     <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
                 </video>
             );
         }
 
-        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={45} height={45}/>
+        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" style={{ maxHeight: 45, maxWidth: 45, width: 'auto', height: 'auto' }}/>
     };
 
     renderIcon = (thread) => {

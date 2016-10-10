@@ -458,6 +458,7 @@ td, tr {
     border-bottom: 1px solid #ddd;
     padding-top: 8px;
     padding-bottom: 8px;
+    width: 100%;
 }
 
 .category-subcategory-icon {
@@ -618,6 +619,12 @@ td, tr {
 .post-content-side {
     position: relative;
     z-index: -0;
+}
+
+.post-content-side * {
+    max-width: 100%;
+    width: auto;
+    height: auto;
 }
 
 .post-user-side {
