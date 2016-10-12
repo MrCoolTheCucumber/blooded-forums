@@ -523,8 +523,19 @@ td, tr {
     padding-left: 5px;
 }
 
-.posts-table-wrapper td {
+.posts-list-wrapper ul {
+    list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+.posts-list-wrapper li {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.posts-list-wrapper li:first-child {
+    border-top: 1px solid #ddd;
 }
 
 /* End of forum categories */
@@ -607,8 +618,12 @@ td, tr {
 
 .post-container {
     display: table;
-    min-height: 250px;
     width: 100%;
+    min-height: 250px;
+}
+
+.post-content-side a {
+    word-break: break-all;
 }
 
 .post-user-side, .post-content-side {
@@ -616,12 +631,14 @@ td, tr {
     padding: 3px;
 }
 
+
+
 .post-content-side {
     position: relative;
     z-index: -0;
 }
 
-.post-content-side * {
+.post-container * {
     max-width: 100%;
     width: auto;
     height: auto;

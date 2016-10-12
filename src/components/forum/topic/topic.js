@@ -112,8 +112,7 @@ class Topic extends Component {
             var postCount = ((page - 1) * 20);
             return this.props.posts[key].map(post => {
                 return (
-                    <tr key={post.id}>
-                        <td>
+                    <li key={post.id}>
                             <div className="post-container">
                                 <div className="post-user-side">
                                     <div className="post-username">{renderUsername(post.user)}</div>
@@ -144,13 +143,12 @@ class Topic extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                    </li>
                 );
             });
         }
 
-        return <tr> </tr>
+        return <li> </li>
     };
 
     getPage = (props) => {
@@ -222,13 +220,10 @@ class Topic extends Component {
                         <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
                         <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
 
-                        <div className="posts-table-wrapper">
-                            <table>
-                                <tbody>
-                                <tr><th> </th></tr>
+                        <div className="posts-list-wrapper">
+                            <ul>
                                 {this.renderPosts()}
-                                </tbody>
-                            </table>
+                            </ul>
                         </div>
 
                     </div>
