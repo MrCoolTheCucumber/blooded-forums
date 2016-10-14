@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import axios from 'axios';
+import { ROOT_URL } from './global_constants';
 
 import App from './components/app';
 import requireAuth from './components/auth/require_authentication';
@@ -32,7 +33,7 @@ const group = localStorage.getItem('group');
 const id = localStorage.getItem('id');
 if(localStorage.getItem('token') && username) {
 
-    axios.get(`https://api.bloodedguild.me/auth/refresh`,
+    axios.get(`${ROOT_URL}/auth/refresh`,
         {
             headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
         })

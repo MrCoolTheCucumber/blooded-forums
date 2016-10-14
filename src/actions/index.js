@@ -16,7 +16,7 @@ import {
     GET_USER_DATA,
     SET_EDIT_POST_DATA
 } from './types';
-const ROOT_URL = 'https://api.bloodedguild.me';
+import { ROOT_URL } from '../global_constants';
 
 export function moveNanobar(number) {
     return function(dispatch) {
