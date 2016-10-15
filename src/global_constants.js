@@ -1,1 +1,1 @@
-export const ROOT_URL = 'https://testingapi.bloodedguild.me';
+export const ROOT_URL = 'https://api.bloodedguild.me';
