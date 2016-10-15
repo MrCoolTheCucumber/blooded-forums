@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import slugTitle from '../helpers/title_sluger';
 import {
     AUTH_USER,
     UNAUTH_USER,
@@ -285,7 +286,7 @@ export function createThread(title, subCategoryId, content, callback) {
             })
             .then( response => {
                 callback(0);
-                browserHistory.push(`/topic/${response.data.id}`);
+                browserHistory.push(`/topic/${response.data.id}-${slugTitle(title)}`);
             })
             .catch( error => {
                 callback(1)
@@ -295,7 +296,7 @@ export function createThread(title, subCategoryId, content, callback) {
 
 export function createPost(threadId, content, callback) {
     return function(dispatch) {
-        axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
+        axios.put(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}`,
             {
                 content: content
             },
@@ -446,7 +447,7 @@ export function clearEditPostHtml() {
 
 export function sendEditedPost(threadId, postId, content) {
     return function(dispatch) {
-        axios.patch(`${ROOT_URL}/forums/threads/${threadId}/${postId}`,
+        axios.patch(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}/${postId}`,
             {
                 content: content
             },

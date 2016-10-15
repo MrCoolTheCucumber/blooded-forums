@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import ThreadListItem from './thread_list_item';
+import slugTitle from '../../../helpers/title_sluger';
 
 class ThreadList extends Component {
 
@@ -26,7 +27,7 @@ class ThreadList extends Component {
         return (
             <div className="category-wrapper">
                 <div className="category-header-wrapper">
-                    <Link to={`/forum/${subcategory.id}`} className="category-name">{subcategory.title}</Link>
+                    <Link to={`/forum/${subcategory.id}-${slugTitle(subcategory.title)}`} className="category-name">{subcategory.title}</Link>
                     <p className="category-description">{subcategory.description}</p>
                 </div>
 

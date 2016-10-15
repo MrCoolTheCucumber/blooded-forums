@@ -10,10 +10,14 @@ class Category extends Component {
         super(props);
     }
 
+    parseId = (id) => {
+        return /^\d+/.exec(id);
+    };
+
     componentWillMount() {
         this.props.setBreadcrumbs({ ...this.props.breadcrumbs, subcategory: null, thread: null });
 
-        this.props.getForumSections(() => {}, true, this.props.params.id);
+        this.props.getForumSections(() => {}, true, this.parseId(this.props.params.id));
     }
 
     renderCategory = (id) => {
@@ -30,7 +34,7 @@ class Category extends Component {
         if (this.props.categories) {
             return (
                 <div>
-                    {this.renderCategory(this.props.params.id)}
+                    {this.renderCategory(this.parseId(this.props.params.id))}
                 </div>
             );
         }

@@ -13,13 +13,17 @@ class CreateThread extends Component {
         }
     }
 
+    parseId = (id) => {
+        return /^\d+/.exec(id);
+    };
+
     handleCreateThread = () => {
         if(this.state.async === 'ready') {
             this.setState({ async: 'waiting'});
             const html = tinymce.get('test').getContent();
             const title = document.getElementById("title-input").value;
 
-            this.props.createThread(title, this.props.params.id, html, (responseCode) => {
+            this.props.createThread(title, this.parseId(this.props.params.id), html, (responseCode) => {
                 switch (responseCode) {
                     case 1:
                         this.setState({ async: 'ready' });

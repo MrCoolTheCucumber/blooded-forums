@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 import renderUsername from '../../../helpers/username_renderer';
+import slugTitle from '../../../helpers/title_sluger';
 
 class ThreadListItem extends Component {
 
@@ -63,7 +64,7 @@ class ThreadListItem extends Component {
 
                     <div className="forum-list-chip forum-list-item-metadata-block">
                         <div className="forum-list-item-metadata-title">
-                            <Link to={`/topic/${thread.id}`} className="category-subcategory-title">
+                            <Link to={`/topic/${thread.id}-${slugTitle(thread.title)}`} className="category-subcategory-title">
                                 {this.renderStickyBadge(thread.sticky)}
                                 {thread.title}
                             </Link>
