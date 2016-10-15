@@ -11,8 +11,8 @@ class Threads extends Component {
         super(props);
     }
 
-    getId = () => {
-        return /^\d+/.exec(this.props.params.id);
+    parseId = (id) => {
+        return /^\d+/.exec(id);
     };
 
     componentWillMount() {
@@ -20,15 +20,15 @@ class Threads extends Component {
 
         //always? get subcategory threads, check query first
         const page = this.getPage(this.props);
-        this.props.getSubCategoryThreads(this.getId(), page);
+        this.props.getSubCategoryThreads(this.parseId(this.props.params.id), page);
 
         //make a call to get a specific subcategory data
-        this.props.getSubCategoryData(this.getId());
+        this.props.getSubCategoryData(this.parseId(this.props.params.id));
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
-            this.props.getSubCategoryThreads(nextProps.params.id, this.getPage(nextProps));
+            this.props.getSubCategoryThreads(this.parseId(nextProps.params.id), this.getPage(nextProps));
         }
     }
 
@@ -61,7 +61,7 @@ class Threads extends Component {
         if (this.props.subcategory != null) {
             return (
                 <div>
-                    <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.getId()} page={page}/>
+                    <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.parseId(this.props.params.id)} page={page}/>
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={subcategory.thread_count} currentPage={page} pathName={this.props.location.pathname}/>

@@ -13,18 +13,22 @@ class Topic extends Component {
         super(props);
     }
 
+    parseId = (id) => {
+        return /^\d+/.exec(id);
+    };
+
     componentWillMount() {
         //always? get post data first, check query first
         const page = this.getPage(this.props);
-        this.props.getPosts(this.props.params.id, page);
+        this.props.getPosts(this.parseId(this.props.params.id), page);
 
         //always? get the thread data?
-        this.props.getThreadData(this.props.params.id);
+        this.props.getThreadData(this.parseId(this.props.params.id));
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
-            this.props.getPosts(nextProps.params.id, this.getPage(nextProps));
+            this.props.getPosts(this.parseId(nextProps.params.id), this.getPage(nextProps));
         }
     }
 
@@ -86,7 +90,7 @@ class Topic extends Component {
         if(this.props.user.authenticated && this.props.user.id == post.user.id) {
 
             var onEditPostButtonClicked = () => {
-                this.props.setEditPostHtml(post.content, this.props.params.id, postNum);
+                this.props.setEditPostHtml(post.content, this.parseId(this.props.params.id), postNum);
                 browserHistory.push(`/topic/${this.props.params.id}/edit`);
             };
 
@@ -106,7 +110,7 @@ class Topic extends Component {
 
     renderPosts = () => {
         const page = this.getPage(this.props);
-        const key = `p_${this.props.params.id}_${page}`;
+        const key = `p_${this.parseId(this.props.params.id)}_${page}`;
 
         if(this.props.posts != null && this.props.posts[key] != null) {
             var postCount = ((page - 1) * 20);
@@ -208,7 +212,7 @@ class Topic extends Component {
     };
 
     render() {
-        const key = `t_${this.props.params.id}`;
+        const key = `t_${this.parseId(this.props.params.id)}`;
         const page = this.getPage(this.props);
 
         if(this.props.topics != null && this.props.topics[key] != null) {
@@ -231,8 +235,8 @@ class Topic extends Component {
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
-                        {this.renderLockUnlockThreadButton(topic.locked, this.props.params.id, topic.subcategory.id)}
-                        {this.renderStickyUnstickyThreadButton(topic.sticky, this.props.params.id, topic.subcategory.id)}
+                        {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}
+                        {this.renderStickyUnstickyThreadButton(topic.sticky, this.parseId(this.props.params.id), topic.subcategory.id)}
                     </div>
                 </div>
             );
