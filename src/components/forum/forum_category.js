@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 import renderUsername from '../../helpers/username_renderer';
+import slugTitle from '../../helpers/title_sluger';
 
 class ForumCategory extends Component {
 
@@ -53,7 +54,7 @@ class ForumCategory extends Component {
 
                 <div className="forum-list-chip forum-list-last-post-metadata-block">
                     <div className="lastpost-thread-link">
-                        <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
+                        <Link to={`/topic/${post.thread_id}-${slugTitle(post.title)}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
                     <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by `}{renderUsername(post.user)}</div>
                 </div>
@@ -73,7 +74,7 @@ class ForumCategory extends Component {
 
                         <div className="forum-list-chip forum-list-item-metadata-block">
                             <div className="forum-list-item-metadata-title">
-                                <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
+                                <Link to={`/forum/${subcategory.id}-${slugTitle(subcategory.title)}`} className="category-subcategory-title">{subcategory.title}</Link>
                             </div>
                             <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
                                 {subcategory.description}
@@ -96,7 +97,7 @@ class ForumCategory extends Component {
         return (
             <div className="category-wrapper">
                 <div className="category-header-wrapper">
-                    <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
+                    <Link to={`/category/${this.props.category.id}-${slugTitle(this.props.category.title)}`} className="category-name">{this.props.category.title}</Link>
                     <p className="category-description">{this.props.category.description}</p>
                 </div>
 
