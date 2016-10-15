@@ -11,15 +11,19 @@ class Threads extends Component {
         super(props);
     }
 
+    getId = () => {
+        return /^\d+/.exec(this.props.params.id);
+    };
+
     componentWillMount() {
         this.props.setBreadcrumbs({ ...this.props.breadcrumbs, thread: null });
 
         //always? get subcategory threads, check query first
         const page = this.getPage(this.props);
-        this.props.getSubCategoryThreads(this.props.params.id, page);
+        this.props.getSubCategoryThreads(this.getId(), page);
 
         //make a call to get a specific subcategory data
-        this.props.getSubCategoryData(this.props.params.id);
+        this.props.getSubCategoryData(this.getId());
     }
 
     componentWillUpdate(nextProps) {
@@ -57,7 +61,7 @@ class Threads extends Component {
         if (this.props.subcategory != null) {
             return (
                 <div>
-                    <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.props.params.id} page={page}/>
+                    <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.getId()} page={page}/>
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={subcategory.thread_count} currentPage={page} pathName={this.props.location.pathname}/>
