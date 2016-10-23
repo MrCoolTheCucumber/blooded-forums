@@ -220,23 +220,32 @@ class Topic extends Component {
             const topic = this.props.topics[key];
             return (
                 <div>
-                    <div className="category-wrapper">
-                        <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                        <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
-
-                        <div className="posts-list-wrapper">
-                            <ul>
-                                {this.renderPosts()}
-                            </ul>
-                        </div>
-
-                    </div>
                     <div className="page-list-wrapper">
                         <button className="page-button page-button-page" disabled>Pages:</button>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
                         {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}
                         {this.renderStickyUnstickyThreadButton(topic.sticky, this.parseId(this.props.params.id), topic.subcategory.id)}
+                    </div>
+                    <div>
+                        <div className="category-wrapper">
+                            <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
+                            <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
+
+                            <div className="posts-list-wrapper">
+                                <ul>
+                                    {this.renderPosts()}
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div className="page-list-wrapper">
+                            <button className="page-button page-button-page" disabled>Pages:</button>
+                            <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
+                            {this.renderCreatePostButton(topic.locked)}
+                            {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}
+                            {this.renderStickyUnstickyThreadButton(topic.sticky, this.parseId(this.props.params.id), topic.subcategory.id)}
+                        </div>
                     </div>
                 </div>
             );
