@@ -86,6 +86,28 @@ class Topic extends Component {
         }
     };
 
+    createSignature = (user) => {
+        if(user.signature === "") {
+            return null;
+        }
+
+        return {
+            __html: user.signature
+        };
+    };
+
+    renderSignature = (user) => {
+        if(user.signature === "")  {
+            return null;
+        }
+
+        return (
+            <div className="post-content-signature">
+                <div dangerouslySetInnerHTML={this.createSignature(user)}/>
+            </div>
+        );
+    };
+
     renderEditPostButton = (post, postNum) => {
         if(this.props.user.authenticated && this.props.user.id == post.user.id) {
 
@@ -145,6 +167,8 @@ class Topic extends Component {
                                         {this.renderLastEdited(post)}
                                         {this.renderEditPostButton(post, postCount)}
                                     </div>
+
+                                    {this.renderSignature(post.user)}
                                 </div>
                             </div>
                     </li>
