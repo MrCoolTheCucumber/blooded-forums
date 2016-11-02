@@ -15,7 +15,8 @@ export default function (state = INITIAL_STATE, action) {
                 authenticated: true,
                 username: action.payload.username,
                 id: action.payload.id,
-                group: action.payload.group
+                group: action.payload.group,
+                signature: action.payload.signature
             };
         case UNAUTH_USER:
             return { ...state, authenticated: false, username: null};

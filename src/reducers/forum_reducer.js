@@ -6,7 +6,8 @@ import {
     GET_POSTS,
     GET_USER_DATA,
     SET_EDIT_POST_DATA,
-    CLEAR_EDIT_POST_DATA
+    CLEAR_EDIT_POST_DATA,
+    CLEAR_USER_DATA
 } from '../actions/types';
 import { INITIAL_STATE } from './initial_state';
 
@@ -53,6 +54,9 @@ export default function (state = INITIAL_STATE, action) {
 
         case GET_USER_DATA:
             return { ...state, user: action.payload };
+
+        case CLEAR_USER_DATA:
+            return { ...state, user: null };
 
         case SET_EDIT_POST_DATA:
             return { ...state, editPost: action.payload };

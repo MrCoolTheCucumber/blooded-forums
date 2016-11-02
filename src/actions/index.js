@@ -15,7 +15,8 @@ import {
     MOVE_NANOBAR,
     CHANGE_NANOBAR,
     GET_USER_DATA,
-    SET_EDIT_POST_DATA
+    SET_EDIT_POST_DATA,
+    CLEAR_USER_DATA
 } from './types';
 import { ROOT_URL } from '../global_constants';
 
@@ -348,6 +349,15 @@ export function getUserData(userId, updateBreadcrumbs) {
     }
 }
 
+export function clearUserData() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_USER_DATA,
+            payload: null
+        });
+    }
+}
+
 export function changeUserPassword(password, callback) {
     return function(dispatch) {
         axios.patch(`${ROOT_URL}/forums/users`,
@@ -373,6 +383,27 @@ export function changeUserAvatar(avatarUri, callback) {
         axios.patch(`${ROOT_URL}/forums/users`,
             {
                 avatar: avatarUri
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback(0);
+            }
+        }).catch( error => {
+            if(callback) {
+                callback(1);
+            }
+        });
+    }
+}
+
+export function changeUserSignature(signature, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                signature: signature
             },
             {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
