@@ -389,6 +389,27 @@ export function changeUserAvatar(avatarUri, callback) {
     }
 }
 
+export function changeUserSignature(signature, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                signature: signature
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback(0);
+            }
+        }).catch( error => {
+            if(callback) {
+                callback(1);
+            }
+        });
+    }
+}
+
 export function setThreadLocked(isLocked, threadId, subcatId) {
     return function(dispatch) {
         axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
