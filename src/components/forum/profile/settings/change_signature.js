@@ -33,6 +33,10 @@ class ChangeSignature extends Component {
         console.log(this.props.userData);
     }
 
+    componentWillUnmount() {
+        this.props.clearUserData();
+    }
+
     handleChangeSignature = () => {
         const html = tinymce.get('test').getContent();
         this.setState({ currentState: 'sending' });
