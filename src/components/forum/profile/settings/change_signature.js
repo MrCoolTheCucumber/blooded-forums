@@ -5,17 +5,54 @@ import { connect } from 'react-redux';
 
 class ChangeSignature extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            currentState: 'nothing'
+        }
     }
 
+    renderButton = () => {
+        switch (this.state.currentState) {
+            case 'nothing':
+                return <button onClick={this.handleChangeSignature} className="form-button">Update</button>;
+            case 'sending':
+                return (
+                    <div style={{ width: '20', height: '20'}} className="loader"/>
+                );
+            case 'done':
+                return <div style={{ color: 'green' }}>Signature changed.</div>
+
+        }
+    };
+
+    componentWillMount() {
+        this.props.getUserData(this.props.user.id);
+
+        console.log(this.props.userData);
+    }
+
+    handleChangeSignature = () => {
+        const html = tinymce.get('test').getContent();
+        this.setState({ currentState: 'sending' });
+        this.props.changeUserSignature(html, () => {
+            this.setState({ currentState: 'done' });
+        });
+    };
+
     render() {
+
+        if(this.props.userData === undefined) {
+            return <div>Loading...</div>
+        }
+
         return (
             <div>
                 <div className="form-div">
                     <fieldset className="form-group">
                         <TinyMCE id="test"
-                                 content=""
+                                 content={this.props.userData.signature}
                                  config={{
                                      height: 350,
                                      plugins: [
@@ -29,6 +66,7 @@ class ChangeSignature extends Component {
                                  }}
                         />
                     </fieldset>
+                    {this.renderButton()}
                 </div>
             </div>
         );
@@ -36,4 +74,11 @@ class ChangeSignature extends Component {
 
 }
 
-export default connect(null, actions)(ChangeSignature);
+function mapStateToProps(state) {
+    return {
+        userData: state.forum.user,
+        user: state.auth
+    };
+}
+
+export default connect(mapStateToProps, actions)(ChangeSignature);

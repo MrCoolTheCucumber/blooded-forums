@@ -9,6 +9,7 @@ export const GET_SUBCATEGORY_DATA = 'get_subcategory';
 export const GET_POSTS = 'get_posts';
 export const GET_THREAD_DATA = 'get_thread_data';
 export const GET_USER_DATA  = 'get_user_data';
+export const CLEAR_USER_DATA = 'clear_user_data';
 
 export const SET_EDIT_POST_DATA = 'set_edit_post_data';
 export const CLEAR_EDIT_POST_DATA = 'clear_edit_post_data';

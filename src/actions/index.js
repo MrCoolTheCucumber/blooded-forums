@@ -15,7 +15,8 @@ import {
     MOVE_NANOBAR,
     CHANGE_NANOBAR,
     GET_USER_DATA,
-    SET_EDIT_POST_DATA
+    SET_EDIT_POST_DATA,
+    CLEAR_USER_DATA
 } from './types';
 import { ROOT_URL } from '../global_constants';
 
@@ -345,6 +346,15 @@ export function getUserData(userId, updateBreadcrumbs) {
             .catch( error => {
                 //todo
             })
+    }
+}
+
+export function clearUserData() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_USER_DATA,
+            payload: null
+        });
     }
 }
 
