@@ -34,6 +34,7 @@ class ChangeSignature extends Component {
     }
 
     componentWillUnmount() {
+        console.log('Clearing user data!');
         this.props.clearUserData();
     }
 
@@ -47,7 +48,7 @@ class ChangeSignature extends Component {
 
     render() {
 
-        if(this.props.userData === undefined) {
+        if(this.props.userData === undefined || this.props.userData === null) {
             return <div>Loading...</div>
         }
 
