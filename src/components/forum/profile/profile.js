@@ -10,6 +10,10 @@ class Profile extends Component {
         this.props.getUserData(this.props.params.id, true);
     }
 
+    componentWillUnmount() {
+        this.props.clearUserData();
+    }
+
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (

@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import ChangePassword from './settings/change_password';
 import ChangeAvatar from './settings/change_avatar';
+import ChangeSignature from './settings/change_signature';
 
 const MENU_ITEM_CHANGE_PASSWORD = 0;
 const MENU_ITEM_CHANGE_AVATAR = 1;
+const MENU_ITEM_CHANGE_SIGNATURE = 2;
 
 class Settings extends Component {
 
@@ -22,6 +24,10 @@ class Settings extends Component {
                 {
                     id: 1,
                     string: 'Change avatar'
+                },
+                {
+                    id: 2,
+                    string: 'Change signature'
                 }
             ]
         }
@@ -62,6 +68,8 @@ class Settings extends Component {
                 return <ChangePassword/>;
             case MENU_ITEM_CHANGE_AVATAR:
                 return <ChangeAvatar/>;
+            case MENU_ITEM_CHANGE_SIGNATURE:
+                return <ChangeSignature/>;
             default:
                 return <div>Something has gone horribly wrong?</div>;
         }
