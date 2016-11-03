@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { ITEMS_PER_PAGE } from '../../global_constants';
 
 class PageButtons extends Component {
 
@@ -8,7 +9,6 @@ class PageButtons extends Component {
 
         var pageNumbers = [];
         var jsxButtons = [];
-        const ITEMS_PER_PAGE = 20;
 
         //calculate total pages
         var TOTAL_PAGES = Math.ceil(totalThreads / ITEMS_PER_PAGE);

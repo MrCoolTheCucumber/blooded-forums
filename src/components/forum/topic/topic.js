@@ -6,6 +6,7 @@ import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
 import moment from 'moment';
 import renderUsername, { gmStyle, devStyle } from '../../../helpers/username_renderer';
+import { ITEMS_PER_PAGE } from '../../../global_constants';
 
 class Topic extends Component {
 
@@ -113,7 +114,7 @@ class Topic extends Component {
         const key = `p_${this.parseId(this.props.params.id)}_${page}`;
 
         if(this.props.posts != null && this.props.posts[key] != null) {
-            var postCount = ((page - 1) * 20);
+            var postCount = ((page - 1) * ITEMS_PER_PAGE);
             return this.props.posts[key].map(post => {
                 return (
                     <li key={post.id}>
