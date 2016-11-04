@@ -160,9 +160,7 @@ class Topic extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="post-content">
-                                        <div dangerouslySetInnerHTML={this.createMarkup(post.content)}/>
-                                    </div>
+                                    <div dangerouslySetInnerHTML={this.createMarkup(post.content)} className="post-content"/>
 
                                     <div className="post-content-footer">
                                         {this.renderLastEdited(post)}
