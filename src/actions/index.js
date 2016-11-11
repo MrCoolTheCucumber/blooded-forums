@@ -18,7 +18,7 @@ import {
     SET_EDIT_POST_DATA,
     CLEAR_USER_DATA
 } from './types';
-import { ROOT_URL } from '../global_constants';
+import { ROOT_URL, ITEMS_PER_PAGE } from '../global_constants';
 
 export function moveNanobar(number) {
     return function(dispatch) {
@@ -306,7 +306,9 @@ export function createPost(threadId, content, callback) {
             })
             .then( response => {
                 callback(0);
-                browserHistory.push(`/topic/${threadId}`);
+                const postId = response.data.post_id;
+                const page = Math.floor((postId / 20) + 1);
+                browserHistory.push(`/topic/${threadId}?page=${page}&post=${postId}`);
             })
             .catch( error => {
                 callback(1);

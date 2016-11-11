@@ -12,6 +12,7 @@ class Topic extends Component {
 
     constructor(props) {
         super(props);
+        this.state = { scrolledToPost: false };
     }
 
     parseId = (id) => {
@@ -30,6 +31,17 @@ class Topic extends Component {
     componentWillUpdate(nextProps) {
         if(nextProps.location.query.page !== undefined && nextProps.location.query.page != this.getPage(this.props)) {
             this.props.getPosts(this.parseId(nextProps.params.id), this.getPage(nextProps));
+        }
+    }
+
+    componentDidUpdate() {
+        if(this.props.location.query.post && !this.state.scrolledToPost) {
+            const element = document.getElementById(this.props.location.query.post);
+            if(element != null) {
+                element.scrollIntoView();
+                window.scrollBy(0, -70);
+                this.setState({ scrolledToPost: true });
+            }
         }
     }
 
@@ -155,8 +167,8 @@ class Topic extends Component {
                                         <div className="post-content-header-item post-content-date">
                                             {this.renderMoment(post.timestamp)}
                                         </div>
-                                        <div className="post-content-header-item post-content-id">
-                                            #{++postCount}
+                                        <div id={`${++postCount}`} className="post-content-header-item post-content-id">
+                                            #{postCount}
                                         </div>
                                     </div>
 
