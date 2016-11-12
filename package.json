@@ -22,11 +22,13 @@
     "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "css-loader": "^0.25.0",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
