@@ -45,6 +45,63 @@ class Topic extends Component {
         }
     }
 
+    copyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+
+        //
+        // *** This styling is an extra step which is likely not required. ***
+        //
+        // Why is it here? To ensure:
+        // 1. the element is able to have focus and selection.
+        // 2. if element was to flash render it has minimal visual impact.
+        // 3. less flakyness with selection and copying which **might** occur if
+        //    the textarea element is not visible.
+        //
+        // The likelihood is the element won't even render, not even a flash,
+        // so some of these are just precautions. However in IE the element
+        // is visible whilst the popup box asking the user for permission for
+        // the web page to copy to the clipboard.
+        //
+
+        // Place in top-left corner of screen regardless of scroll position.
+        textArea.style.position = 'fixed';
+        textArea.style.top = 0;
+        textArea.style.left = 0;
+
+        // Ensure it has a small width and height. Setting to 1px / 1em
+        // doesn't work as this gives a negative w/h on some browsers.
+        textArea.style.width = '2em';
+        textArea.style.height = '2em';
+
+        // We don't need padding, reducing the size if it does flash render.
+        textArea.style.padding = 0;
+
+        // Clean up any borders.
+        textArea.style.border = 'none';
+        textArea.style.outline = 'none';
+        textArea.style.boxShadow = 'none';
+
+        // Avoid flash of white box if rendered for any reason.
+        textArea.style.background = 'transparent';
+
+
+        textArea.value = text;
+
+        document.body.appendChild(textArea);
+
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+        document.body.removeChild(textArea);
+    }
+
     renderMoment = (timestamp) => {
         var date = '';
         date = date
@@ -150,6 +207,14 @@ class Topic extends Component {
         if(this.props.posts != null && this.props.posts[key] != null) {
             var postCount = ((page - 1) * ITEMS_PER_PAGE);
             return this.props.posts[key].map(post => {
+
+                ++postCount;
+
+                var handleShareOnClick = () => {
+                    const link = `https://bloodedguild.me${this.props.location.pathname}?post=${postCount}`;
+                    this.copyTextToClipboard(link);
+                };
+
                 return (
                     <li key={post.id}>
                             <div className="post-container">
@@ -167,7 +232,12 @@ class Topic extends Component {
                                         <div className="post-content-header-item post-content-date">
                                             {this.renderMoment(post.timestamp)}
                                         </div>
-                                        <div id={`${++postCount}`} className="post-content-header-item post-content-id">
+                                        <div id={`${postCount}`} className="post-content-header-item post-content-id">
+                                            <div onClick={handleShareOnClick} className="post-share-icon">
+                                                <img width={13} height={13} src="../assets/share-ico.png" style={{ width: '13px', height: '13px'}}/>
+                                                <div className="post-share-tooltip">Copy link to clipboard</div>
+                                            </div>
+                                            &nbsp;
                                             #{postCount}
                                         </div>
                                     </div>

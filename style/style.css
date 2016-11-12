@@ -631,7 +631,7 @@ td, tr {
     padding: 3px;
 }
 
-.post-container * {
+.post-content * {
     max-width: 100%;
     width: auto;
     height: auto;
@@ -709,6 +709,35 @@ td, tr {
     color: #696969;
     float: left;
     vertical-align: middle;
+}
+
+.post-share-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.post-share-tooltip {
+    visibility: hidden;
+    position: absolute;
+    z-index: 10;
+    bottom: 150%;
+    left: 50%;
+    width: 200px;
+    margin-left: -170px;
+
+    background: #000000;
+    opacity: 0.7;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+}
+
+.post-share-icon:hover {
+    cursor: pointer;
+}
+
+.post-share-icon:hover > .post-share-tooltip {
+    visibility: visible;
 }
 
 /* ------------------ end of topics ------------------------*/
