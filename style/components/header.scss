@@ -1,10 +1,12 @@
 nav ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 5px;
     overflow: hidden;
     background-color: #111111;
     opacity: 0.6;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     li {
 
@@ -16,17 +18,14 @@ nav ul {
             float: right;
         }
 
-        &:hover {
-            opacity: 1;
-        }
-
         a {
             display: block;
             text-align: center;
-            padding: 14px 16px;
+            padding: 12px 12px;
+            font-size: 0.8em;
 
             &:hover {
-                text-shadow: 0 0 1.2em #ffffff;
+                text-shadow: 0 0 1.2em red;
                 cursor: pointer;
             }
         }
