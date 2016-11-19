@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-image: url('/assets/stardust.png');
+    color: #FFF;
+
+    margin: 0;
+    padding: 0;
+
+    a {
+        color: #FFF;
+        text-decoration: none;
+    }
+}
+
+@import '/components/header';
