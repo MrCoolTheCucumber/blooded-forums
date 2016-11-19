@@ -14,4 +14,22 @@ body {
     }
 }
 
+//TODO adjust padding according to media
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+#wrapper {
+    width: 1400px;
+    min-width: 1400px;
+    max-width: 1400px;
+
+    align-self: center;
+
+    flex: 1;
+}
+
 @import '/components/header';
+@import '/components/breadcrumbs';

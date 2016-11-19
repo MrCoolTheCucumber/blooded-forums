@@ -3,8 +3,7 @@ nav ul {
     margin: 0;
     padding: 0 5px;
     overflow: hidden;
-    background-color: #111111;
-    opacity: 0.6;
+    background-color: rgba(17, 17, 17, 0.7);
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -22,9 +21,7 @@ nav ul {
             display: none;
             position: absolute;
             min-width: 160px;
-            background-color: #000000;
-            opacity: 0.6;
-
+            background-color: rgba(17, 17, 17, 0.7);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -33,6 +30,7 @@ nav ul {
             text-align: center;
             padding: 12px 12px;
             font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.7);
 
             &:hover {
                 text-shadow: 0 0 1.2em red;
@@ -42,6 +40,11 @@ nav ul {
     }
 }
 
+nav {
+    z-index: 10;
+}
+
 .nav-dropdown:hover .nav-dropdown-content {
     display: block;
+
 }

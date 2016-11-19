@@ -1,0 +1,55 @@
+#crumbs {
+    margin: 30px 0 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    font-size: 0.8em;
+    background: rgba(17, 17, 17, 0.7);
+
+    li {
+        float: left;
+        margin: 0 .5em 0 1em;
+    }
+
+    a {
+        background: #111111;
+        padding: .7em 1em;
+        float: left;
+        text-decoration: none;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        position: relative;
+
+        &:hover {
+            background: red;
+        }
+
+        &::before, &::after {
+            content:'';
+            position:absolute;
+            top: 0;
+            bottom: 0;
+            width: 1em;
+            background: #111111;
+            transform: skew(-10deg);
+        }
+
+        &::before {
+            left: -.5em;
+            border-radius: 5px 0 0 5px;
+        }
+
+        &:hover::before {
+            background: red;
+        }
+
+        &::after {
+            right: -.5em;
+            border-radius: 0 5px 5px 0;
+        }
+
+        &:hover::after {
+            background: #efc9ab;
+        }
+    }
+}
