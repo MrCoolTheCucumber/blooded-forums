@@ -1,3 +1,5 @@
+@import "../variables";
+
 #crumbs {
     margin: 30px 0 0;
     padding: 0;
@@ -5,7 +7,7 @@
     overflow: hidden;
     width: 100%;
     font-size: 0.8em;
-    background: rgba(17, 17, 17, 0.7);
+    background: $primary-color;
 
     li {
         float: left;
@@ -39,13 +41,13 @@
             border-radius: 5px 0 0 5px;
         }
 
-        &:hover::before {
-            background: red;
-        }
-
         &::after {
             right: -.5em;
             border-radius: 0 5px 5px 0;
+        }
+
+        &:hover::before {
+            background: red;
         }
 
         &:hover::after {

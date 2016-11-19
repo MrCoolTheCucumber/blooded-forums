@@ -1,9 +1,11 @@
+@import "../variables";
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0 5px;
     overflow: hidden;
-    background-color: rgba(17, 17, 17, 0.7);
+    background-color: $primary-color;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -21,7 +23,7 @@ nav ul {
             display: none;
             position: absolute;
             min-width: 160px;
-            background-color: rgba(17, 17, 17, 0.7);
+            background-color: $primary-color;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -33,7 +35,7 @@ nav ul {
             color: rgba(255, 255, 255, 0.7);
 
             &:hover {
-                text-shadow: 0 0 1.2em red;
+                text-shadow: 0 0 1.2em $primary-accent-color;
                 cursor: pointer;
             }
         }
@@ -46,5 +48,4 @@ nav {
 
 .nav-dropdown:hover .nav-dropdown-content {
     display: block;
-
 }
