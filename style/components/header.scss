@@ -7,7 +7,7 @@ nav {
 nav ul {
     list-style-type: none;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 15px;
     overflow: hidden;
     background-color: $primary-color;
     border-radius: 2px;
@@ -15,6 +15,9 @@ nav ul {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     li {
+        height: 45px;
+        display: flex;
+        align-items: center;
 
         &.nav-left {
             float: left;
@@ -22,6 +25,10 @@ nav ul {
 
         &.nav-right {
             float: right;
+        }
+
+        &:nth-child(2) {
+            margin-left: 10px;
         }
 
         .nav-dropdown-content {
@@ -33,15 +40,28 @@ nav ul {
         }
 
         a {
-            display: block;
-            text-align: center;
-            padding: 12px 12px;
             font-size: 0.8em;
             color: rgba(255, 255, 255, 0.7);
 
-            &:hover {
+            &:hover:not(.nav-signup) {
                 text-shadow: 0 0 1.2em $primary-accent-color;
                 cursor: pointer;
+            }
+        }
+
+        .nav-signup {
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            padding: 4px 12px;
+
+            background-color: rgba(12, 156, 12, 0.065);
+            transition: background-color 0.5s;
+
+            &:hover {
+                cursor: pointer;
+
+                background-color: rgba(12, 156, 12, 0.45);
+                transition: background-color 0.25s;
             }
         }
     }

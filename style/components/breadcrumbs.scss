@@ -8,6 +8,7 @@
     width: 100%;
     font-size: 0.8em;
     background: $primary-color;
+    border-radius: 5px;
 
     li {
         float: left;
@@ -15,7 +16,7 @@
     }
 
     a {
-        background: #111111;
+        background: transparent;
         padding: .7em 1em;
         float: left;
         text-decoration: none;
@@ -23,7 +24,7 @@
         position: relative;
 
         &:hover {
-            background: red;
+            background: #111111;
         }
 
         &::before, &::after {
@@ -32,7 +33,7 @@
             top: 0;
             bottom: 0;
             width: 1em;
-            background: #111111;
+            background: transparent;
             transform: skew(-10deg);
         }
 
@@ -47,11 +48,11 @@
         }
 
         &:hover::before {
-            background: red;
+            background: #111111;
         }
 
         &:hover::after {
-            background: #efc9ab;
+            background: #111111;
         }
     }
 }

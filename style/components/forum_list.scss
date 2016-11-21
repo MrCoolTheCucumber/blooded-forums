@@ -13,12 +13,14 @@ $descriptor-color: rgba(255, 255, 255, 0.5);
         width: 100%;
         border-bottom: 1px inset $divisor-color;
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
         &:first-child {
             border-top: 1px solid $divisor-color;
+        }
+    }
+
+    a {
+        &:hover:not(.username) {
+            color: rgb(230, 160, 160);
         }
     }
 }
@@ -87,13 +89,13 @@ $descriptor-color: rgba(255, 255, 255, 0.5);
 
 .lastpost-thread-link {
     display: block;
-    font-size: 90%;
+    font-size: 0.8em;
     width: 100%;
 }
 
 .lastpost-by {
     display: block;
-    font-size: 80%;
+    font-size: 0.7em;
     color: $descriptor-color;
     width: 100%;
 }

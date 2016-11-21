@@ -26,10 +26,10 @@ class Header extends Component {
         } else {
             return [
                 <li key={0} className="nav-right">
-                    <a className="nav-link" onClick={this.onSignInClick}>Sign in</a>
+                    <Link to="/signup" className="nav-signup">Sign up</Link>
                 </li>,
                 <li key={1} className="nav-right">
-                    <Link to="/signup" className="nav-link">Create an account</Link>
+                    <a className="nav-link" onClick={this.onSignInClick}>Existing user? Sign in ▾</a>
                 </li>
             ];
         }
