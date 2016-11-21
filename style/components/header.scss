@@ -27,10 +27,6 @@ nav ul {
             float: right;
         }
 
-        &:nth-child(2) {
-            margin-left: 10px;
-        }
-
         .nav-dropdown-content {
             display: none;
             position: absolute;
@@ -67,6 +63,15 @@ nav ul {
     }
 }
 
+nav > ul > li:nth-child(2) {
+    margin-left: 25px;
+}
+
+.drop-item {
+    text-align: center;
+}
+
 .nav-dropdown:hover .nav-dropdown-content {
     display: block;
+    transform: translate(-50%, 75%);
 }

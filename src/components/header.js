@@ -18,8 +18,10 @@ class Header extends Component {
                 <li key={1} className="nav-dropdown nav-right">
                     <a href="/" className="nav-dropbtn">{this.props.user.username}</a>
                     <div className="nav-dropdown-content">
-                        <Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link>
-                        <Link className="drop-item" to="/settings" >Settings</Link>
+                        <ul>
+                            <li><Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link></li>
+                            <li><Link className="drop-item" to="/settings" >Settings</Link></li>
+                        </ul>
                     </div>
                 </li>
             ];
@@ -29,7 +31,9 @@ class Header extends Component {
                     <Link to="/signup" className="nav-signup">Sign up</Link>
                 </li>,
                 <li key={1} className="nav-right">
-                    <a className="nav-link" onClick={this.onSignInClick}>Existing user? Sign in ▾</a>
+                    <a className="nav-link" onClick={this.onSignInClick}>
+                        Existing user? Sign in &nbsp;<i className="fa fa-caret-down"> </i>
+                    </a>
                 </li>
             ];
         }

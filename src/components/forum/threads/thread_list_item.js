@@ -70,7 +70,7 @@ class ThreadListItem extends Component {
                             </Link>
                         </div>
                         <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
-                            <span>by&nbsp;</span> {renderUsername(thread.user_thread)},&nbsp;{this.renderMoment(thread.timestamp)}
+                            <span>by&nbsp;</span>{renderUsername(thread.user_thread)},&nbsp;{this.renderMoment(thread.timestamp)}
                         </div>
                     </div>
 
