@@ -1,0 +1,108 @@
+$divisor-color: rgba(69, 69, 69, 0.8);
+$descriptor-color: rgba(255, 255, 255, 0.5);
+
+.forum-list-wrapper {
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        width: 100%;
+        border-bottom: 1px inset $divisor-color;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        &:first-child {
+            border-top: 1px solid $divisor-color;
+        }
+    }
+}
+
+.forum-list-item-wrapper {
+    display: table;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+.forum-list-chip {
+    display: table-cell;
+    padding: 0;
+}
+
+.forum-list-item-icon-wrapper {
+    width: 5%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.forum-list-item-metadata-block {
+    width: 60%;
+    vertical-align: middle;
+}
+
+.forum-list-item-tp {
+    width: 10%;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.forum-list-item-last-post-container {
+    width: 25%;
+    vertical-align: middle;
+}
+
+.forum-list-item-metadata-description {
+
+}
+
+.forum-list-item-secondary-text {
+    color: $descriptor-color;
+    font-size: 80%;
+    padding-right: 3px;
+}
+
+.lastpost-nopost {
+    text-align: center;
+}
+
+.forum-list-item-avatar-container {
+    padding-left: 5px;
+    width: 50px;
+    vertical-align: middle;
+}
+
+.forum-list-last-post-metadata-block {
+    vertical-align: middle;
+}
+
+.category-header-wrapper {
+    padding-bottom: 10px;
+}
+
+.lastpost-thread-link {
+    display: block;
+    font-size: 90%;
+    width: 100%;
+}
+
+.lastpost-by {
+    display: block;
+    font-size: 80%;
+    color: $descriptor-color;
+    width: 100%;
+}
+
+.pinned-badge {
+    font-size: 60%;
+    background: $descriptor-color;
+    color: black;
+    padding: 1px 4px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
