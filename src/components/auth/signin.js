@@ -15,6 +15,10 @@ class Signin extends Component {
         this.props.clearAuthError();
     }
 
+    componentDidMount() {
+        document.getElementById('username-input').focus();
+    }
+
     handleFormSubmit = ({ username, password }) => {
         this.props.changeNanobar(NanoConsts.defaultColor);
         this.props.moveNanobar(30);
@@ -53,7 +57,7 @@ class Signin extends Component {
                     <div className="form-input-wrapper">
                         <fieldset className="form-group">
                             <label>Username:</label>
-                            <input type="text" {...username} className="form-control"/>
+                            <input id="username-input" type="text" {...username} className="form-control"/>
                         </fieldset>
                         <fieldset className="form-group">
                             <label>Password:</label>

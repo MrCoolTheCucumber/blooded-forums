@@ -74,3 +74,21 @@ $focus-color: rgba(255, 255, 255, 1);
         font-size: 0.7em;
     }
 }
+
+@keyframes error-flash {
+    0% {  color:rgba(255, 0, 0, 0.9);  }
+    50% {  color:rgba(255, 0, 0, 0.5);  }
+    100% {  color:rgba(255, 0, 0, 0.9);  }
+}
+
+.error {
+    color: rgba(255, 0, 0, 0.9);
+    -webkit-animation-name: error-flash;
+    -moz-animation-name: error-flash;
+    -o-animation-name: error-flash;
+    animation-name: error-flash;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+}
