@@ -63,7 +63,7 @@ class Threads extends Component {
                 <div>
                     <ThreadList subcategory={subcategory} threads={this.props.threads} id={this.parseId(this.props.params.id)} page={page}/>
                     <div className="page-list-wrapper">
-                        <button className="page-button page-button-page" disabled>Pages:</button>
+                        <div className="page-button-pages">Pages:</div>
                         <PageButtons totalThreads={subcategory.thread_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreateThreadButton()}
                     </div>

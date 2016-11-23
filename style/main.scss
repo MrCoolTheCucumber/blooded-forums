@@ -19,6 +19,7 @@ body {
 
 #app {
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
 }
 
@@ -32,8 +33,19 @@ body {
     flex: 1;
 }
 
+#footer {
+    background-color: transparent;
+    text-align: center;
+    padding-left: 40%;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 90%;
+}
+
 @import '/components/header';
 @import '/components/breadcrumbs';
 @import 'components/category';
 @import 'components/forum_list';
 @import 'components/auth/forms';
+@import 'components/list-buttons';
