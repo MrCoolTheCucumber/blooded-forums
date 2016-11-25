@@ -59,14 +59,14 @@ $descriptor-color: rgba(255, 255, 255, 0.5);
     vertical-align: middle;
 }
 
-.forum-list-item-metadata-description {
-
-}
-
 .forum-list-item-secondary-text {
     color: $descriptor-color;
     font-size: 80%;
     padding-right: 3px;
+}
+
+.forum-list-item-metadata-description {
+    font-size: 0.8em;
 }
 
 .lastpost-nopost {
@@ -85,6 +85,10 @@ $descriptor-color: rgba(255, 255, 255, 0.5);
 
 .category-header-wrapper {
     padding-bottom: 10px;
+}
+
+.category-subcategory-title {
+    font-size: 0.9em;
 }
 
 .lastpost-thread-link {

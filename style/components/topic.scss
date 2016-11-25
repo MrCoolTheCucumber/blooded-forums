@@ -1,7 +1,113 @@
+@import '../variables';
+
+$border-color: rgba(255, 255, 255, 0.1);
+
 .posts-list-wrapper > ul {
     list-style-type: none;
+    padding-left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 15px;
+    margin-top: 0;
+    padding-top: 5px;
 
-    li {
+    li .post-container {
+        display: flex;
+        max-width: 100%;
 
+        border-bottom: 0.5px solid $border-color;
+
+        min-height: 250px;
+
+        .post-user-side {
+            flex: 0 0 200px;
+            display: flex;
+            flex-direction: column;
+
+            padding-top: 5px;
+
+            & > * {
+                align-self: center;
+            }
+        }
+
+        .post-content-side {
+            position: relative;
+            flex: 0 0;
+            flex-grow: 1;
+
+            border-left: 0.5px solid $border-color;
+
+            padding-left: 10px;
+            padding-right: 10px;
+
+            font-size: 0.9em;
+
+            .post-content-header {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 4px;
+                padding-bottom: 4px;
+
+                border-bottom: 0.5px solid $border-color;
+                font-size: 0.8em;
+            }
+
+            .post-content {
+                a {
+                    text-decoration: underline;
+                }
+
+                * {
+                    max-width: 100%;
+                    width: auto;
+                    height: auto;
+                }
+            }
+
+            .post-content-footer {
+                position: absolute;
+                bottom: 0;
+                right: 10px;
+                left: 10px;
+            }
+
+            .post-content-signature {
+                border-top: 0.5px solid $border-color;
+            }
+
+            .memes {
+                display: flex;
+                justify-content: space-between;
+
+                padding-bottom: 5px;
+            }
+
+            .last-edited-at {
+                font-size: 0.7em;
+            }
+        }
     }
+
+    li:last-of-type .post-container {
+        border-bottom: none;
+    }
+}
+
+.dont-break-out {
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    /* Instead use this non-standard one: */
+    //noinspection CssInvalidPropertyValue
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
 }

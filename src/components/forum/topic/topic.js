@@ -161,7 +161,7 @@ class Topic extends Component {
                                     <div className="post-avatar-container">
                                         {this.renderAvatar(post.user.avatar)}
                                     </div>
-                                    Posts: {post.user.post_count}
+                                    <div>Posts: {post.user.post_count}</div>
                                     {this.renderForumRanks(post.user)}
                                 </div>
 
@@ -171,20 +171,22 @@ class Topic extends Component {
                                             {this.renderMoment(post.timestamp)}
                                         </div>
                                         <div id={`${postCount}`} className="post-content-header-item post-content-id">
-                                            <SharePostIcon page={page} postCount={postCount} pathname={this.props.location.pathname}/>
-                                            &nbsp;
+                                            {/*<SharePostIcon page={page} postCount={postCount} pathname={this.props.location.pathname}/>
+                                            &nbsp;*/}
                                             #{postCount}
                                         </div>
                                     </div>
 
-                                    <div dangerouslySetInnerHTML={this.createMarkup(post.content)} className="post-content"/>
+                                    <div dangerouslySetInnerHTML={this.createMarkup(post.content)} className="post-content dont-break-out"/>
 
                                     <div className="post-content-footer">
-                                        {this.renderLastEdited(post)}
-                                        {this.renderEditPostButton(post, postCount)}
+                                        <div className="memes">
+                                            {this.renderLastEdited(post)}
+                                            {this.renderEditPostButton(post, postCount)}
+                                        </div>
+                                        {this.renderSignature(post.user)}
                                     </div>
 
-                                    {this.renderSignature(post.user)}
                                 </div>
                             </div>
                     </li>
