@@ -210,11 +210,11 @@ class Topic extends Component {
     renderCreatePostButton = (isLocked) => {
         if(this.props.authenticated && !isLocked) {
             return (
-                <button onClick={this.handleCreateThreadOnClick} className="page-button button-create-thread">Create post</button>
+                <button onClick={this.handleCreateThreadOnClick} className="page-button button-utility">Create post</button>
             );
         } else if(this.props.authenticated && isLocked) {
             return (
-                <button className="page-button page-button-active button-create-thread" disabled>Thread locked</button>
+                <button className="page-button button-utility page-button-active" disabled>Thread locked</button>
             );
         } else {
             return null;
@@ -227,7 +227,7 @@ class Topic extends Component {
             var handleLockUnlockThreadButton = () => {this.props.setThreadLocked(!isLocked, threadId, subcatId);};
 
             return (
-                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
+                <button className="page-button button-utility" onClick={handleLockUnlockThreadButton}>
                     {isLocked ? 'Unlock thread' : 'Lock thread'}
                 </button>
             );
@@ -242,7 +242,7 @@ class Topic extends Component {
             var handleLockUnlockThreadButton = () => {this.props.setThreadSticky(!isSticky, threadId, subcatId);};
 
             return (
-                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
+                <button className="page-button button-utility" onClick={handleLockUnlockThreadButton}>
                     {isSticky ? 'Remove sticky': 'Sticky thread' }
                 </button>
             );
@@ -261,7 +261,7 @@ class Topic extends Component {
             return (
                 <div>
                     <div className="page-list-wrapper">
-                        <button className="page-button page-button-page" disabled>Pages:</button>
+                        <div className="page-button-pages">Pages:</div>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
                         {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}
@@ -280,7 +280,7 @@ class Topic extends Component {
 
                         </div>
                         <div className="page-list-wrapper">
-                            <button className="page-button page-button-page" disabled>Pages:</button>
+                            <div className="page-button-pages">Pages:</div>
                             <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                             {this.renderCreatePostButton(topic.locked)}
                             {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}

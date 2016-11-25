@@ -47,7 +47,7 @@ class Threads extends Component {
     renderCreateThreadButton = () => {
         if(this.props.authenticated) {
             return (
-                <Link to={`/forum/${this.props.params.id}/create`} className="page-button button-create-thread">Create thread</Link>
+                <Link to={`/forum/${this.props.params.id}/create`} className="page-button button-utility">Create thread</Link>
             );
         } else {
             return null;

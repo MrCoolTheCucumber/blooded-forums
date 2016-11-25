@@ -3,6 +3,7 @@
 .page-list-wrapper {
     font-size: 0.8em;
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 6px 8px;
 
     background: $primary-color;
@@ -24,6 +25,7 @@
 }
 
 .page-button {
+    color: #FFF;
     display: inline-block;
     border: none;
     margin-left: 4px;
@@ -34,7 +36,7 @@
     transition: box-shadow 0.25s;
 }
 
-.button-create-thread {
+.button-utility {
     float: right;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
@@ -46,6 +48,7 @@
 }
 
 .page-button:hover:not(.page-button-active) {
+    cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: box-shadow 0.25s;
 }
