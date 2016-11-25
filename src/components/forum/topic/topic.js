@@ -258,6 +258,7 @@ class Topic extends Component {
         if(this.props.topics != null && this.props.topics[key] != null) {
 
             const topic = this.props.topics[key];
+            console.log(topic.user);
             return (
                 <div>
                     <div className="page-list-wrapper">
@@ -269,8 +270,10 @@ class Topic extends Component {
                     </div>
                     <div>
                         <div className="category-wrapper">
-                            <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                            <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
+                            <div className="category-header-wrapper">
+                                <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
+                                <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
+                            </div>
 
                             <div className="posts-list-wrapper">
                                 <ul>
