@@ -161,7 +161,7 @@ class Topic extends Component {
                                     <div className="post-avatar-container">
                                         {this.renderAvatar(post.user.avatar)}
                                     </div>
-                                    <div>Posts: {post.user.post_count}</div>
+                                    <div className="post-user-postcount">Posts: {post.user.post_count}</div>
                                     {this.renderForumRanks(post.user)}
                                 </div>
 

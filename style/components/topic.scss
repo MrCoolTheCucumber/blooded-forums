@@ -34,6 +34,18 @@ $border-color: rgba(255, 255, 255, 0.1);
             & > * {
                 align-self: center;
             }
+
+            .post-username {
+                margin-bottom: 5px;
+            }
+
+            .post-user-postcount {
+                font-size: 0.9em;
+            }
+
+            .rank-banner {
+                font-size: 1em;
+            }
         }
 
         .post-content-side {
