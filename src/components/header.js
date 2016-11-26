@@ -12,24 +12,28 @@ class Header extends Component {
     renderLinks = () => {
         if (this.props.user.authenticated) {
             return [
-                <li key={0} className="nav-iten nav-right">
+                <li key={0} className="nav-right">
                     <Link to="/signout" className="nav-link">Sign out</Link>
                 </li>,
-                <li key={1} className="dropdown nav-iten nav-right">
-                    <span id="nav-profile-dropdown" href="/" className="nav-dropbtn">{this.props.user.username}</span>
-                    <div className="dropdown-content">
-                        <Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link>
-                        <Link className="drop-item" to="/settings" >Settings</Link>
+                <li key={1} className="nav-dropdown nav-right">
+                    <a href="/" className="nav-dropbtn">{this.props.user.username}</a>
+                    <div className="nav-dropdown-content">
+                        <ul>
+                            <li><Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link></li>
+                            <li><Link className="drop-item" to="/settings" >Settings</Link></li>
+                        </ul>
                     </div>
                 </li>
             ];
         } else {
             return [
-                <li key={0} className="nav-item nav-right">
-                    <a className="nav-link" onClick={this.onSignInClick}>Sign in</a>
+                <li key={0} className="nav-right">
+                    <Link to="/signup" className="nav-signup">Sign up</Link>
                 </li>,
-                <li key={1} className="nav-item nav-right">
-                    <Link to="/signup" className="nav-link">Create an account</Link>
+                <li key={1} className="nav-right">
+                    <a className="nav-link" onClick={this.onSignInClick}>
+                        Existing user? Sign in &nbsp;<i className="fa fa-caret-down"> </i>
+                    </a>
                 </li>
             ];
         }
@@ -37,10 +41,10 @@ class Header extends Component {
 
     render() {
         return (
-            <nav className="navbar">
-                <ul className="nav navbar-nav">
-                    <li className="nav-item nav-left">
-                        <Link to="/" className="nav-link">Blooded</Link>
+            <nav>
+                <ul>
+                    <li className="nav-left">
+                        <Link to="/">Blooded</Link>
                     </li>
                     {this.renderLinks()}
                 </ul>

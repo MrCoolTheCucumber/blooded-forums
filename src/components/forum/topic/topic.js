@@ -161,7 +161,7 @@ class Topic extends Component {
                                     <div className="post-avatar-container">
                                         {this.renderAvatar(post.user.avatar)}
                                     </div>
-                                    Posts: {post.user.post_count}
+                                    <div className="post-user-postcount">Posts: {post.user.post_count}</div>
                                     {this.renderForumRanks(post.user)}
                                 </div>
 
@@ -171,20 +171,22 @@ class Topic extends Component {
                                             {this.renderMoment(post.timestamp)}
                                         </div>
                                         <div id={`${postCount}`} className="post-content-header-item post-content-id">
-                                            <SharePostIcon page={page} postCount={postCount} pathname={this.props.location.pathname}/>
-                                            &nbsp;
+                                            {/*<SharePostIcon page={page} postCount={postCount} pathname={this.props.location.pathname}/>
+                                            &nbsp;*/}
                                             #{postCount}
                                         </div>
                                     </div>
 
-                                    <div dangerouslySetInnerHTML={this.createMarkup(post.content)} className="post-content"/>
+                                    <div dangerouslySetInnerHTML={this.createMarkup(post.content)} className="post-content dont-break-out"/>
 
                                     <div className="post-content-footer">
-                                        {this.renderLastEdited(post)}
-                                        {this.renderEditPostButton(post, postCount)}
+                                        <div className="memes">
+                                            {this.renderLastEdited(post)}
+                                            {this.renderEditPostButton(post, postCount)}
+                                        </div>
+                                        {this.renderSignature(post.user)}
                                     </div>
 
-                                    {this.renderSignature(post.user)}
                                 </div>
                             </div>
                     </li>
@@ -210,11 +212,11 @@ class Topic extends Component {
     renderCreatePostButton = (isLocked) => {
         if(this.props.authenticated && !isLocked) {
             return (
-                <button onClick={this.handleCreateThreadOnClick} className="page-button button-create-thread">Create post</button>
+                <button onClick={this.handleCreateThreadOnClick} className="page-button page-button-create button-utility">Create post</button>
             );
         } else if(this.props.authenticated && isLocked) {
             return (
-                <button className="page-button page-button-active button-create-thread" disabled>Thread locked</button>
+                <button className="page-button button-utility page-button-create page-button-active" disabled>Thread locked</button>
             );
         } else {
             return null;
@@ -227,7 +229,7 @@ class Topic extends Component {
             var handleLockUnlockThreadButton = () => {this.props.setThreadLocked(!isLocked, threadId, subcatId);};
 
             return (
-                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
+                <button className="page-button button-utility" onClick={handleLockUnlockThreadButton}>
                     {isLocked ? 'Unlock thread' : 'Lock thread'}
                 </button>
             );
@@ -242,7 +244,7 @@ class Topic extends Component {
             var handleLockUnlockThreadButton = () => {this.props.setThreadSticky(!isSticky, threadId, subcatId);};
 
             return (
-                <button className="page-button button-create-thread lock-button" onClick={handleLockUnlockThreadButton}>
+                <button className="page-button button-utility" onClick={handleLockUnlockThreadButton}>
                     {isSticky ? 'Remove sticky': 'Sticky thread' }
                 </button>
             );
@@ -258,10 +260,11 @@ class Topic extends Component {
         if(this.props.topics != null && this.props.topics[key] != null) {
 
             const topic = this.props.topics[key];
+            console.log(topic.user);
             return (
                 <div>
                     <div className="page-list-wrapper">
-                        <button className="page-button page-button-page" disabled>Pages:</button>
+                        <div className="page-button-pages">Pages:</div>
                         <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                         {this.renderCreatePostButton(topic.locked)}
                         {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}
@@ -269,8 +272,10 @@ class Topic extends Component {
                     </div>
                     <div>
                         <div className="category-wrapper">
-                            <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                            <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
+                            <div className="category-header-wrapper">
+                                <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
+                                <p className="category-description">by {renderUsername(topic.user)}, {this.renderMoment(topic.timestamp)}</p>
+                            </div>
 
                             <div className="posts-list-wrapper">
                                 <ul>
@@ -280,7 +285,7 @@ class Topic extends Component {
 
                         </div>
                         <div className="page-list-wrapper">
-                            <button className="page-button page-button-page" disabled>Pages:</button>
+                            <div className="page-button-pages">Pages:</div>
                             <PageButtons totalThreads={topic.post_count} currentPage={page} pathName={this.props.location.pathname}/>
                             {this.renderCreatePostButton(topic.locked)}
                             {this.renderLockUnlockThreadButton(topic.locked, this.parseId(this.props.params.id), topic.subcategory.id)}

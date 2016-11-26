@@ -90,17 +90,15 @@ class Breadcrumbs extends Component {
 
     render() {
         return (
-            <div id="crumbs">
-                <ul>
-                    <li>
-                        <Link to="/" className="crumbs-link">Home</Link>
-                    </li>
-                    {this.renderSpecial()}
-                    {this.renderCategory()}
-                    {this.renderSubCategory()}
-                    {this.renderThread()}
-                </ul>
-            </div>
+            <ul id="crumbs">
+                <li>
+                    <Link to="/" className="crumbs-link">Home</Link>
+                </li>
+                {this.renderSpecial()}
+                {this.renderCategory()}
+                {this.renderSubCategory()}
+                {this.renderThread()}
+            </ul>
         );
     }
 }

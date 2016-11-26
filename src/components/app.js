@@ -4,6 +4,8 @@ import Footer from './footer'
 import Breadcrumbs from './breadcrumbs';
 import Nanobar from './nanobar';
 
+require('../../style/main.scss');
+
 class App extends Component {
 
     render() {
