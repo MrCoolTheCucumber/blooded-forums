@@ -212,11 +212,11 @@ class Topic extends Component {
     renderCreatePostButton = (isLocked) => {
         if(this.props.authenticated && !isLocked) {
             return (
-                <button onClick={this.handleCreateThreadOnClick} className="page-button button-utility">Create post</button>
+                <button onClick={this.handleCreateThreadOnClick} className="page-button page-button-create button-utility">Create post</button>
             );
         } else if(this.props.authenticated && isLocked) {
             return (
-                <button className="page-button button-utility page-button-active" disabled>Thread locked</button>
+                <button className="page-button button-utility page-button-create page-button-active" disabled>Thread locked</button>
             );
         } else {
             return null;

@@ -15,6 +15,14 @@
         margin: 0 .5em 0 1em;
     }
 
+    li:last-of-type a {
+        background: #111111;
+
+        &:before, &:after {
+            background: #111111;
+        }
+    }
+
     a {
         background: transparent;
         padding: .7em 1em;
