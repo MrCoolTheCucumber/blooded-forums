@@ -274,7 +274,7 @@ class Topic extends Component {
                         <div className="category-wrapper">
                             <div className="category-header-wrapper">
                                 <Link to={`/topic/${this.props.params.id}`} className="category-name">{topic.title}</Link>
-                                <p className="category-description">by {topic.user.username}, {this.renderMoment(topic.timestamp)}</p>
+                                <p className="category-description">by {renderUsername(topic.user)}, {this.renderMoment(topic.timestamp)}</p>
                             </div>
 
                             <div className="posts-list-wrapper">
