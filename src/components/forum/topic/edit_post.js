@@ -17,7 +17,7 @@ class EditThread extends Component {
         this.props.clearEditPostHtml();
     }
 
-    handleCreateThread = () => {
+    handleEditPost = () => {
         const html = tinymce.get('test').getContent();
 
         this.props.sendEditedPost(this.props.params.id, this.props.editPost.postId, html);
@@ -25,9 +25,12 @@ class EditThread extends Component {
 
     render() {
         return (
-            <div>
-                <div className="form-div">
-                    <fieldset className="form-group">
+            <div className="flex">
+                <div className="posting-wrapper">
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Edit your post</div>
+                    </div>
+                    <div className="posting-input-wrapper">
                         <TinyMCE id="test"
                                  content={this.props.editPost.content}
                                  config={{
@@ -42,12 +45,11 @@ class EditThread extends Component {
                                      toolbar2: 'preview media | forecolor backcolor emoticons'
                                  }}
                         />
-                    </fieldset>
-                    <button onClick={this.handleCreateThread} className="form-button">Create</button>
+                        <button onClick={this.handleEditPost} className="form-button">Submit changes</button>
+                    </div>
                 </div>
             </div>
-
-        )
+        );
     }
 }
 

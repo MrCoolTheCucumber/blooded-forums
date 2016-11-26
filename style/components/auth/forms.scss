@@ -51,27 +51,27 @@ $focus-color: rgba(255, 255, 255, 1);
         padding: 25px 25px;
     }
 
-    .form-button {
-        color: white;
-        border: 2px solid cyan;
-        border-radius: 5px;
-        padding: 4px 12px;
-
-        background-color: rgba(12, 150, 200, 0.065);
-        transition: background-color 0.5s;
-
-        &:hover {
-            cursor: pointer;
-
-            background-color: rgba(0, 150, 200, 1);
-            transition: background-color 0.25s;
-        }
-    }
-
     .forgot-password-tip {
         padding-left: 20px;
         display: inline;
         font-size: 0.7em;
+    }
+}
+
+.form-button {
+    color: white;
+    border: 2px solid cyan;
+    border-radius: 5px;
+    padding: 4px 12px;
+
+    background-color: rgba(12, 150, 200, 0.065);
+    transition: background-color 0.5s;
+
+    &:hover {
+        cursor: pointer;
+
+        background-color: rgba(0, 150, 200, 1);
+        transition: background-color 0.25s;
     }
 }
 

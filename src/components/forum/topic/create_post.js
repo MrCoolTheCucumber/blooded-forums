@@ -29,28 +29,30 @@ class CreateThread extends Component {
 
     render() {
         return (
-            <div>
-                <div className="form-div">
-                    <fieldset className="form-group">
+            <div className="flex">
+                <div className="posting-wrapper">
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Create a post</div>
+                    </div>
+                    <div className="posting-input-wrapper">
                         <TinyMCE id="test"
-                            content=""
-                            config={{
-                                height: 350,
-                                plugins: [
-                                    'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                                    'emoticons template paste textcolor colorpicker textpattern imagetools'
-                                ],
-                                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                                toolbar2: 'preview media | forecolor backcolor emoticons'
-                            }}
+                                 content=""
+                                 config={{
+                                     height: 350,
+                                     plugins: [
+                                         'advlist autolink lists link image charmap preview hr anchor pagebreak',
+                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
+                                         'insertdatetime media nonbreaking save table contextmenu directionality',
+                                         'emoticons template paste textcolor colorpicker textpattern imagetools'
+                                     ],
+                                     toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                                     toolbar2: 'preview media | forecolor backcolor emoticons'
+                                 }}
                         />
-                    </fieldset>
-                    <button onClick={this.handleCreatePost} className="form-button">Create</button>
+                        <button onClick={this.handleCreatePost} className="form-button">Create</button>
+                    </div>
                 </div>
             </div>
-
         )
     }
 
