@@ -9,15 +9,28 @@ class CreateThread extends Component {
         super(props);
 
         this.state = {
-            quill: null
+            async: 'ready'
         }
     }
 
-    handleCreateThread = () => {
-        const html = tinymce.get('test').getContent();
-        const title = document.getElementById("title-input").value;
+    parseId = (id) => {
+        return /^\d+/.exec(id);
+    };
 
-        this.props.createThread(title, this.props.params.id, html);
+    handleCreateThread = () => {
+        if(this.state.async === 'ready') {
+            this.setState({ async: 'waiting'});
+            const html = tinymce.get('test').getContent();
+            const title = document.getElementById("title-input").value;
+
+            this.props.createThread(title, this.parseId(this.props.params.id), html, (responseCode) => {
+                switch (responseCode) {
+                    case 1:
+                        this.setState({ async: 'ready' });
+                        break;
+                }
+            });
+        }
     };
 
     render() {
@@ -43,7 +56,6 @@ class CreateThread extends Component {
                                      toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                                      toolbar2: 'preview media | forecolor backcolor emoticons'
                                  }}
-                                 onChange={console.log('change!')}
                         />
                     </fieldset>
                     <button onClick={this.handleCreateThread} className="form-button">Create</button>

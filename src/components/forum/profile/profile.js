@@ -10,16 +10,20 @@ class Profile extends Component {
         this.props.getUserData(this.props.params.id, true);
     }
 
+    componentWillUnmount() {
+        this.props.clearUserData();
+    }
+
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (
                 <video preload="auto" autoPlay="autoplay" muted loop="loop" width={200} height={200}>
-                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                    <source src={`https://${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
                 </video>
             );
         }
 
-        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={150} height={150}/>
+        return <img crossOrigin="Anonymous" src={`https://${avatar}`} alt="avatar" width={150} height={150}/>
     };
 
     render() {

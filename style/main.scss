@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-image: url('/assets/stardust.png');
+    color: #FFF;
+
+    margin: 0;
+    padding: 0;
+
+    a {
+        color: #FFF;
+        text-decoration: none;
+    }
+}
+
+//TODO adjust padding according to media
+
+#app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#wrapper {
+    width: 1400px;
+    min-width: 1400px;
+    max-width: 1400px;
+
+    align-self: center;
+
+    flex: 1;
+}
+
+@media screen and (max-width: 1426px) {
+    #wrapper {
+        width: 1000px;
+        min-width: 1000px;
+        max-width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1026px) {
+    #wrapper {
+        width: 750px;
+        min-width: 750px;
+        max-width: 750px;
+    }
+}
+
+#footer {
+    background-color: transparent;
+    text-align: center;
+    padding-left: 40%;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 90%;
+}
+
+@import '/components/header';
+@import '/components/breadcrumbs';
+@import 'components/category';
+@import 'components/forum_list';
+@import 'components/auth/forms';
+@import 'components/list-buttons';
+@import 'components/topic/topic';
+@import 'components/topic/posting';

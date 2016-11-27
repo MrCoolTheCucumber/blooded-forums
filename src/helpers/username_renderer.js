@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 export const gmStyle = {
     textDecoration: 'none',
-    background: 'url(http://i.imgur.com/uKdG1mv.gif)',
+    background: 'url(../assets/pip.gif)',
     color: '#ff3333',
     fontWeight: 'bold',
     textShadow: '0 0 .9em #ff9595'
@@ -20,7 +20,7 @@ export const devStyle = {
 };
 
 function renderUsername(user) {
-    switch (user.type) {
+    switch (user.group) {
         case 'user':
             return (
                 <Link className="username" to={`/profile/${user.id}`}>

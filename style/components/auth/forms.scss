@@ -1,0 +1,95 @@
+@import '../../variables';
+
+$faded-color: rgba(255, 255, 255, 0.70);
+$focus-color: rgba(255, 255, 255, 1);
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-wrapper {
+    margin-top: 80px;
+
+    align-self: center;
+    background-color: $primary-color;
+    width: 40%;
+
+    font-size: 1em;
+    color: $faded-color;
+
+    input {
+        display: block;
+        width: 250px;
+        height: 17px;
+        border: none;
+
+        border-bottom: 2px solid $faded-color;
+        background-color: transparent;
+        color: $faded-color;
+        font-family: "Lucida Console", monospace;
+        box-shadow: none;
+
+        transition: box-shadow 0.5s, bordor-bottom 0.5s;
+    }
+
+    input:focus {
+        outline: none;
+        border-bottom: 2px solid $focus-color;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        transition: box-shadow 0.5s, bordor-bottom 0.5s;
+    }
+
+    fieldset {
+        border: none;
+        margin: 0;
+        padding: 0 0 20px;
+    }
+
+    .form-input-wrapper {
+        padding: 25px 25px;
+    }
+
+    .forgot-password-tip {
+        padding-left: 20px;
+        display: inline;
+        font-size: 0.7em;
+    }
+}
+
+.form-button {
+    color: white;
+    border: 2px solid cyan;
+    border-radius: 5px;
+    padding: 4px 12px;
+
+    background-color: rgba(12, 150, 200, 0.065);
+    transition: background-color 0.5s;
+
+    &:hover {
+        cursor: pointer;
+
+        background-color: rgba(0, 150, 200, 1);
+        transition: background-color 0.25s;
+    }
+}
+
+@keyframes error-flash {
+    0% {  color:rgba(255, 0, 0, 0.9);  }
+    50% {  color:rgba(255, 0, 0, 0.5);  }
+    100% {  color:rgba(255, 0, 0, 0.9);  }
+}
+
+.error {
+    color: rgba(255, 0, 0, 0.9);
+    font-size: 0.75em;
+    -webkit-animation-name: error-flash;
+    -moz-animation-name: error-flash;
+    -o-animation-name: error-flash;
+    animation-name: error-flash;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+}

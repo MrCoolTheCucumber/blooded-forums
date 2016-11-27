@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 import renderUsername from '../../helpers/username_renderer';
+import slugTitle from '../../helpers/title_sluger';
 
 class ForumCategory extends Component {
 
@@ -27,13 +28,13 @@ class ForumCategory extends Component {
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (
-                <video preload="auto" autoPlay="autoplay" muted loop="loop" width={45} height={45}>
-                    <source src={`//${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
+                <video preload="auto" muted autoPlay="autoplay" loop="loop" style={{ maxHeight: 45, maxWidth: 45, width: 'auto', height: 'auto' }}>
+                    <source src={`https://${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
                 </video>
             );
         }
 
-        return <img crossOrigin="Anonymous" src={`//${avatar}`} alt="avatar" width={45} height={45}/>
+        return <img crossOrigin="Anonymous" src={`https://${avatar}`} alt="avatar" style={{ maxHeight: 45, maxWidth: 45, width: 'auto', height: 'auto' }}/>
     };
 
     renderLastPost = (post) => {
@@ -53,7 +54,7 @@ class ForumCategory extends Component {
 
                 <div className="forum-list-chip forum-list-last-post-metadata-block">
                     <div className="lastpost-thread-link">
-                        <Link to={`/topic/${post.thread_id}`}>{this.renderTitleLink(post.title)}</Link>
+                        <Link to={`/topic/${post.thread_id}-${slugTitle(post.title)}`}>{this.renderTitleLink(post.title)}</Link>
                     </div>
                     <div className="lastpost-by">{`${this.renderMoment(post.timestamp)} by `}{renderUsername(post.user)}</div>
                 </div>
@@ -73,7 +74,7 @@ class ForumCategory extends Component {
 
                         <div className="forum-list-chip forum-list-item-metadata-block">
                             <div className="forum-list-item-metadata-title">
-                                <Link to={`/forum/${subcategory.id}`} className="category-subcategory-title">{subcategory.title}</Link>
+                                <Link to={`/forum/${subcategory.id}-${slugTitle(subcategory.title)}`} className="category-subcategory-title">{subcategory.title}</Link>
                             </div>
                             <div className="forum-list-item-metadata-description forum-list-item-secondary-text">
                                 {subcategory.description}
@@ -81,7 +82,7 @@ class ForumCategory extends Component {
                         </div>
 
                         <div className="forum-list-chip forum-list-item-tp forum-list-item-secondary-text">
-                            {`${subcategory.thread_count} ${subcategory.thread_count === 1 ? 'thread' : 'threads'}`}
+                            {`Posts: ${subcategory.thread_count}`}
                         </div>
 
                         {this.renderLastPost(subcategory.post)}
@@ -96,7 +97,7 @@ class ForumCategory extends Component {
         return (
             <div className="category-wrapper">
                 <div className="category-header-wrapper">
-                    <Link to={`/category/${this.props.category.id}`} className="category-name">{this.props.category.title}</Link>
+                    <Link to={`/category/${this.props.category.id}-${slugTitle(this.props.category.title)}`} className="category-name">{this.props.category.title}</Link>
                     <p className="category-description">{this.props.category.description}</p>
                 </div>
 

@@ -15,6 +15,10 @@ class Signin extends Component {
         this.props.clearAuthError();
     }
 
+    componentDidMount() {
+        document.getElementById('username-input').focus();
+    }
+
     handleFormSubmit = ({ username, password }) => {
         this.props.changeNanobar(NanoConsts.defaultColor);
         this.props.moveNanobar(30);
@@ -45,18 +49,24 @@ class Signin extends Component {
         const { handleSubmit, fields: { username, password} } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form className="flex" onSubmit={handleSubmit(this.handleFormSubmit)}>
                 <div className="form-wrapper">
-                    <fieldset className="form-group">
-                        <label>Username:</label>
-                        <input type="text" {...username} className="form-control"/>
-                    </fieldset>
-                    <fieldset className="form-group">
-                        <label>Password:</label>
-                        <input {...password} type="password" className="form-control"/>
-                    </fieldset>
-                    {this.renderAlert()}
-                    <button action="submit" className="form-button">Sign in</button>
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Sign in</div>
+                    </div>
+                    <div className="form-input-wrapper">
+                        <fieldset className="form-group">
+                            <label>Username:</label>
+                            <input id="username-input" type="text" {...username} className="form-control"/>
+                        </fieldset>
+                        <fieldset className="form-group">
+                            <label>Password:</label>
+                            <input {...password} type="password" className="form-control"/>
+                        </fieldset>
+                        {this.renderAlert()}
+                        <button action="submit" className="form-button">Sign in</button>
+                        <div className="forgot-password-tip">Forgotten your password? Message jake.</div>
+                    </div>
                 </div>
             </form>
         );

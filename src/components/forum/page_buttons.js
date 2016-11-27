@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { ITEMS_PER_PAGE } from '../../global_constants';
 
 class PageButtons extends Component {
 
@@ -8,7 +9,6 @@ class PageButtons extends Component {
 
         var pageNumbers = [];
         var jsxButtons = [];
-        const ITEMS_PER_PAGE = 20;
 
         //calculate total pages
         var TOTAL_PAGES = Math.ceil(totalThreads / ITEMS_PER_PAGE);
@@ -35,7 +35,7 @@ class PageButtons extends Component {
         for(var j = 0; j < pageNumbers.length; ++j) {
             var pageNumber = pageNumbers[j];
             if(pageNumber == currentPage) {
-                jsxButtons[j] = (<button key={pageNumber} className="page-button page-button-active" disabled>{`${pageNumber}`}</button>);
+                jsxButtons[j] = (<a key={pageNumber} className="page-button page-button-active">{`${pageNumber}`}</a>);
             } else {
                 jsxButtons[j] = (<Link to={`${pathName}?page=${pageNumber}`} key={pageNumber} className="page-button">{`${pageNumber}`}</Link>)
             }
@@ -46,7 +46,7 @@ class PageButtons extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page-button-list-wrapper">
                 {this.renderPages()}
             </div>
         );

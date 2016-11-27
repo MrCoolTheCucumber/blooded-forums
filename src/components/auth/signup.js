@@ -42,16 +42,22 @@ class Signup extends Component {
         const { handleSubmit, fields: { username, password, passwordConfirm, email, firstName, lastName }} = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form className="flex" onSubmit={handleSubmit(this.handleFormSubmit)}>
                 <div className="form-wrapper">
-                    {this.renderAlert()}
-                    {this.renderFieldSet('First Name:', firstName, 'text')}
-                    {this.renderFieldSet('Last Name:', lastName, 'text')}
-                    {this.renderFieldSet('Email:', email, 'text')}
-                    {this.renderFieldSet('Username:', username, 'text')}
-                    {this.renderFieldSet('Password:', password, 'password')}
-                    {this.renderFieldSet('Confirm Password:', passwordConfirm, 'password')}
-                    <button action="submit" className="form-button">Sign up</button>
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Sign up</div>
+                    </div>
+                    <div className="form-input-wrapper">
+                        {this.renderAlert()}
+                        {this.renderFieldSet('First Name:', firstName, 'text')}
+                        {this.renderFieldSet('Last Name:', lastName, 'text')}
+                        {this.renderFieldSet('Email:', email, 'text')}
+                        {this.renderFieldSet('Username:', username, 'text')}
+                        {this.renderFieldSet('Password:', password, 'password')}
+                        {this.renderFieldSet('Confirm Password:', passwordConfirm, 'password')}
+                        <button action="submit" className="form-button">Sign up</button>
+                    </div>
+
                 </div>
             </form>
         );

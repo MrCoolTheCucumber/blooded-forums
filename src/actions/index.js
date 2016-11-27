@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import slugTitle from '../helpers/title_sluger';
 import {
     AUTH_USER,
     UNAUTH_USER,
@@ -13,9 +14,11 @@ import {
     SET_BREADCRUMBS,
     MOVE_NANOBAR,
     CHANGE_NANOBAR,
-    GET_USER_DATA
+    GET_USER_DATA,
+    SET_EDIT_POST_DATA,
+    CLEAR_USER_DATA
 } from './types';
-const ROOT_URL = 'https://api.bloodedguild.me';
+import { ROOT_URL, ITEMS_PER_PAGE } from '../global_constants';
 
 export function moveNanobar(number) {
     return function(dispatch) {
@@ -272,26 +275,7 @@ export function getThreadData(threadId) {
     }
 }
 
-function sendPost(threadId, content, then) {
-    console.log('hit function!');
-    axios.put(`${ROOT_URL}/forums/threads/${threadId}`,
-        {
-            content: content
-        },
-        {
-            headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
-        })
-        .then( response => {
-            console.log('post made!');
-            console.log(response);
-            then();
-        })
-        .catch( error => {
-            //TODO
-        });
-}
-
-export function createThread(title, subCategoryId, content) {
+export function createThread(title, subCategoryId, content, callback) {
     return function(dispatch) {
         axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
             {
@@ -302,22 +286,33 @@ export function createThread(title, subCategoryId, content) {
                 headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
             })
             .then( response => {
-                console.log(response);
-                console.log('thread made!');
-
-                browserHistory.push(`/topic/${response.data.id}`);
+                callback(0);
+                browserHistory.push(`/topic/${response.data.id}-${slugTitle(title)}`);
             })
             .catch( error => {
-               //TODO
+                callback(1)
             });
     }
 }
 
-export function createPost(threadId, content) {
+export function createPost(threadId, content, callback) {
     return function(dispatch) {
-        sendPost(threadId, content, function() {
-            browserHistory.push(`/topic/${threadId}`);
-        });
+        axios.put(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
+            .then( response => {
+                callback(0);
+                const postId = response.data.post_id;
+                const page = Math.floor((postId / 20) + 1);
+                browserHistory.push(`/topic/${threadId}?page=${page}&post=${postId}`);
+            })
+            .catch( error => {
+                callback(1);
+            });
     }
 }
 
@@ -353,6 +348,15 @@ export function getUserData(userId, updateBreadcrumbs) {
             .catch( error => {
                 //todo
             })
+    }
+}
+
+export function clearUserData() {
+    return function(dispatch) {
+        dispatch({
+            type: CLEAR_USER_DATA,
+            payload: null
+        });
     }
 }
 
@@ -393,6 +397,100 @@ export function changeUserAvatar(avatarUri, callback) {
             if(callback) {
                 callback(1);
             }
+        });
+    }
+}
+
+export function changeUserSignature(signature, callback) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/users`,
+            {
+                signature: signature
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            if(callback) {
+                callback(0);
+            }
+        }).catch( error => {
+            if(callback) {
+                callback(1);
+            }
+        });
+    }
+}
+
+export function setThreadLocked(isLocked, threadId, subcatId) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                locked: isLocked
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/forum/${subcatId}`);
+        }).catch( error => {
+            //TODO
+        });
+    }
+}
+
+export function setThreadSticky(isSticky, threadId, subcatId) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                sticky: isSticky
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/forum/${subcatId}`);
+        }).catch( error => {
+            //TODO
+        });
+    }
+}
+
+export function setEditPostHtml(content, threadId, postId) {
+    return function(dispatch) {
+        dispatch({
+            type: SET_EDIT_POST_DATA,
+            payload: {
+                content,
+                threadId,
+                postId
+            }
+        });
+    }
+}
+
+export function clearEditPostHtml() {
+    return function(dispatch) {
+        dispatch({
+            type: SET_EDIT_POST_DATA,
+            payload: null
+        });
+    }
+}
+
+export function sendEditedPost(threadId, postId, content) {
+    return function(dispatch) {
+        axios.patch(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}/${postId}`,
+            {
+                content: content
+            },
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            }
+        ).then( response => {
+            browserHistory.push(`/topic/${threadId}`);
+        }).catch( error => {
+           //TODO
         });
     }
 }

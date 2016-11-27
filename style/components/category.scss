@@ -1,0 +1,35 @@
+@import "../variables";
+
+.category-wrapper {
+    margin-top: 15px;
+
+    background-color: $primary-color;
+
+    &:last-of-type {
+        margin-bottom: 50px;
+    }
+}
+
+.category-header-wrapper {
+    padding: 10px 25px;
+    background-color: rgba(07, 07, 07, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    font-size: 2em;
+
+    .category-description {
+        display: inline;
+        padding-left: 10px;
+        
+        font-size: 0.45em;
+        color: rgba(255, 255, 255, 0.7);
+
+        vertical-align: middle;
+    }
+
+}
+
+.forum-list-wrapper {
+    padding: 25px;
+}
+

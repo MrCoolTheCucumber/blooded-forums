@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router';
+import slugTitle from '../helpers/title_sluger';
 
 class Breadcrumbs extends Component {
 
@@ -11,7 +12,7 @@ class Breadcrumbs extends Component {
 
             return (
                 <li>
-                    <Link className="crumbs-link" to={`/category/${category.id}`}>{category.title}</Link>
+                    <Link className="crumbs-link" to={`/category/${category.id}-${slugTitle(category.title)}`}>{category.title}</Link>
                 </li>
 
             );
@@ -24,7 +25,7 @@ class Breadcrumbs extends Component {
 
             return (
                 <li>
-                    <Link className="crumbs-link" to={`/forum/${subcategory.id}`}>{subcategory.title}</Link>
+                    <Link className="crumbs-link" to={`/forum/${subcategory.id}-${slugTitle(subcategory.title)}`}>{subcategory.title}</Link>
                 </li>
             );
         }
@@ -36,7 +37,7 @@ class Breadcrumbs extends Component {
 
             return (
                 <li>
-                    <Link className="crumbs-link" to={`/topic/${thread.id}`}>{thread.title}</Link>
+                    <Link className="crumbs-link" to={`/topic/${thread.id}-${slugTitle(thread.title)}`}>{thread.title}</Link>
                 </li>
             );
         }
@@ -89,17 +90,15 @@ class Breadcrumbs extends Component {
 
     render() {
         return (
-            <div id="crumbs">
-                <ul>
-                    <li>
-                        <Link to="/" className="crumbs-link">Home</Link>
-                    </li>
-                    {this.renderSpecial()}
-                    {this.renderCategory()}
-                    {this.renderSubCategory()}
-                    {this.renderThread()}
-                </ul>
-            </div>
+            <ul id="crumbs">
+                <li>
+                    <Link to="/" className="crumbs-link">Home</Link>
+                </li>
+                {this.renderSpecial()}
+                {this.renderCategory()}
+                {this.renderSubCategory()}
+                {this.renderThread()}
+            </ul>
         );
     }
 }

@@ -3,28 +3,24 @@ import TinyMCE from 'react-tinymce';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
-class CreateThread extends Component {
+class EditThread extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            async: 'ready'
+            quill: null
         }
     }
 
-    handleCreatePost = () => {
-        if(this.state.async === 'ready') {
-            this.setState({ async: 'waiting'});
-            const html = tinymce.get('test').getContent();
-            this.props.createPost(this.props.params.id, html, (responseCode) => {
-                switch (responseCode) {
-                    case 1:
-                        this.setState({ async: 'ready' });
-                        break;
-                }
-            });
-        }
+    componentWillUnmount() {
+        this.props.clearEditPostHtml();
+    }
+
+    handleEditPost = () => {
+        const html = tinymce.get('test').getContent();
+
+        this.props.sendEditedPost(this.props.params.id, this.props.editPost.postId, html);
     };
 
     render() {
@@ -32,11 +28,11 @@ class CreateThread extends Component {
             <div className="flex">
                 <div className="posting-wrapper">
                     <div className="category-header-wrapper">
-                        <div className="category-name">Create a post</div>
+                        <div className="category-name">Edit your post</div>
                     </div>
                     <div className="posting-input-wrapper">
                         <TinyMCE id="test"
-                                 content=""
+                                 content={this.props.editPost.content}
                                  config={{
                                      height: 350,
                                      plugins: [
@@ -49,13 +45,18 @@ class CreateThread extends Component {
                                      toolbar2: 'preview media | forecolor backcolor emoticons'
                                  }}
                         />
-                        <button onClick={this.handleCreatePost} className="form-button">Create</button>
+                        <button onClick={this.handleEditPost} className="form-button">Submit changes</button>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-
 }
 
-export default connect(null, actions)(CreateThread);
+function mapStateToProps(state) {
+    return {
+        editPost: state.forum.editPost
+    };
+}
+
+export default connect(mapStateToProps, actions)(EditThread);
