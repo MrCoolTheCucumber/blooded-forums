@@ -7,11 +7,11 @@ class PageButtons extends Component {
     renderPages = () => {
         const { totalThreads, currentPage, pathName } = this.props;
 
-        var pageNumbers = [];
-        var jsxButtons = [];
+        const pageNumbers = [];
+        const jsxButtons = [];
 
         //calculate total pages
-        var TOTAL_PAGES = Math.ceil(totalThreads / ITEMS_PER_PAGE);
+        const TOTAL_PAGES = Math.ceil(totalThreads / ITEMS_PER_PAGE);
 
         if(currentPage <= 5) {
             //show the first 5 pages
@@ -41,7 +41,25 @@ class PageButtons extends Component {
             }
         }
 
+        if(!this.containsPage(pageNumbers, 1)) {
+            jsxButtons.unshift((<Link to={`${pathName}?page=${1}`} key={1} className="page-button page-button-beginning">{`${1}`}</Link>));
+        }
+
+        if(!this.containsPage(pageNumbers, TOTAL_PAGES)) {
+            jsxButtons.push((<Link to={`${pathName}?page=${TOTAL_PAGES}`} key={TOTAL_PAGES} className="page-button page-button-end">{`${TOTAL_PAGES}`}</Link>));
+        }
+
         return jsxButtons;
+    };
+
+    containsPage = (array, page) => {
+        for(let i = 0; i < array.length; ++i) {
+            if(array[i] === page) {
+                return true;
+            }
+        }
+
+        return false;
     };
 
     render() {
