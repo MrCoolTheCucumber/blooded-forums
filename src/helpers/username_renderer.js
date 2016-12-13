@@ -21,15 +21,7 @@ export const devStyle = {
 
 function renderUsername(user) {
     switch (user.group) {
-        case 'user':
-            return (
-                <Link className="username" to={`/profile/${user.id}`}>
-                        <span style={userStyle}>
-                            {user.username}
-                        </span>
-                </Link>
-            );
-        case 'gm':
+       	case 'gm':
             return (
                 <Link className="username" to={`/profile/${user.id}`}>
                         <span style={gmStyle}>
@@ -45,6 +37,15 @@ function renderUsername(user) {
                         </span>
                 </Link>
             );
+		default:
+            return (
+                <Link className="username" to={`/profile/${user.id}`}>
+                        <span style={userStyle}>
+                            {user.username}
+                        </span>
+                </Link>
+            );
+
     }
 }
 

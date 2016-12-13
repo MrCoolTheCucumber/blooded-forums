@@ -141,7 +141,10 @@ export function clearAuthError() {
 
 export function getForumSections(callback, updateBreadcrumbs, id) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/categories`)
+        axios.get(`${ROOT_URL}/forums/categories`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
                 callback();
