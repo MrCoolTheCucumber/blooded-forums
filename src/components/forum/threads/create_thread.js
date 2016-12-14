@@ -35,14 +35,18 @@ class CreateThread extends Component {
 
     render() {
         return (
-            <div>
-                <link href="https://cdn.quilljs.com/1.0.3/quill.snow.css" rel="stylesheet"/>
-                <div className="form-div">
-                    <fieldset className="form-group">
-                        <label >Title:</label>
-                        <input id="title-input" type="text" className="form-control"/>
-                    </fieldset>
-                    <fieldset className="form-group">
+            <div className="flex">
+                <div className="posting-wrapper">
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Create a Thread</div>
+                    </div>
+
+                    <div className="posting-input-wrapper">
+                        <fieldset className="title-group">
+                            <label >Title:</label>
+                            <input id="title-input" type="text" className="form-control"/>
+                        </fieldset>
+
                         <TinyMCE id="test"
                                  content=""
                                  config={{
@@ -57,8 +61,8 @@ class CreateThread extends Component {
                                      toolbar2: 'preview media | forecolor backcolor emoticons'
                                  }}
                         />
-                    </fieldset>
-                    <button onClick={this.handleCreateThread} className="form-button">Create</button>
+                        <button onClick={this.handleCreateThread} className="form-button">Create</button>
+                    </div>
                 </div>
             </div>
 
