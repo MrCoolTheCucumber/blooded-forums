@@ -174,7 +174,10 @@ export function getForumSections(callback, updateBreadcrumbs, id) {
 
 export function getSubCategoryThreads(subCategoryId, page) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`)
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({
                     type: GET_THREADS,
@@ -193,7 +196,10 @@ export function getSubCategoryThreads(subCategoryId, page) {
 
 export function getSubCategoryData(subCategoryId) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`)
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({ type: GET_SUBCATEGORY_DATA, payload: response.data });
 
@@ -241,7 +247,10 @@ export function getPosts(threadId, page) {
 
 export function getThreadData(threadId) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/threads/${threadId}`)
+        axios.get(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({
                     type: GET_THREAD_DATA,
