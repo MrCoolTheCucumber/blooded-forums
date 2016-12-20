@@ -6,6 +6,7 @@ import * as actions from '../../../actions';
 import PageButtons from '../page_buttons';
 import SharePostIcon from './share_post_icon';
 import moment from 'moment';
+import 'moment/locale/en-gb';
 import renderUsername, { gmStyle, devStyle } from '../../../helpers/username_renderer';
 import { ITEMS_PER_PAGE } from '../../../global_constants';
 
@@ -52,7 +53,7 @@ class Topic extends Component {
             .concat(timestamp.substring(0, 10))
             .concat(timestamp.substring(11,19));
 
-        return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
+        return moment(date, "YYYY-MM-DDHH:mm:ss").locale('en-gb').calendar();
     };
 
     renderAvatar = (avatar) => {
