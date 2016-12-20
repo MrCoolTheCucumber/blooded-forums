@@ -260,7 +260,7 @@ class Topic extends Component {
         if(this.props.topics != null && this.props.topics[key] != null) {
 
             const topic = this.props.topics[key];
-            console.log(topic.user);
+            
             return (
                 <div>
                     <div className="page-list-wrapper">
