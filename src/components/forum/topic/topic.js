@@ -124,7 +124,7 @@ class Topic extends Component {
         }
 
         return (
-            <div className="post-content-signature">
+            <div className="post-content-signature dont-break-out">
                 <div dangerouslySetInnerHTML={this.createSignature(user)}/>
             </div>
         );
