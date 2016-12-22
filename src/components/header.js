@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Link } from 'react-router';
+import renderUsername from '../helpers/username_renderer';
 
 class Header extends Component {
 
@@ -16,7 +17,7 @@ class Header extends Component {
                     <Link to="/signout" className="nav-link">Sign out</Link>
                 </li>,
                 <li key={1} className="nav-dropdown nav-right">
-                    <a href="/" className="nav-dropbtn">{this.props.user.username}</a>
+                    <div href="/" className="nav-dropbtn">{renderUsername(this.props.user)}</div>
                     <div className="nav-dropdown-content">
                         <ul>
                             <li><Link className="drop-item" to={`/profile/${this.props.user.id}`} >Profile</Link></li>

@@ -232,7 +232,7 @@ class Topic extends Component {
     };
 
     renderLockUnlockThreadButton = (isLocked, threadId, subcatId) => {
-        if(this.props.authenticated && (this.props.user.group === 'gm' || this.props.user.group === 'dev')) {
+        if(this.props.authenticated && this.props.user.privilege > 1) {
 
             var handleLockUnlockThreadButton = () => {this.props.setThreadLocked(!isLocked, threadId, subcatId);};
 
@@ -247,7 +247,7 @@ class Topic extends Component {
     };
 
     renderStickyUnstickyThreadButton = (isSticky, threadId, subcatId) => {
-        if(this.props.authenticated && (this.props.user.group === 'gm' || this.props.user.group === 'dev')) {
+        if(this.props.authenticated && this.props.user.privilege > 1) {
 
             var handleLockUnlockThreadButton = () => {this.props.setThreadSticky(!isSticky, threadId, subcatId);};
 

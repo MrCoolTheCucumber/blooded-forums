@@ -49,7 +49,8 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
                     payload: {
                         username: response.data.username,
                         id: response.data.id,
-                        group: response.data.group
+                        group: response.data.group,
+                        privilege: response.data.privilege
                     }
                 });
 
@@ -57,6 +58,7 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('group', response.data.group);
+                localStorage.setItem('privilege', response.data.privilege);
 
                 callback();
 
@@ -93,7 +95,8 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                             payload: {
                                 username: response2.data.username,
                                 id: response2.data.id,
-                                group: response2.data.group
+                                group: response2.data.group,
+                                privilege: response2.data.privilege
                             }
                         });
 
@@ -101,6 +104,7 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                         localStorage.setItem('username', response2.data.username);
                         localStorage.setItem('id', response2.data.id);
                         localStorage.setItem('group', response2.data.group);
+                        localStorage.setItem('privilege', response2.data.privilege);
 
                         browserHistory.push('/');
                     })
