@@ -152,6 +152,16 @@ class Topic extends Component {
         return null;
     };
 
+    renderJurassicParkTheme = () => {
+        if(this.parseId(this.props.params.id) == 110) {
+            return (
+                <iframe style={{display: 'none'}} width="0" height="0" src="https://www.youtube.com/embed/D8zlUUrFK-M?autoplay=1&loop=1" frameborder="0" allowfullscreen=""></iframe>
+            );
+        }
+
+        return null;
+    };
+
     renderPosts = () => {
         const page = this.getPage(this.props);
         const key = `p_${this.parseId(this.props.params.id)}_${page}`;
@@ -163,6 +173,7 @@ class Topic extends Component {
 
                 return (
                     <li key={post.id}>
+                            {this.renderJurassicParkTheme()}
                             <div className="post-container">
                                 <div className="post-user-side">
                                     <div className="post-username">{renderUsername(post.user)}</div>
