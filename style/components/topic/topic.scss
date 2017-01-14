@@ -82,9 +82,8 @@ $border-color: rgba(255, 255, 255, 0.1);
                     text-decoration: underline;
                 }
 
-                * {
+                *:not(iframe) {
                     max-width: 100%;
-                    width: auto;
                     height: auto;
                 }
             }
