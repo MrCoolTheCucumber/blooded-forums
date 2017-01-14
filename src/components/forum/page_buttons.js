@@ -13,31 +13,29 @@ class PageButtons extends Component {
         //calculate total pages
         const TOTAL_PAGES = Math.ceil(totalThreads / ITEMS_PER_PAGE);
 
-        if(currentPage <= 5) {
+        if(currentPage <= 3) {
             //show the first 5 pages
-            for(var i = 0; i < TOTAL_PAGES && i < 5; ++i) {
+            for(let i = 0; i < TOTAL_PAGES && i < 5; ++i) {
                 pageNumbers[i] = i + 1;
             }
-        } else if (TOTAL_PAGES - currentPage <= 5) {
+        } else if (TOTAL_PAGES - parseInt(currentPage) <= 3) {
             //show the last 5 pages
-            for(var k = TOTAL_PAGES; k > (TOTAL_PAGES - 5) && k > 0; --k) {
+            for(let k = TOTAL_PAGES; k > (TOTAL_PAGES - 5) && k > 0; --k) {
                 pageNumbers.unshift(k);
             }
         } else {
             //show 2 above and 2 below
-            for(var l = currentPage - 2; l <= currentPage + 2; ++l) {
-                pageNumbers.push(l);
+            for(let i = currentPage - 2; i <= (parseInt(currentPage) + 2); ++i) {
+                pageNumbers.push(i);
             }
         }
 
-        //fix cursor on active button
-
-        for(var j = 0; j < pageNumbers.length; ++j) {
-            var pageNumber = pageNumbers[j];
+        for(let i = 0; i < pageNumbers.length; ++i) {
+            var pageNumber = pageNumbers[i];
             if(pageNumber == currentPage) {
-                jsxButtons[j] = (<a key={pageNumber} className="page-button page-button-active">{`${pageNumber}`}</a>);
+                jsxButtons[i] = (<a key={pageNumber} className="page-button page-button-active">{`${pageNumber}`}</a>);
             } else {
-                jsxButtons[j] = (<Link to={`${pathName}?page=${pageNumber}`} key={pageNumber} className="page-button">{`${pageNumber}`}</Link>)
+                jsxButtons[i] = (<Link to={`${pathName}?page=${pageNumber}`} key={pageNumber} className="page-button">{`${pageNumber}`}</Link>)
             }
         }
 
