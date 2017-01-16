@@ -49,7 +49,8 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
                     payload: {
                         username: response.data.username,
                         id: response.data.id,
-                        group: response.data.group
+                        group: response.data.group,
+                        privilege: response.data.privilege
                     }
                 });
 
@@ -57,6 +58,7 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('group', response.data.group);
+                localStorage.setItem('privilege', response.data.privilege);
 
                 callback();
 
@@ -93,7 +95,8 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                             payload: {
                                 username: response2.data.username,
                                 id: response2.data.id,
-                                group: response2.data.group
+                                group: response2.data.group,
+                                privilege: response2.data.privilege
                             }
                         });
 
@@ -101,6 +104,7 @@ export function signupUser({ username, password, firstName, lastName, email }) {
                         localStorage.setItem('username', response2.data.username);
                         localStorage.setItem('id', response2.data.id);
                         localStorage.setItem('group', response2.data.group);
+                        localStorage.setItem('privilege', response2.data.privilege);
 
                         browserHistory.push('/');
                     })
@@ -141,7 +145,10 @@ export function clearAuthError() {
 
 export function getForumSections(callback, updateBreadcrumbs, id) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/categories`)
+        axios.get(`${ROOT_URL}/forums/categories`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({ type: GET_FORUM_SECTIONS, payload: response.data });
                 callback();
@@ -171,7 +178,10 @@ export function getForumSections(callback, updateBreadcrumbs, id) {
 
 export function getSubCategoryThreads(subCategoryId, page) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`)
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}/${(page*20)-19}-${page*20}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({
                     type: GET_THREADS,
@@ -190,7 +200,10 @@ export function getSubCategoryThreads(subCategoryId, page) {
 
 export function getSubCategoryData(subCategoryId) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`)
+        axios.get(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({ type: GET_SUBCATEGORY_DATA, payload: response.data });
 
@@ -238,7 +251,10 @@ export function getPosts(threadId, page) {
 
 export function getThreadData(threadId) {
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/forums/threads/${threadId}`)
+        axios.get(`${ROOT_URL}/forums/threads/${threadId}`,
+            {
+                headers: { Authorization: `JWT ${localStorage.getItem('token')}`}
+            })
             .then( response => {
                 dispatch({
                     type: GET_THREAD_DATA,

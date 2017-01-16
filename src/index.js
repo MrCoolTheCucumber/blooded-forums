@@ -29,8 +29,7 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 const username = localStorage.getItem('username');
-const group = localStorage.getItem('group');
-const id = localStorage.getItem('id');
+
 if(localStorage.getItem('token') && username) {
 
     axios.get(`${ROOT_URL}/auth/refresh`,
@@ -42,9 +41,10 @@ if(localStorage.getItem('token') && username) {
             store.dispatch({
                 type: AUTH_USER,
                 payload: {
-                    username,
-                    group,
-                    id
+                    username: response.data.username,
+                    group: response.data.group,
+                    id: response.data.id,
+                    privilege: response.data.privilege
                 }
             });
         })

@@ -82,9 +82,8 @@ $border-color: rgba(255, 255, 255, 0.1);
                     text-decoration: underline;
                 }
 
-                * {
+                *:not(iframe) {
                     max-width: 100%;
-                    width: auto;
                     height: auto;
                 }
             }
@@ -96,6 +95,16 @@ $border-color: rgba(255, 255, 255, 0.1);
 
             .post-content-signature {
                 border-top: 0.5px solid rgba(255, 255, 255, 0.3);
+
+                a {
+                    text-decoration: underline;
+                }
+
+                * {
+                    max-width: 100%;
+                    width: auto;
+                    height: auto;
+                }
             }
 
             .memes {

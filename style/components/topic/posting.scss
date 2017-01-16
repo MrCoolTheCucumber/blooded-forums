@@ -1,12 +1,41 @@
- .posting-wrapper {
-     margin-top: 80px;
-     background-color: $primary-color;
+.posting-wrapper {
+    margin-top: 80px;
+    background-color: $primary-color;
 
-     .form-button {
-         margin-top: 10px;
-     }
+    .form-button {
+        margin-top: 10px;
+    }
 
-     .posting-input-wrapper {
-         padding: 25px;
-     }
- }
+    .posting-input-wrapper {
+        padding: 25px;
+    }
+}
+
+.title-group {
+    border: none;
+    margin: 0;
+    padding: 0 0 20px;
+
+    input {
+        display: block;
+        width: 60%;
+        height: 17px;
+        border: none;
+
+        border-bottom: 2px solid $faded-color;
+        background-color: transparent;
+        color: $faded-color;
+        font-family: "Lucida Console", monospace;
+        box-shadow: none;
+
+        transition: box-shadow 0.5s, bordor-bottom 0.5s;
+    }
+
+    input:focus {
+        outline: none;
+        border-bottom: 2px solid $focus-color;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        transition: box-shadow 0.5s, bordor-bottom 0.5s;
+    }
+}

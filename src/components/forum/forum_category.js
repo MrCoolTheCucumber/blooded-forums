@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import 'moment/locale/en-gb';
 import renderUsername from '../../helpers/username_renderer';
 import slugTitle from '../../helpers/title_sluger';
 
@@ -12,7 +13,7 @@ class ForumCategory extends Component {
             .concat(timestamp.substring(0, 10))
             .concat(timestamp.substring(11,19));
 
-        return moment(date, "YYYY-MM-DDHH:mm:ss").calendar();
+        return moment(date, "YYYY-MM-DDHH:mm:ss").locale('en-gb').calendar();
     };
 
     renderTitleLink = (title) => {

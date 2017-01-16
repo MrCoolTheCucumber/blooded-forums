@@ -19,33 +19,39 @@ export const devStyle = {
     textShadow: '0 0 .7em #99ffbb'
 };
 
+export const officerStyle = {
+    textDecoration: 'none',
+    color: '#ffcc00',
+    fontWeight: 'bold',
+    textShadow: '0 0 .9em #ff9595'
+};
+
 function renderUsername(user) {
+
+    let style = null;
+
     switch (user.group) {
-        case 'user':
-            return (
-                <Link className="username" to={`/profile/${user.id}`}>
-                        <span style={userStyle}>
-                            {user.username}
-                        </span>
-                </Link>
-            );
-        case 'gm':
-            return (
-                <Link className="username" to={`/profile/${user.id}`}>
-                        <span style={gmStyle}>
-                            {user.username}
-                        </span>
-                </Link>
-            );
+       	case 'gm':
+            style = gmStyle;
+            break;
         case 'dev':
-            return (
-                <Link className="username" to={`/profile/${user.id}`}>
-                        <span style={devStyle}>
+            style = devStyle;
+            break;
+        case 'officer':
+            style = officerStyle;
+            break;
+		default:
+            style = userStyle;
+            break;
+    }
+
+    return (
+        <Link className="username" to={`/profile/${user.id}`}>
+                        <span style={style}>
                             {user.username}
                         </span>
-                </Link>
-            );
-    }
+        </Link>
+    );
 }
 
 export default renderUsername;
