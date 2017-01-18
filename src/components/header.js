@@ -43,6 +43,9 @@ class Header extends Component {
     render() {
         return (
             <nav>
+                <div className="logo-wrapper">
+                    <img className="logo" src="http://i.imgur.com/JfDBtzi.png"/>
+                </div>
                 <ul>
                     <li className="nav-left">
                         <Link to="/">Blooded</Link>
