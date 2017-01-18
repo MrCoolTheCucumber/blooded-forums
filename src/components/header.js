@@ -6,6 +6,19 @@ import renderUsername from '../helpers/username_renderer';
 
 class Header extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { backgroundPos: 0 };
+    }
+
+    componentDidMount() {
+        setInterval(this.moveBanner, 100);
+    }
+
+    moveBanner = () => {
+        this.setState({ backgroundPos: this.state.backgroundPos -1 });
+    };
+
     onSignInClick = () => {
         browserHistory.push(`/signin?redirectUri=${this.props.path}`);
     };
@@ -43,12 +56,12 @@ class Header extends Component {
     render() {
         return (
             <nav>
-                <div className="logo-wrapper">
+                <div className="logo-wrapper" style={{backgroundPosition: `${this.state.backgroundPos}px 0px`}}>
                     <img className="logo" src="http://i.imgur.com/JfDBtzi.png"/>
                 </div>
                 <ul>
                     <li className="nav-left">
-                        <Link to="/">Blooded</Link>
+                        <Link to="/">Forums</Link>
                     </li>
                     {this.renderLinks()}
                 </ul>
