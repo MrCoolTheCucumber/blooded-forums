@@ -75,3 +75,17 @@ nav > ul > li:nth-child(2) {
     display: block;
     transform: translate(-50%, 75%);
 }
+
+nav .logo-wrapper {
+    width: 100%;
+    //background: url('https://media.giphy.com/media/xT8qBfjJhOmNPTVWU0/giphy.gif') repeat-x;
+    background: url('https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif') repeat-x;
+}
+
+nav .logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
