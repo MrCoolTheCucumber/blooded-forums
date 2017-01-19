@@ -56,12 +56,9 @@ class Header extends Component {
     render() {
         return (
             <nav>
-                <div className="logo-wrapper" style={{backgroundPosition: `${this.state.backgroundPos}px 0px`}}>
-                    <img className="logo" src="http://i.imgur.com/JfDBtzi.png"/>
-                </div>
                 <ul>
                     <li className="nav-left">
-                        <Link to="/">Forums</Link>
+                        <img className="logo" src="http://i.imgur.com/JfDBtzi.png"/>
                     </li>
                     {this.renderLinks()}
                 </ul>

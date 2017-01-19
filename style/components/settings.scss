@@ -1,0 +1,78 @@
+#settings-wrapper {
+    display: flex;
+    min-height: 400px;
+}
+
+#settings-menu-wrapper {
+    flex: 0 0 200px;
+    color: black;
+    font-size: 90%;
+}
+
+#settings-selected-wrapper {
+    flex: 1;
+    padding-left: 10px;
+}
+
+#settings-menu-list {
+    list-style: none;
+    padding-left: 0;
+
+    background-color: #cccccc;
+}
+
+#settings-menu-list .settings-menu-list-item {
+    padding-left: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#settings-menu-list .settings-menu-list-item + .settings-menu-list-item {
+
+}
+
+#settings-menu-list .settings-menu-list-selected {
+    background-color: #ff7070;
+}
+
+#settings-menu-list .settings-menu-list-item:hover {
+    background-color: #ff7070;
+    cursor: pointer;
+}
+
+#settings-menu-list .settings-menu-list-selected:hover {
+    cursor: default;
+}
+
+#settings-title {
+    text-align: center;
+}
+
+#settings-title span:hover {
+    animation: none;
+}
+
+#settings-avatar-wrapper {
+    display: flex;
+    padding: 5px;
+}
+
+#settings-avatar-preview-wrapper {
+    flex: 0 0 150px;
+}
+
+#settings-avatar-form-wrapper {
+    flex: 1;
+    padding-left: 10px;
+}
+
+#settings-avatar-form-wrapper input {
+    margin-left: 20px;
+    width: 70%
+}
+
+#settings-avatar-info {
+    font-size: 85%;
+    color: dimgrey;
+    padding-left: 20px;
+}

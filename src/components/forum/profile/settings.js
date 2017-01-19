@@ -33,11 +33,11 @@ class Settings extends Component {
         }
     }
 
-    componentWillMount = () => {
+    componentWillMount() {
         this.props.setBreadcrumbs({
-            settings: true
-        })
-    };
+            setting: true
+        });
+    }
 
     renderSettingsMenu = () => {
         return this.state.menuListItems.map( listItem => {

@@ -1,5 +1,7 @@
 @import "../variables";
 
+$logo-height: 40px;
+
 nav {
     z-index: 10;
 }
@@ -76,16 +78,22 @@ nav > ul > li:nth-child(2) {
     transform: translate(-50%, 75%);
 }
 
-nav .logo-wrapper {
+nav .screen-wrapper {
+    z-index: 2;
+
     width: 100%;
-    //background: url('https://media.giphy.com/media/xT8qBfjJhOmNPTVWU0/giphy.gif') repeat-x;
-    background: url('https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif') repeat-x;
+    background: url('https://media.giphy.com/media/xT8qBfjJhOmNPTVWU0/giphy.gif') repeat-x;
+    //background: url('https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif') repeat-x;
+    //background: url('/assets/stardust.png') repeat-x;
+    //background: url('http://www.pngmart.com/files/3/Smoke-PNG-Image.png') repeat-x;
 }
 
 nav .logo {
-    height: 60px;
+    height: $logo-height;
     width: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
