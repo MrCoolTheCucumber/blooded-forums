@@ -40,6 +40,6 @@ module.exports = {
     plugins: [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
+        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false, compress: { warnings: false } })
     ]
 };
