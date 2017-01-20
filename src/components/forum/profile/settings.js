@@ -34,9 +34,11 @@ class Settings extends Component {
     }
 
     componentWillMount() {
-        this.props.setBreadcrumbs({
-            setting: true
-        });
+        //commented out due to causing error when refreshing..
+
+        //this.props.setBreadcrumbs({
+        //    setting: true
+        //});
     }
 
     renderSettingsMenu = () => {
@@ -77,18 +79,22 @@ class Settings extends Component {
 
     render() {
         return (
-            <div className="border">
+            <div className="flex">
                 <div id="settings-wrapper">
-                    <div id="settings-menu-wrapper">
-                        <div id="settings-title" style={{textAlign: 'center'}}><i className="fa fa-wrench" aria-hidden="true"> </i> Settings</div>
-                        <div id="settings-menu-list-wrapper">
-                            <ul id="settings-menu-list">
-                                {this.renderSettingsMenu()}
-                            </ul>
-                        </div>
+                    <div className="category-header-wrapper">
+                        <div className="category-name">Settings</div>
                     </div>
-                    <div id="settings-selected-wrapper">
-                        {this.renderSelectedSetting()}
+                    <div id="settings-menu-selected-wrapper">
+                        <div id="settings-menu-wrapper">
+                            <div id="settings-menu-list-wrapper">
+                                <ul id="settings-menu-list">
+                                    {this.renderSettingsMenu()}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="settings-selected-wrapper">
+                            {this.renderSelectedSetting()}
+                        </div>
                     </div>
                 </div>
             </div>

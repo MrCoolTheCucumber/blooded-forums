@@ -1,78 +1,79 @@
+@import '../variables';
+
+$selected-color: rgb(154, 154, 154);
+
 #settings-wrapper {
+    align-self: center;
+    margin-top: 50px;
+
+    background-color: $primary-color;
+    font-size: 1em;
+
+    width: 100%;
+
+    min-height: 600px;
+
+    .form-wrapper {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .posting-wrapper {
+        margin-top: 0;
+        width: 85%;
+    }
+}
+
+#settings-menu-selected-wrapper {
     display: flex;
-    min-height: 400px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding-top: 45px;
+    padding-bottom: 45px;
 }
 
 #settings-menu-wrapper {
-    flex: 0 0 200px;
-    color: black;
-    font-size: 90%;
+    flex: 0 0 300px;
+    align-self: flex-start;
+    padding: 0 10px;
 }
 
 #settings-selected-wrapper {
-    flex: 1;
-    padding-left: 10px;
+    flex: 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #settings-menu-list {
-    list-style: none;
-    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
 
-    background-color: #cccccc;
+    li {
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+
+        &:hover:not(.settings-menu-list-selected) {
+            background-color: $selected-color;
+            cursor: pointer;
+        }
+    }
 }
 
-#settings-menu-list .settings-menu-list-item {
-    padding-left: 25px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
-
-#settings-menu-list .settings-menu-list-item + .settings-menu-list-item {
-
-}
-
-#settings-menu-list .settings-menu-list-selected {
-    background-color: #ff7070;
-}
-
-#settings-menu-list .settings-menu-list-item:hover {
-    background-color: #ff7070;
-    cursor: pointer;
-}
-
-#settings-menu-list .settings-menu-list-selected:hover {
+.settings-menu-list-selected {
+    background-color: $selected-color;
     cursor: default;
 }
 
-#settings-title {
-    text-align: center;
+#settings-avatar-preview-button {
+    margin-left: 10px;
 }
 
-#settings-title span:hover {
-    animation: none;
-}
-
-#settings-avatar-wrapper {
-    display: flex;
-    padding: 5px;
-}
-
-#settings-avatar-preview-wrapper {
-    flex: 0 0 150px;
-}
-
-#settings-avatar-form-wrapper {
-    flex: 1;
-    padding-left: 10px;
-}
-
-#settings-avatar-form-wrapper input {
-    margin-left: 20px;
-    width: 70%
-}
-
-#settings-avatar-info {
-    font-size: 85%;
-    color: dimgrey;
-    padding-left: 20px;
+#settings-avatar-input {
+    width: 70%;
 }

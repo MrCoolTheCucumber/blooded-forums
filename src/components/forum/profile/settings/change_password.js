@@ -37,7 +37,7 @@ class ChangePassword extends Component {
         const { handleSubmit, fields: { password, passwordConfirm } } = this.props;
 
         return (
-            <form className="thin-border" onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
                 <div className="form-wrapper">
                     <div className="form-input-wrapper">
                         <fieldset className="form-group">

@@ -20,13 +20,13 @@ class ChangeAvatar extends Component {
     renderAvatar = (avatar) => {
         if(avatar.length >= 4 && avatar.substring(avatar.length - 4) === 'gifv') {
             return (
-                <video preload="auto" autoPlay="autoplay" loop="loop" muted width={150} height={150}>
+                <video preload="auto" autoPlay="autoplay" loop="loop" muted style={{ maxHeight: 150, maxWidth: 150, width: 'auto', height: 'auto' }}>
                     <source src={`https://${avatar.substring(0, avatar.length - 5)}.mp4`} type="video/mp4"/>
                 </video>
             );
         }
 
-        return <img crossOrigin="Anonymous" src={`https://${avatar}`} alt="avatar" width={150} height={150}/>
+        return <img crossOrigin="Anonymous" src={`https://${avatar}`} alt="avatar" style={{ maxHeight: 150, maxWidth: 150, width: 'auto', height: 'auto' }}/>
     };
 
     handleFormSubmit = ({ url }) => {
@@ -68,7 +68,7 @@ class ChangeAvatar extends Component {
 
     renderPreviewButton = () => {
         if(this.state.currentState !== 'done' && this.state.currentState !== 'sending') {
-            return <button type="button" className="form-button" onClick={this.handleOnPreview}>Preview</button>;
+            return <button type="button" className="form-button" id="settings-avatar-preview-button" onClick={this.handleOnPreview}>Preview</button>;
         }
 
         return null;
@@ -108,14 +108,18 @@ class ChangeAvatar extends Component {
                     </div>
                     <div id="settings-avatar-form-wrapper">
                             <form className="no-border" onSubmit={handleSubmit(this.handleFormSubmit)}>
-                                <fieldset className="form-group">
-                                    <label>Direct image URL:</label>
-                                    <input id="settings-avatar-input" type="text" {...url} className="form-control"/>
-                                    {url.touched && url.error && <div className="error">{url.error}</div>}
-                                </fieldset>
-                                {this.renderButton()}
-                                {this.renderPreviewButton()}
-                                {this.renderSubmitError()}
+                                <div className="form-wrapper form-input-wrapper">
+                                    <div className="form-input-wrapper">
+                                        <fieldset className="form-group">
+                                            <label>Direct image URL:</label>
+                                            <input id="settings-avatar-input" type="text" {...url} className="form-control"/>
+                                            {url.touched && url.error && <div className="error">{url.error}</div>}
+                                        </fieldset>
+                                        {this.renderButton()}
+                                        {this.renderPreviewButton()}
+                                        {this.renderSubmitError()}
+                                    </div>
+                                </div>
                             </form>
                             <div id="settings-avatar-info">
                                 If you have an avatar you want to use, please upload it to <a href="//imgur.com/">imgur</a> and copy the direct image address.
