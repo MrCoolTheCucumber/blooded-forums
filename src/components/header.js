@@ -58,7 +58,7 @@ class Header extends Component {
             <nav>
                 <ul>
                     <li className="nav-left">
-                        <img className="logo" src="http://i.imgur.com/JfDBtzi.png"/>
+                        <img className="logo" src="https://i.imgur.com/JfDBtzi.png"/>
                     </li>
                     {this.renderLinks()}
                 </ul>
