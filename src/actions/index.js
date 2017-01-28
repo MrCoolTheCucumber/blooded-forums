@@ -77,7 +77,7 @@ export function signinUser({ username, password, redirectUri }, callback, onErro
 
 export function signupUser({ username, password, firstName, lastName, email }) {
     return function(dispatch) {
-        axios.put(`${ROOT_URL}/forums/users`,
+        axios.post(`${ROOT_URL}/forums/users`,
             {
                 username,
                 password_hash: password,
@@ -293,7 +293,7 @@ export function getThreadData(threadId) {
 
 export function createThread(title, subCategoryId, content, callback) {
     return function(dispatch) {
-        axios.put(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
+        axios.post(`${ROOT_URL}/forums/subcategories/${subCategoryId}`,
             {
                 title,
                 content
@@ -313,7 +313,7 @@ export function createThread(title, subCategoryId, content, callback) {
 
 export function createPost(threadId, content, callback) {
     return function(dispatch) {
-        axios.put(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}`,
+        axios.post(`${ROOT_URL}/forums/threads/${/^\d+/.exec(threadId)}`,
             {
                 content: content
             },
