@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(../node_modules/quill/dist/quill.snow.css);
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -68,3 +69,4 @@ body {
 @import '/components/list-buttons';
 @import '/components/topic/topic';
 @import '/components/topic/posting';
+@import '/components/quill';
