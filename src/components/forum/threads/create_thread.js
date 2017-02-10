@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TinyMCE from 'react-tinymce';
+import Quill from 'quill';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
@@ -13,6 +13,35 @@ class CreateThread extends Component {
         }
     }
 
+    componentDidMount() {
+        let fonts = ['sofia', 'slabo', 'roboto', 'inconsolata', 'ubuntu'];
+        let Font = Quill.import('formats/font');
+        Font.whitelist = fonts;
+        Quill.register(Font, true);
+
+        let fullEditor = new Quill('#full-container', {
+            bounds: '#full-container .editor',
+            modules: {
+                'toolbar': [
+                    [{ 'font': fonts }, { 'size': [] }],
+                    [ 'bold', 'italic', 'underline', 'strike' ],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'script': 'super' }, { 'script': 'sub' }],
+                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block' ],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet'}, { 'indent': '-1' }, { 'indent': '+1' }],
+                    [ 'direction', { 'align': [] }],
+                    [ 'link', 'image', 'video' ],
+                    [ 'clean' ]
+                ],
+            },
+            theme: 'snow'
+        });
+
+        setTimeout(function () {
+            const title = document.getElementById("title-input").focus();
+        }, 200);
+    }
+
     parseId = (id) => {
         return /^\d+/.exec(id);
     };
@@ -20,7 +49,7 @@ class CreateThread extends Component {
     handleCreateThread = () => {
         if(this.state.async === 'ready') {
             this.setState({ async: 'waiting'});
-            const html = tinymce.get('test').getContent();
+            const html = document.querySelector(".ql-editor").innerHTML;
             const title = document.getElementById("title-input").value;
 
             this.props.createThread(title, this.parseId(this.props.params.id), html, (responseCode) => {
@@ -47,20 +76,9 @@ class CreateThread extends Component {
                             <input id="title-input" type="text" className="form-control"/>
                         </fieldset>
 
-                        <TinyMCE id="test"
-                                 content=""
-                                 config={{
-                                     height: 350,
-                                     plugins: [
-                                         'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
-                                         'insertdatetime media nonbreaking save table contextmenu directionality',
-                                         'emoticons template paste textcolor colorpicker textpattern imagetools'
-                                     ],
-                                     toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                                     toolbar2: 'preview media | forecolor backcolor emoticons'
-                                 }}
-                        />
+                        <div id="full-container">
+
+                        </div>
                         <button onClick={this.handleCreateThread} className="form-button">Create</button>
                     </div>
                 </div>

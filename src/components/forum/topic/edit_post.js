@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TinyMCE from 'react-tinymce';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
+import Quill from 'quill';
 
 class EditThread extends Component {
 
@@ -17,8 +17,40 @@ class EditThread extends Component {
         this.props.clearEditPostHtml();
     }
 
+    componentDidMount() {
+        let fonts = ['sofia', 'slabo', 'roboto', 'inconsolata', 'ubuntu'];
+        let Font = Quill.import('formats/font');
+        Font.whitelist = fonts;
+        Quill.register(Font, true);
+
+        let fullEditor = new Quill('#full-container', {
+            bounds: '#full-container .editor',
+            modules: {
+                'toolbar': [
+                    [{ 'font': fonts }, { 'size': [] }],
+                    [ 'bold', 'italic', 'underline', 'strike' ],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'script': 'super' }, { 'script': 'sub' }],
+                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block' ],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet'}, { 'indent': '-1' }, { 'indent': '+1' }],
+                    [ 'direction', { 'align': [] }],
+                    [ 'link', 'image', 'video' ],
+                    [ 'clean' ]
+                ],
+            },
+            theme: 'snow'
+        });
+
+
+        document.querySelector('.ql-editor').innerHTML = this.props.editPost.content;
+
+        setTimeout(function () {
+            fullEditor.focus();
+        }, 200);
+    }
+
     handleEditPost = () => {
-        const html = tinymce.get('test').getContent();
+        const html = document.querySelector(".ql-editor").innerHTML;
 
         this.props.sendEditedPost(this.props.params.id, this.props.editPost.postId, html);
     };
@@ -31,20 +63,9 @@ class EditThread extends Component {
                         <div className="category-name">Edit your post</div>
                     </div>
                     <div className="posting-input-wrapper">
-                        <TinyMCE id="test"
-                                 content={this.props.editPost.content}
-                                 config={{
-                                     height: 350,
-                                     plugins: [
-                                         'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
-                                         'insertdatetime media nonbreaking save table contextmenu directionality',
-                                         'emoticons template paste textcolor colorpicker textpattern imagetools'
-                                     ],
-                                     toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                                     toolbar2: 'preview media | forecolor backcolor emoticons'
-                                 }}
-                        />
+                        <div id="full-container">
+
+                        </div>
                         <button onClick={this.handleEditPost} className="form-button">Submit changes</button>
                     </div>
                 </div>

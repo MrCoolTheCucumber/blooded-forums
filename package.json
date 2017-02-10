@@ -48,6 +48,7 @@
     "react-tinymce": "^0.5.1",
     "redux": "^3.0.4",
     "redux-form": "^5.3.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "quill": "^1.2.0"
   }
 }
