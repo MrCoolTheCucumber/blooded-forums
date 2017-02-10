@@ -60,6 +60,7 @@ body {
     font-size: 90%;
 }
 
+@import '/components/quill';
 @import '/components/header';
 @import '/components/breadcrumbs';
 @import '/components/category';
@@ -69,4 +70,3 @@ body {
 @import '/components/list-buttons';
 @import '/components/topic/topic';
 @import '/components/topic/posting';
-@import '/components/quill';
