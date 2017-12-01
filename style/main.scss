@@ -3,7 +3,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
-    background-image: url('/assets/stardust.png');
+    background-image: url('/assets/footer_lodyas.png');
     color: #FFF;
 
     margin: 0;
@@ -61,9 +61,10 @@ body {
 
 @import '/components/header';
 @import '/components/breadcrumbs';
-@import 'components/category';
-@import 'components/forum_list';
-@import 'components/auth/forms';
-@import 'components/list-buttons';
-@import 'components/topic/topic';
-@import 'components/topic/posting';
+@import '/components/category';
+@import '/components/settings';
+@import '/components/forum_list';
+@import '/components/auth/forms';
+@import '/components/list-buttons';
+@import '/components/topic/topic';
+@import '/components/topic/posting';

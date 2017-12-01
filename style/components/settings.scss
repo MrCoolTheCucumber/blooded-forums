@@ -1,0 +1,79 @@
+@import '../variables';
+
+$selected-color: rgb(154, 154, 154);
+
+#settings-wrapper {
+    align-self: center;
+    margin-top: 50px;
+
+    background-color: $primary-color;
+    font-size: 1em;
+
+    width: 100%;
+
+    min-height: 600px;
+
+    .form-wrapper {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .posting-wrapper {
+        margin-top: 0;
+        width: 85%;
+    }
+}
+
+#settings-menu-selected-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+#settings-menu-wrapper {
+    flex: 0 0 300px;
+    align-self: flex-start;
+    padding: 0 10px;
+}
+
+#settings-selected-wrapper {
+    flex: 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#settings-menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
+
+    li {
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+
+        &:hover:not(.settings-menu-list-selected) {
+            background-color: $selected-color;
+            cursor: pointer;
+        }
+    }
+}
+
+.settings-menu-list-selected {
+    background-color: $selected-color;
+    cursor: default;
+}
+
+#settings-avatar-preview-button {
+    margin-left: 10px;
+}
+
+#settings-avatar-input {
+    width: 70%;
+}

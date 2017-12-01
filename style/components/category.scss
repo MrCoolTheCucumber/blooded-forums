@@ -4,6 +4,10 @@
     margin-top: 15px;
 
     background-color: $primary-color;
+
+    &:last-of-type {
+        margin-bottom: 1px;
+    }
 }
 
 .category-header-wrapper {

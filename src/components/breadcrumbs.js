@@ -54,7 +54,7 @@ class Breadcrumbs extends Component {
             )
         }
 
-        if(this.props.breadcrumbs != null && this.props.breadcrumbs.settings != null) {
+        if(this.props.breadcrumbs != null && this.props.breadcrumbs.setting != null) {
             return (
                 <li>
                     <Link className="crumbs-link" to={`/settings`}>Settings</Link>

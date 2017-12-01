@@ -37,19 +37,21 @@ class ChangePassword extends Component {
         const { handleSubmit, fields: { password, passwordConfirm } } = this.props;
 
         return (
-            <form className="thin-border" onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
                 <div className="form-wrapper">
-                    <fieldset className="form-group">
-                        <label>Password:</label>
-                        <input type="password" {...password} className="form-control"/>
-                        {password.touched && password.error && <div className="error">{password.error}</div>}
-                    </fieldset>
-                    <fieldset className="form-group">
-                        <label>Confirm Password:</label>
-                        <input type="password" {...passwordConfirm} className="form-control"/>
-                        {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
-                    </fieldset>
-                    {this.renderButton()}
+                    <div className="form-input-wrapper">
+                        <fieldset className="form-group">
+                            <label>Password:</label>
+                            <input type="password" {...password} className="form-control"/>
+                            {password.touched && password.error && <div className="error">{password.error}</div>}
+                        </fieldset>
+                        <fieldset className="form-group">
+                            <label>Confirm Password:</label>
+                            <input type="password" {...passwordConfirm} className="form-control"/>
+                            {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
+                        </fieldset>
+                        {this.renderButton()}
+                    </div>
                 </div>
             </form>
         );
